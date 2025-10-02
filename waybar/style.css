@@ -1,0 +1,87 @@
+@import "../omarchy/current/theme/waybar.css";
+
+window#waybar {
+  background: alpha(@background, 0.8);
+  color: @foreground;
+  border: none;
+  border-radius: 10px; /* adjust radius to taste */
+}
+
+/* Keep child container corners rounded too */
+window#waybar > box {
+  border-radius: 10px;
+}
+
+/* Let the window background show through */
+* {
+  background-color: transparent;
+  color: @foreground;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: CaskaydiaMono Nerd Font;
+  font-size: 15px;
+}
+
+.modules-left {
+  margin-left: 8px;
+}
+
+.modules-right {
+  margin-right: 16px;
+}
+
+#workspaces button {
+  all: initial;
+  padding: 0 10px;
+  margin: 0 1.5px;
+  min-width: 12px;
+}
+
+#workspaces button:not(.visible) {
+  opacity: 0.5;
+  min-width: 12px;
+}
+
+#tray,
+#cpu,
+#battery,
+#network,
+#bluetooth,
+#pulseaudio,
+#custom-omarchy,
+#custom-screenrecording-indicator,
+#custom-update {
+  min-width: 12px;
+  margin: 0 7.5px;
+}
+
+#custom-expand-icon {
+  margin-right: 7px;
+}
+
+tooltip {
+  padding: 2px;
+}
+
+#custom-update {
+  font-size: 10px;
+}
+
+#clock {
+  margin-left: 8.75px;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+#custom-screenrecording-indicator {
+  min-width: 12px;
+  margin-left: 8.75px;
+  font-size: 10px;
+}
+
+#custom-screenrecording-indicator.active {
+  color: #a55555;
+}
