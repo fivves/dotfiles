@@ -12,6 +12,21 @@ window#waybar > box {
   border-radius: 10px;
 }
 
+/* Tooltip styling to match Waybar window transparency and colors */
+tooltip,
+tooltip > box {
+  background-color: alpha(@background, 0.8);
+  color: @foreground;
+  border: none;
+  border-radius: 10px; /* same as window#waybar */
+  padding: 6px 8px;    /* adjust to taste */
+}
+
+/* Optional: ensure tooltip text inherits correctly */
+tooltip label {
+  color: @foreground;
+}
+
 /* Let the window background show through */
 * {
   background-color: transparent;
