@@ -100,3 +100,7 @@ tooltip {
 #custom-screenrecording-indicator.active {
   color: #a55555;
 }
+
+#mpris {
+  margin-left: 5px; /* space to the left of mpris */
+}

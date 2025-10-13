@@ -3,13 +3,14 @@
   "layer": "top",
   "position": "top",
   "margin-top": 5,
+  "output": ["DP-2"],
   "margin-bottom": 0,
   "margin-left": 10,
   "margin-right": 10,
   "spacing": 5,
   "height": 34,
 
-  "modules-left": ["custom/omarchy", "hyprland/workspaces"],
+  "modules-left": ["custom/omarchy", "hyprland/workspaces", "mpris"],
   "modules-center": ["hyprland/window"],
   "modules-right": [
     "group/tray-expander",
@@ -27,8 +28,8 @@
     "format-icons": {
       "default": "",
       "1": "󰖟",
-      "2": "",
-      "3": "",
+      "2": "",
+      "3": "󱞁",
       "4": "",
       "5": "",
       "6": "6",
@@ -45,12 +46,35 @@
     }
   },
 
+  "mpris": {
+    "format": "{player_icon} {title} - {artist}",
+    "format-paused": "⏸ {title} - {artist}",
+    "format-stopped": "",
+    "player-icons": {
+      "default": "",
+      "firefox": "",
+      "Lollypop": "󰝚",
+      "mpv": "󰍺",
+      "vlc": "󰕼",
+      "spotify": ""
+    },
+    "escape": false,
+    "max-length": 40,
+    "truncate": "end",
+    "interval": 1,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl stop",
+    "on-scroll-up": "playerctl previous",
+    "on-scroll-down": "playerctl next"
+},
+
   "hyprland/window": {
     "format": "{}",
-    "max-length": 80,
+    "max-length": 40,
     "separate-outputs": false,
     "rewrite": {
       " — Mozilla Firefox$": "",
+      " - Zen Browser$": "",
       " — Firefox$": "",
       " - Visual Studio Code$": "",
       " — Chromium$": ""
@@ -59,11 +83,11 @@
     "on-click-right": "hyprctl dispatch fullscreen 0"
   },
 
-"custom/omarchy": {
-  "format": "<span font='JetBrainsMono Nerd Font 18'>󰣇</span>",
-  "on-click": "omarchy-menu",
-  "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
-},
+  "custom/omarchy": {
+    "format": "<span font='JetBrainsMono Nerd Font 18'>󰣇</span>",
+    "on-click": "omarchy-menu",
+    "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
+  },
 
   "custom/update": {
     "format": "",
@@ -101,24 +125,24 @@
     "on-click": "omarchy-launch-wifi"
   },
 
-"battery": {
-  "format": "{capacity}% {icon}",
-  "format-discharging": "{capacity}% {icon}",
-  "format-charging": "{capacity}% {icon}",
-  "format-plugged": " {capacity}%",
-  "format-icons": {
-    "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
-    "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-  },
-  "format-full": "󰂅 {capacity}%",
-  "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
-  "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
-  "interval": 5,
-  "on-click": "omarchy-menu power",
-  "states": {
-    "warning": 20,
-    "critical": 10
-  },
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-discharging": "{capacity}% {icon}",
+    "format-charging": "{capacity}% {icon}",
+    "format-plugged": " {capacity}%",
+    "format-icons": {
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "format-full": "󰂅 {capacity}%",
+    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+    "interval": 5,
+    "on-click": "omarchy-menu power",
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
     "format-full": "󰂅",
     "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
     "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
@@ -174,5 +198,21 @@
   "tray": {
     "icon-size": 12,
     "spacing": 12
-  }
+  },
+
+  "custom/waybar-media": {
+    "return-type": "json",
+    "exec": "waybar-media.py status",
+    "on-click": "waybar-media.py playpause",
+    "on-scroll-up": "waybar-media.py previous",
+    "on-scroll-down": "waybar-media.py next",
+    "escape": true
+  },
+
+	"status-icons": {
+		"paused": "⏸"
+	},
+	// "ignored-players": ["firefox"]
+}
+
 }
