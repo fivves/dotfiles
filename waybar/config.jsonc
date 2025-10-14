@@ -2,9 +2,9 @@
   "reload_style_on_change": true,
   "layer": "top",
   "position": "top",
-  "margin-top": 5,
+  "margin-top": 2,
   "output": ["DP-2"],
-  "margin-bottom": -5,
+  "margin-bottom": -8,
   "margin-left": 0,
   "margin-right": 0,
   "spacing": 5,
@@ -109,8 +109,7 @@
   },
 
   "clock": {
-    "format": "{:L%A %I:%M %p}",
-    "format-alt": "{:L%d %B W%V %Y}",
+    "format": "{:%a %b %d %I:%M %p}",
     "tooltip": false,
     "on-click-right": "omarchy-cmd-tzupdate"
   },
