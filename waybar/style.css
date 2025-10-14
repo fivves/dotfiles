@@ -79,6 +79,7 @@ tooltip label {
 #mpris,
 #clock {
   min-width: 12px;
+  padding-right: 8px;
 }
 
 /* Your previous tweaks */
