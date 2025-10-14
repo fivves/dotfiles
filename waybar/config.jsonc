@@ -4,9 +4,9 @@
   "position": "top",
   "margin-top": 5,
   "output": ["DP-2"],
-  "margin-bottom": 0,
-  "margin-left": 10,
-  "margin-right": 10,
+  "margin-bottom": -5,
+  "margin-left": 0,
+  "margin-right": 0,
   "spacing": 5,
   "height": 34,
 
@@ -74,7 +74,7 @@
 
   "hyprland/window": {
     "format": "{}",
-    "max-length": 40,
+    "max-length": 60,
     "separate-outputs": false,
     "rewrite": {
       " — Mozilla Firefox$": "",

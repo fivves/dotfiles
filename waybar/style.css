@@ -1,33 +1,32 @@
 @import "../omarchy/current/theme/waybar.css";
 
+/* Bar itself transparent; the chips will be the only visible background */
 window#waybar {
-  background: alpha(@background, 0.8);
+  background: transparent;
   color: @foreground;
   border: none;
-  border-radius: 10px; /* adjust radius to taste */
 }
 
-/* Keep child container corners rounded too */
+/* Keep child container transparent too */
 window#waybar > box {
-  border-radius: 10px;
+  background: transparent;
+  border: none;
 }
 
-/* Tooltip styling to match Waybar window transparency and colors */
+/* Tooltips (GTK3-safe) */
 tooltip,
 tooltip > box {
-  background-color: alpha(@background, 0.8);
+  background-color: alpha(@background, 0.9);
   color: @foreground;
   border: none;
-  border-radius: 10px; /* same as window#waybar */
-  padding: 6px 8px;    /* adjust to taste */
+  border-radius: 10px;
+  padding: 6px 8px;
 }
-
-/* Optional: ensure tooltip text inherits correctly */
 tooltip label {
   color: @foreground;
 }
 
-/* Let the window background show through */
+/* Base defaults */
 * {
   background-color: transparent;
   color: @foreground;
@@ -38,26 +37,36 @@ tooltip label {
   font-size: 15px;
 }
 
-.modules-left {
-  margin-left: 8px;
-}
-
+/* Three floating containers (GTK3-safe: no backdrop-filter, no box-shadow) */
+.modules-left,
+.modules-center,
 .modules-right {
-  margin-right: 16px;
+  background-color: alpha(@background, 0.85);
+  border-radius: 12px;
+  padding: 0px 10px;
+
+  /* Faux depth using a subtle outline */
+  outline: 1px solid alpha(black, 0.12);
+
+  /* Space from screen edges and between chips */
+  margin: 6px 10px;
 }
 
-#workspaces button {
-  all: initial;
-  padding: 0 10px;
-  margin: 0 1.5px;
-  min-width: 12px;
+/* Spacing between items inside each chip */
+.modules-left > *:not(:last-child),
+.modules-center > *:not(:last-child),
+.modules-right > *:not(:last-child) {
+  margin-right: 8px;
 }
 
+#workspaces button.visible {
+  /* Keep transparent so your existing indicator shows */
+}
 #workspaces button:not(.visible) {
-  opacity: 0.5;
-  min-width: 12px;
+  opacity: 0.6;
 }
 
+/* Common element sizing */
 #tray,
 #cpu,
 #battery,
@@ -66,41 +75,52 @@ tooltip label {
 #pulseaudio,
 #custom-omarchy,
 #custom-screenrecording-indicator,
-#custom-update {
+#custom-update,
+#mpris,
+#clock {
   min-width: 12px;
-  margin: 0 7.5px;
 }
 
+/* Your previous tweaks */
 #custom-expand-icon {
-  margin-right: 7px;
+  margin-right: 6px;
 }
-
-tooltip {
-  padding: 2px;
-}
-
 #custom-update {
   font-size: 10px;
 }
-
 #clock {
   margin-left: 8.75px;
 }
-
-.hidden {
-  opacity: 0;
-}
-
 #custom-screenrecording-indicator {
-  min-width: 12px;
-  margin-left: 8.75px;
   font-size: 10px;
+  margin-left: 8.75px;
 }
-
 #custom-screenrecording-indicator.active {
   color: #a55555;
 }
-
 #mpris {
-  margin-left: 5px; /* space to the left of mpris */
+  margin-left: 5px;
+}
+
+/* Fix Omarchy icon clipping on the left edge */
+.modules-left {
+  margin-left: 14px; /* more space from screen edge */
+  padding-left: 12px; /* inner breathing room */
+}
+
+#custom-omarchy {
+  padding-right: 4px; /* keep glyph from touching right edge of the chip */
+  padding-left: 2px;  /* slight left pad */
+  /* If needed, lock icon size explicitly: */
+  /* font-size: 18px; */
+}
+
+/* Small gap between Omarchy button and workspaces */
+#custom-omarchy + #workspaces {
+  margin-left: 6px;
+}
+
+/* Hide utility */
+.hidden {
+  opacity: 0;
 }
