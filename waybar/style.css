@@ -66,6 +66,14 @@ tooltip label {
   opacity: 0.6;
 }
 
+#workspaces button,
+#workspaces button:hover,
+#workspaces button:active,
+#workspaces button.focused {
+  background: transparent;
+  box-shadow: none;
+}
+
 /* Common element sizing */
 #tray,
 #cpu,
