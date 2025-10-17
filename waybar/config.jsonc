@@ -50,7 +50,7 @@
     "format": "{player_icon} {title} - {artist}",
     "format-paused": "⏸ {title} - {artist}",
     "format-stopped": "",
-    "player": ["Lollypop", "g4music"],
+    "player": "Lollypop",
     "player-icons": {
       "default": "",
       "firefox": "",
