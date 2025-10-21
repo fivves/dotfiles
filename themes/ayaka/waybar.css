@@ -1,0 +1,44 @@
+@define-color background #0A0D13;
+@define-color waybarBg rgba(38,38,38,0.3);
+@define-color foreground      #e6e6e6;
+@define-color surface         #404040;
+@define-color inactive        #404040;
+
+@define-color accent_orange   #e65c5c;
+@define-color accent_green    #9ece6a;
+@define-color accent_blue     #7aa2f7;
+@define-color accent_critical #e65c5c;
+
+#waybar {
+  background-color: @waybarBg;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: @accent_green;
+}
+
+#battery.warning:not(.charging) {
+  color: @accent_orange;
+}
+
+#battery.critical:not(.charging) {
+  color: @accent_critical;
+}
+
+#pulseaudio.muted {
+  color: @accent_critical;
+}
+
+#network.disconnected {
+  color: @accent_critical;
+}
+
+tooltip {
+  border-radius: 10px;
+  border: 1px solid @inactive;
+}
+
+tooltip label {
+  color: @foreground;
+}
