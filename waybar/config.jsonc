@@ -16,7 +16,6 @@
     "group/tray-expander",
     "bluetooth",
     "network",
-    "battery",
     "pulseaudio",
     "clock"
   ],
@@ -34,7 +33,7 @@
       "6": "6",
       "7": "7",
       "8": "8",
-      "9": "9"
+      "9": ""
     },
     "persistent-workspaces": {
       "1": [],
@@ -55,6 +54,7 @@
       "firefox": "",
       "Firefox": "",
       "Lollypop": "󰝚",
+      "Harmonoid": "󰝚",
       "mpv": "󰍺",
       "vlc": "󰕼",
       "VLC": "󰕼",
@@ -89,6 +89,7 @@
   "custom/omarchy": {
     "format": "<span font='JetBrainsMono Nerd Font 18'>󰣇</span>",
     "on-click": "omarchy-menu",
+    "on-click-right": "omarchy-launch-terminal",
     "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
   },
 
