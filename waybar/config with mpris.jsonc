@@ -10,7 +10,7 @@
   "spacing": 5,
   "height": 34,
 
-  "modules-left": ["custom/omarchy", "hyprland/workspaces", "custom/music"],
+  "modules-left": ["custom/omarchy", "hyprland/workspaces", "mpris"],
   "modules-center": ["hyprland/window"],
   "modules-right": [
     "group/tray-expander",
@@ -44,16 +44,32 @@
     }
   },
 
- "custom/music": {
-    "exec": "sh -lc \"playerctl -p com.github.neithern.g4music metadata --format '  {{ artist }} - {{ title }}' 2>/dev/null || echo ''\"",
-    "format": "{}",
-    "return-type": "text",
+  "mpris": {
+    "format": "{player_icon} {title} - {artist}",
+    "format-paused": "⏸ {title} - {artist}",
+    "format-stopped": "",
+    "player": "Lollypop",
+    "player-icons": {
+      "default": "",
+      "firefox": "",
+      "Firefox": "",
+      "Lollypop": "󰝚",
+      "Harmonoid": "󰝚",
+      "mpv": "󰍺",
+      "vlc": "󰕼",
+      "VLC": "󰕼",
+      "Spotify": "",
+      "spotify": ""
+    },
+    "escape": false,
+    "max-length": 40,
+    "truncate": "end",
     "interval": 1,
     "on-click": "playerctl play-pause",
     "on-click-right": "playerctl stop",
     "on-scroll-up": "playerctl previous",
     "on-scroll-down": "playerctl next"
-  },
+},
 
   "hyprland/window": {
     "format": "{}",

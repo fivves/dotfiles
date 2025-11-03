@@ -84,7 +84,7 @@ tooltip label {
 #custom-omarchy,
 #custom-screenrecording-indicator,
 #custom-update,
-#mpris,
+#custom-music,
 #clock {
   min-width: 12px;
   padding-right: 8px;
@@ -107,7 +107,7 @@ tooltip label {
 #custom-screenrecording-indicator.active {
   color: #a55555;
 }
-#mpris {
+#custom-music {
   margin-left: 5px;
 }
 
