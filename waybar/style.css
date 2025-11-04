@@ -84,7 +84,7 @@ tooltip label {
 #custom-omarchy,
 #custom-screenrecording-indicator,
 #custom-update,
-#custom-music,
+#mpris,
 #clock {
   min-width: 12px;
   padding-right: 8px;
@@ -107,7 +107,7 @@ tooltip label {
 #custom-screenrecording-indicator.active {
   color: #a55555;
 }
-#custom-music {
+#mpris {
   margin-left: 5px;
 }
 
@@ -133,3 +133,10 @@ tooltip label {
 .hidden {
   opacity: 0;
 }
+
+/* Weather Module extra spacing */
+.modules-right #custom-weather {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
