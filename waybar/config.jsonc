@@ -2,6 +2,7 @@
   "reload_style_on_change": true,
   "layer": "top",
   "position": "top",
+  "output": ["DP-2"],
   "margin-top": 2,
   "margin-bottom": -8,
   "margin-left": 0,
@@ -12,20 +13,22 @@
   "modules-left": ["custom/omarchy", "hyprland/workspaces", "mpris"],
   "modules-center": ["hyprland/window"],
   "modules-right": [
+    "custom/screenrecording-indicator",
     "group/tray-expander",
-    "custom/weather",
     "bluetooth",
     "network",
     "battery",
     "pulseaudio",
-    "clock"
+    "custom/weather",
+    "clock",
+    "custom/update"
   ],
 
   "custom/weather": {
     "exec": "~/.config/waybar/weather.py waybar",
     "restart-interval": 900,
     "return-type": "json",
-},
+  },
 
   "hyprland/workspaces": {
     "on-click": "activate",
@@ -33,15 +36,16 @@
     "format-icons": {
       "default": "",
       "1": "󰖟",
-      "2": "",
-      "3": "",
+      "2": "",
+      "3": "󰎞",
       "4": "󰑈",
-      "5": "󱞁",
+      "5": "󰆟",
       "6": "6",
       "7": "7",
       "8": "8",
-      "9": "9"
+      "9": ""
     },
+
     "persistent-workspaces": {
       "1": [],
       "2": [],
@@ -75,7 +79,7 @@
     "on-click-right": "playerctl stop",
     "on-scroll-up": "playerctl previous",
     "on-scroll-down": "playerctl next"
-},
+  },
 
   "hyprland/window": {
     "format": "{}",
@@ -208,20 +212,5 @@
     "icon-size": 12,
     "spacing": 12
   },
-
-  "custom/waybar-media": {
-    "return-type": "json",
-    "exec": "waybar-media.py status",
-    "on-click": "waybar-media.py playpause",
-    "on-scroll-up": "waybar-media.py previous",
-    "on-scroll-down": "waybar-media.py next",
-    "escape": true
-  },
-
-	"status-icons": {
-		"paused": "⏸"
-	},
-	// "ignored-players": ["firefox"]
-}
 
 }
