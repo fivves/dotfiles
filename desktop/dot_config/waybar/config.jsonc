@@ -1,0 +1,216 @@
+{
+  "reload_style_on_change": true,
+  "layer": "top",
+  "position": "top",
+  "output": ["DP-2"],
+  "margin-top": 2,
+  "margin-bottom": -8,
+  "margin-left": 0,
+  "margin-right": 0,
+  "spacing": 5,
+  "height": 34,
+
+  "modules-left": ["custom/omarchy", "hyprland/workspaces", "mpris"],
+  "modules-center": ["hyprland/window"],
+  "modules-right": [
+    "custom/screenrecording-indicator",
+    "group/tray-expander",
+    "bluetooth",
+    "network",
+    "battery",
+    "pulseaudio",
+    "custom/weather",
+    "clock",
+    "custom/update"
+  ],
+
+  "custom/weather": {
+    "exec": "~/.config/waybar/weather.py waybar",
+    "restart-interval": 900,
+    "return-type": "json",
+  },
+
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "default": "",
+      "1": "󰖟",
+      "2": "",
+      "3": "󰎞",
+      "4": "󰆟",
+      "5": "",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": ""
+    },
+
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    }
+  },
+
+  "mpris": {
+    "format": "{player_icon} {title} - {artist}",
+    "format-paused": "⏸ {title} - {artist}",
+    "format-stopped": "",
+    "player": "Lollypop",
+    "player-icons": {
+      "default": "",
+      "firefox": "",
+      "Firefox": "",
+      "Lollypop": "󰝚",
+      "mpv": "󰍺",
+      "vlc": "󰕼",
+      "VLC": "󰕼",
+      "Spotify": "",
+      "spotify": ""
+    },
+    "escape": false,
+    "max-length": 40,
+    "truncate": "end",
+    "interval": 1,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl stop",
+    "on-scroll-up": "playerctl previous",
+    "on-scroll-down": "playerctl next"
+  },
+
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 60,
+    "separate-outputs": false,
+    "rewrite": {
+      " — Mozilla Firefox$": "",
+      " - Zen Browser$": "",
+      " — Firefox$": "",
+      " - Visual Studio Code$": "",
+      " — Chromium$": ""
+    },
+    "on-click": "hyprctl dispatch togglefloating active",
+    "on-click-right": "hyprctl dispatch fullscreen 0"
+  },
+
+  "custom/omarchy": {
+    "format": "<span font='JetBrainsMono Nerd Font 18'>󰣇</span>",
+    "on-click": "omarchy-menu",
+    "on-click-right": "omarchy-launch-terminal",
+    "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
+  },
+
+  "custom/update": {
+    "format": "",
+    "exec": "omarchy-update-available",
+    "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
+    "tooltip-format": "Omarchy update available",
+    "signal": 7,
+    "interval": 3600
+  },
+
+  "cpu": {
+    "interval": 5,
+    "format": "󰍛",
+    "on-click": "$TERMINAL -e btop"
+  },
+
+  "clock": {
+    "format": "{:%a %b %d %I:%M %p}",
+    "tooltip": false,
+    "on-click-right": "omarchy-cmd-tzupdate"
+  },
+
+  "network": {
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format": "{icon}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰀂",
+    "format-disconnected": "󰤮",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 3,
+    "spacing": 1,
+    "on-click": "omarchy-launch-wifi"
+  },
+
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-discharging": "{capacity}% {icon}",
+    "format-charging": "{capacity}% {icon}",
+    "format-plugged": " {capacity}%",
+    "format-icons": {
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "format-full": "󰂅 {capacity}%",
+    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+    "interval": 5,
+    "on-click": "omarchy-menu power",
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format-full": "󰂅",
+    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+    "interval": 5,
+    "on-click": "omarchy-menu power",
+    "states": {
+      "warning": 20,
+      "critical": 10
+    }
+  },
+
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "󰂲",
+    "format-connected": "",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "blueberry"
+  },
+
+  "pulseaudio": {
+    "format": "{icon}",
+    "on-click": "$TERMINAL --class=Wiremix -e wiremix",
+    "on-click-right": "pamixer -t",
+    "tooltip-format": "Playing at {volume}%",
+    "scroll-step": 5,
+    "format-muted": "",
+    "format-icons": {
+      "default": ["", "", ""]
+    }
+  },
+
+  "group/tray-expander": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 600,
+      "children-class": "tray-group-item"
+    },
+    "modules": ["custom/expand-icon", "tray"]
+  },
+
+  "custom/expand-icon": {
+    "format": " ",
+    "tooltip": false
+  },
+
+  "custom/screenrecording-indicator": {
+    "on-click": "omarchy-cmd-screenrecord",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
+    "signal": 8,
+    "return-type": "json"
+  },
+
+  "tray": {
+    "icon-size": 12,
+    "spacing": 12
+  },
+
+}
