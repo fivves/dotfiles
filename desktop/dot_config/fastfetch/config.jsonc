@@ -62,18 +62,29 @@
       "type": "custom",
       "format": "\u001b[90m┌──────────────────────Software──────────────────────┐"
     },
-{
-  "type": "command",
-  "key": "\ue900 OS",
-  "keyColor": "blue",
-  "text": "source /usr/lib/os-release 2>/dev/null || source /etc/os-release; echo \"${PRETTY_NAME:-$NAME}\""
-},
-{
-  "type": "command",
-  "key": "│ ├󰘬",
-  "keyColor": "blue",
-  "text": "uname -r"
-},
+    {
+      "type": "command",
+      "key": "\ue900 OS",
+      "keyColor": "blue",
+      "text": "version=$(omarchy-version); echo \"Omarchy $version\""
+    },
+    {
+      "type": "command",
+      "key": "│ ├󰘬",
+      "keyColor": "blue",
+      "text": "branch=$(omarchy-version-branch); echo \"$branch\""
+    },
+    {
+      "type": "command",
+      "key": "│ ├󰔫",
+      "keyColor": "blue",
+      "text": "channel=$(omarchy-version-channel); echo \"$channel\""
+    },
+    {
+      "type": "kernel",
+      "key": "│ ├",
+      "keyColor": "blue"
+    },
     {
       "type": "wm",
       "key": "│ ├",
@@ -117,7 +128,7 @@
     "break",
     {
       "type": "custom",
-      "format": "\u001b[90m┌────────────────────Uptime / Age────────────────────┐"
+      "format": "\u001b[90m┌────────────────Age / Uptime / Update───────────────┐"
     },
     {
       "type": "command",
@@ -129,6 +140,12 @@
       "type": "uptime",
       "key": "󱫐 Uptime",
       "keyColor": "magenta"
+    },
+    {
+      "type": "command",
+      "key": " Update",
+      "keyColor": "magenta",
+      "text": "updated=$(omarchy-version-pkgs); echo \"$updated\""
     },
     {
       "type": "custom",
