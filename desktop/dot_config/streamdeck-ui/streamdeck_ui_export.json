@@ -71,7 +71,7 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/stream.png",
+                                "icon": "/home/eddie/.config/streamdeck-ui/icons/fs.png",
                                 "keys": "SUPER + 4",
                                 "write": "",
                                 "command": "",
@@ -92,7 +92,7 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/1.5.png",
+                                "icon": "/home/eddie/.config/streamdeck-ui/icons/stream.png",
                                 "keys": "SUPER + 5",
                                 "write": "",
                                 "command": "",
@@ -113,8 +113,8 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/windows.png",
-                                "keys": "SUPER + 9",
+                                "icon": "",
+                                "keys": "",
                                 "write": "",
                                 "command": "",
                                 "brightness_change": 0,
@@ -176,10 +176,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "",
+                                "icon": "/home/eddie/.config/streamdeck-ui/icons/mixer.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "",
+                                "command": "java -jar /home/eddie/Apps/PCPanel/pcpanel.jar",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -187,7 +187,7 @@
                                 "text_horizontal_align": "",
                                 "font": "",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 72,
                                 "background_color": ""
                             }
                         }
@@ -197,10 +197,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "",
+                                "icon": "/home/eddie/.config/streamdeck-ui/icons/off.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "",
+                                "command": "pkill java",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -208,7 +208,7 @@
                                 "text_horizontal_align": "",
                                 "font": "",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 72,
                                 "background_color": ""
                             }
                         }
@@ -260,10 +260,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/mixer.png",
-                                "keys": "",
+                                "icon": "",
+                                "keys": "SUPER+B",
                                 "write": "",
-                                "command": "java -jar /home/eddie/Apps/PCPanel/pcpanel.jar",
+                                "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -271,7 +271,7 @@
                                 "text_horizontal_align": "",
                                 "font": "",
                                 "font_color": "",
-                                "font_size": 72,
+                                "font_size": 0,
                                 "background_color": ""
                             }
                         }
@@ -281,10 +281,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/off.png",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
-                                "command": "pkill java",
+                                "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -292,7 +292,7 @@
                                 "text_horizontal_align": "",
                                 "font": "",
                                 "font_color": "",
-                                "font_size": 72,
+                                "font_size": 0,
                                 "background_color": ""
                             }
                         }
@@ -302,10 +302,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/suspend.png",
+                                "icon": "/home/eddie/.config/streamdeck-ui/icons/windows.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "systemctl suspend",
+                                "command": "kitty /home/eddie/.config/hypr/reboot-to-windows.sh",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -323,11 +323,11 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/bright.png",
+                                "icon": "/home/eddie/.config/streamdeck-ui/icons/suspend.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "",
-                                "brightness_change": 50,
+                                "command": "systemctl suspend",
+                                "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
                                 "text_vertical_align": "",
@@ -387,7 +387,7 @@
                             "0": {
                                 "text": "",
                                 "icon": "",
-                                "keys": "SUPER+B",
+                                "keys": "",
                                 "write": "",
                                 "command": "",
                                 "brightness_change": 0,
@@ -403,69 +403,6 @@
                         }
                     },
                     "19": {
-                        "state": 0,
-                        "states": {
-                            "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/clock.png",
-                                "keys": "",
-                                "write": "",
-                                "command": "alacritty -e bash -lc \"tty-clock -s -c -C7 -t\"",
-                                "brightness_change": 0,
-                                "switch_page": 0,
-                                "switch_state": 0,
-                                "text_vertical_align": "",
-                                "text_horizontal_align": "",
-                                "font": "",
-                                "font_color": "",
-                                "font_size": 0,
-                                "background_color": ""
-                            }
-                        }
-                    },
-                    "20": {
-                        "state": 0,
-                        "states": {
-                            "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/pipes.png",
-                                "keys": "",
-                                "write": "",
-                                "command": "alacritty -e bash -lc \"pipes.sh\"",
-                                "brightness_change": 0,
-                                "switch_page": 0,
-                                "switch_state": 0,
-                                "text_vertical_align": "",
-                                "text_horizontal_align": "",
-                                "font": "",
-                                "font_color": "",
-                                "font_size": 0,
-                                "background_color": ""
-                            }
-                        }
-                    },
-                    "21": {
-                        "state": 0,
-                        "states": {
-                            "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/waveform.png",
-                                "keys": "",
-                                "write": "",
-                                "command": "alacritty -e bash -lc \"cava\"",
-                                "brightness_change": 0,
-                                "switch_page": 0,
-                                "switch_state": 0,
-                                "text_vertical_align": "",
-                                "text_horizontal_align": "",
-                                "font": "",
-                                "font_color": "",
-                                "font_size": 0,
-                                "background_color": ""
-                            }
-                        }
-                    },
-                    "22": {
                         "state": 0,
                         "states": {
                             "0": {
@@ -486,7 +423,91 @@
                             }
                         }
                     },
+                    "20": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "",
+                                "icon": "/home/eddie/.config/streamdeck-ui/icons/waveform.png",
+                                "keys": "",
+                                "write": "",
+                                "command": "kitty -e bash -lc \"cava\"",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "",
+                                "text_horizontal_align": "",
+                                "font": "",
+                                "font_color": "",
+                                "font_size": 0,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "21": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "",
+                                "icon": "/home/eddie/.config/streamdeck-ui/icons/matrix.png",
+                                "keys": "",
+                                "write": "",
+                                "command": "kitty -e bash -lc \"cmatrix\"",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "",
+                                "text_horizontal_align": "",
+                                "font": "",
+                                "font_color": "",
+                                "font_size": 0,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "22": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "",
+                                "icon": "/home/eddie/.config/streamdeck-ui/icons/pipes.png",
+                                "keys": "",
+                                "write": "",
+                                "command": "kitty -e bash -lc \"pipes.sh\"",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "",
+                                "text_horizontal_align": "",
+                                "font": "",
+                                "font_color": "",
+                                "font_size": 0,
+                                "background_color": ""
+                            }
+                        }
+                    },
                     "23": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "",
+                                "icon": "/home/eddie/.config/streamdeck-ui/icons/clock.png",
+                                "keys": "",
+                                "write": "",
+                                "command": "kitty -e bash -lc \"tty-clock -s -c -C7 -t\"",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "",
+                                "text_horizontal_align": "",
+                                "font": "",
+                                "font_color": "",
+                                "font_size": 0,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "24": {
                         "state": 0,
                         "states": {
                             "0": {
@@ -507,37 +528,16 @@
                             }
                         }
                     },
-                    "24": {
-                        "state": 0,
-                        "states": {
-                            "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/game.png",
-                                "keys": "",
-                                "write": "",
-                                "command": "dex /home/eddie/Games/shortcuts/game.desktop",
-                                "brightness_change": 0,
-                                "switch_page": 0,
-                                "switch_state": 0,
-                                "text_vertical_align": "",
-                                "text_horizontal_align": "",
-                                "font": "",
-                                "font_color": "",
-                                "font_size": 0,
-                                "background_color": ""
-                            }
-                        }
-                    },
                     "25": {
                         "state": 0,
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/thaw.png",
+                                "icon": "/home/eddie/.config/streamdeck-ui/icons/bright.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "dex /home/eddie/Games/shortcuts/reTHAWed.desktop",
-                                "brightness_change": 0,
+                                "command": "",
+                                "brightness_change": 50,
                                 "switch_page": 0,
                                 "switch_state": 0,
                                 "text_vertical_align": "",
@@ -554,10 +554,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/trackmania.png",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
-                                "command": "dex /home/eddie/Games/shortcuts/Trackmania.desktop",
+                                "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -571,27 +571,6 @@
                         }
                     },
                     "27": {
-                        "state": 0,
-                        "states": {
-                            "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/balatro.png",
-                                "keys": "",
-                                "write": "",
-                                "command": "dex /home/eddie/Games/shortcuts/Balatro.desktop",
-                                "brightness_change": 0,
-                                "switch_page": 0,
-                                "switch_state": 0,
-                                "text_vertical_align": "",
-                                "text_horizontal_align": "",
-                                "font": "",
-                                "font_color": "",
-                                "font_size": 0,
-                                "background_color": ""
-                            }
-                        }
-                    },
-                    "28": {
                         "state": 0,
                         "states": {
                             "0": {
@@ -612,7 +591,7 @@
                             }
                         }
                     },
-                    "29": {
+                    "28": {
                         "state": 0,
                         "states": {
                             "0": {
@@ -633,7 +612,7 @@
                             }
                         }
                     },
-                    "30": {
+                    "29": {
                         "state": 0,
                         "states": {
                             "0": {
@@ -642,6 +621,27 @@
                                 "keys": "",
                                 "write": "",
                                 "command": "playerctl next",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "",
+                                "text_horizontal_align": "",
+                                "font": "",
+                                "font_color": "",
+                                "font_size": 0,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "30": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -678,7 +678,7 @@
                 }
             },
             "display_timeout": 0,
-            "brightness": 50,
+            "brightness": 51,
             "brightness_dimmed": 0,
             "rotation": 0,
             "page": 0
