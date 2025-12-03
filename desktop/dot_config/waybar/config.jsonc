@@ -56,14 +56,15 @@
   },
 
   "mpris": {
-    "format": "{player_icon} {title} - {artist}",
+    "format": "{player_icon}  {title} - {artist}",
     "format-paused": "⏸ {title} - {artist}",
     "format-stopped": "",
-    "player": "Lollypop",
+    "player": "playerctld",
     "player-icons": {
       "default": "",
-      "firefox": "",
-      "Firefox": "",
+      "firefox": "",
+      "Gapless": "K",
+      "Firefox": "",
       "Lollypop": "󰝚",
       "mpv": "󰍺",
       "vlc": "󰕼",
