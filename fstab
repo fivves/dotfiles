@@ -3,26 +3,23 @@
 
 # <file system> <dir> <type> <options> <dump> <pass>
 # /dev/mapper/root
-UUID=526caac6-6c61-41f8-9b78-2c7d1589fad1	/         	btrfs     	rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvol=/@	0 0
+UUID=3b36dcb5-ace0-41a1-aa2d-308ca6b03f5f	/         	btrfs     	rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvol=/@	0 0
 
 # /dev/mapper/root
-UUID=526caac6-6c61-41f8-9b78-2c7d1589fad1	/home     	btrfs     	rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvol=/@home	0 0
+UUID=3b36dcb5-ace0-41a1-aa2d-308ca6b03f5f	/home     	btrfs     	rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvol=/@home	0 0
 
 # /dev/mapper/root
-UUID=526caac6-6c61-41f8-9b78-2c7d1589fad1	/var/cache/pacman/pkg	btrfs     	rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvol=/@pkg	0 0
+UUID=3b36dcb5-ace0-41a1-aa2d-308ca6b03f5f	/var/cache/pacman/pkg	btrfs     	rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvol=/@pkg	0 0
 
 # /dev/mapper/root
-UUID=526caac6-6c61-41f8-9b78-2c7d1589fad1	/var/log  	btrfs     	rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvol=/@log	0 0
+UUID=3b36dcb5-ace0-41a1-aa2d-308ca6b03f5f	/var/log  	btrfs     	rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvol=/@log	0 0
 
 # /dev/nvme0n1p1
-UUID=DCC6-F0A2      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
-
-# Mount for /dev/sda1
-UUID=1E6244616244402F /mnt/NINJA  ntfs-3g  uid=1000,gid=1000,umask=0000,windows_names  0  0
-
-# Mount for /dev/sdb1
-UUID=6ed02743-1f82-409b-a7e5-38d5793caab7 /mnt/LIMBO ext4 defaults 0 2
+UUID=933C-68A5      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
 
 # Mount for SMB FVVS (Samba)
-//192.168.1.44/FVVS\040CLOUD /mnt/FVVS cifs credentials=/etc/samba/creds/share,uid=1000,gid=1000,file_mode=0777,dir_mode=0777,noperm,vers=3.1.1,_netdev,nofail,x-systemd.automount,x-systemd.idle-timeout=60 0 0
+//192.168.1.44/FVVS\040CLOUD /mnt/CLOUD cifs credentials=/etc/samba/creds/share,uid=1000,gid=1000,file_mode=0777,dir_mode=0777,noperm,vers=3.1.1,_netdev,nofail,x-systemd.automount, 0 0
+
+# Mount for /dev/sdb1
+UUID=9f0059d2-68a9-4ec7-b901-fa741aa71efc /mnt/LIMBO ext4 defaults 0 2
 
