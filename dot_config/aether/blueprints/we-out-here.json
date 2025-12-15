@@ -1,29 +1,31 @@
 {
   "palette": {
     "wallpaper": "/home/eddie/Wallpapers/tzaago15u5zf1.png",
+    "wallpaperUrl": null,
+    "wallpaperSource": "local",
     "colors": [
-      "#1e1e2e",
-      "#f38ba8",
-      "#a6e3a1",
-      "#f9e2af",
-      "#89b4fa",
-      "#cba6f7",
-      "#94e2d5",
-      "#cdd6f4",
-      "#989ab0",
-      "#f38ba8",
-      "#a6e3a1",
-      "#f9e2af",
-      "#89b4fa",
-      "#cba6f7",
-      "#94e2d5",
-      "#ffffff"
+      "#121212",
+      "#e68842",
+      "#8aaea9",
+      "#ddc869",
+      "#93abc3",
+      "#c7b39e",
+      "#a8cccc",
+      "#B7B1A4",
+      "#7b7b7b",
+      "#f5ba8e",
+      "#bfd5d2",
+      "#f1e5b1",
+      "#cdd9e5",
+      "#e9e1d7",
+      "#e1efef",
+      "#e0ddd7"
     ],
     "lightMode": false,
     "appOverrides": {},
     "additionalImages": []
   },
-  "timestamp": 1762796397310,
+  "timestamp": 1764803273751,
   "settings": {
     "includeNeovim": true,
     "includeVencord": true,
@@ -34,5 +36,5 @@
     "selectedNeovimConfig": null,
     "enableAppOverrides": false
   },
-  "name": "WeOutHere"
+  "name": "we-out-here"
 }
