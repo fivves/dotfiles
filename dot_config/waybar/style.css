@@ -140,3 +140,32 @@ tooltip label {
   margin-right: 5px;
 }
 
+/* --- Fix tray right-click menu transparency (GTK3) --- */
+menu,
+.menu {
+  background-color: alpha(@background, 0.85);
+  color: @foreground;
+  border: 1px solid alpha(black, 0.18);
+  border-radius: 12px;
+  padding: 6px;
+}
+
+menu menuitem,
+.menu menuitem {
+  background-color: transparent;
+  color: @foreground;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+menu menuitem:hover,
+.menu menuitem:hover {
+  background-color: alpha(@foreground, 0.10);
+  color: @foreground;
+}
+
+menu separator,
+.menu separator {
+  background-color: alpha(@foreground, 0.12);
+  margin: 6px 4px;
+}

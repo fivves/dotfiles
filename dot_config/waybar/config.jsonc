@@ -57,13 +57,14 @@
 
   "mpris": {
     "format": "{player_icon}  {title} - {artist}",
+    "max-length": 50,
     "format-paused": "⏸ {title} - {artist}",
     "format-stopped": "",
     "player": "playerctld",
     "player-icons": {
       "default": "",
       "firefox": "",
-      "Gapless": "K",
+      "g4music": "K",
       "Firefox": "",
       "Lollypop": "󰝚",
       "mpv": "󰍺",
@@ -83,7 +84,7 @@
 
 "hyprland/window": {
     "format": "{title} - {class}",
-
+    "max-length": 50,
     "rewrite": {
       " - ": "", // if no window is focused, a single dash is displayed, this removes it
       "(.*?) - Chromium - chromium": "   $1 ",
@@ -96,7 +97,7 @@
       "(.*) - Spotify": "  $1 ",
       "(.*) - com.mitchellh.ghostty": " 󰊠 $1 ",
       "(.*) - Alacritty": "   $1 ",
-      "(.*) - kitty": "   $1 ",
+      "(.*) - kitty": "   $1 ",
       "(.*) - BeeperTexts": " 󰻞  $1 ",
       "(.*Discord)...(.*).. (.*)": "   $2 ",
       "(.*) - org.gnome.Nautilus": " 󰉓  $1 ",
