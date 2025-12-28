@@ -73,7 +73,6 @@
       "spotify": ""
     },
     "escape": false,
-    "max-length": 40,
     "truncate": "end",
     "interval": 1,
     "on-click": "playerctl play-pause",
@@ -82,19 +81,33 @@
     "on-scroll-down": "playerctl next"
   },
 
-  "hyprland/window": {
-    "format": "{}",
-    "max-length": 60,
-    "separate-outputs": false,
+"hyprland/window": {
+    "format": "{title} - {class}",
+
     "rewrite": {
-      " — Mozilla Firefox$": "",
-      " - Zen Browser$": "",
-      " — Firefox$": "",
-      " - Visual Studio Code$": "",
-      " — Chromium$": ""
-    },
-    "on-click": "hyprctl dispatch togglefloating active",
-    "on-click-right": "hyprctl dispatch fullscreen 0"
+      " - ": "", // if no window is focused, a single dash is displayed, this removes it
+      "(.*?) - Chromium - chromium": "   $1 ",
+      "(.*chrome)...(.*)": "   $1 ",
+      "(.*) - Obsidian - .* - obsidian": "   $1 ",
+      "(.*nvim)...(.*)": "   $2 ",
+      "(.*code) - (.*)": " 󰨞  $1 ",
+      "^.*btop( .*|$)": " 󰧨 BTOP $1 ",
+      "^.*unimatrix( .*|$)": " 󰘨 MATRIX $1 ",
+      "(.*) - Spotify": "  $1 ",
+      "(.*) - com.mitchellh.ghostty": " 󰊠 $1 ",
+      "(.*) - Alacritty": "   $1 ",
+      "(.*) - kitty": "   $1 ",
+      "(.*) - BeeperTexts": " 󰻞  $1 ",
+      "(.*Discord)...(.*).. (.*)": "   $2 ",
+      "(.*) - org.gnome.Nautilus": " 󰉓  $1 ",
+      "(.*) - fish": "   [$1] ",
+      "(.*Steam)...(.*)": "   $1",
+      "(.*imv)...(.*).. (.*)": "   $2",
+      "(.*) - com.obsproject.Studio": "  $1 ",
+      "^(.*?)( — Zen Browser)? - zen$": "   $1 ",
+      "^(.*?)( - Sublime Text.*)? - sublime_text$": " 󰈙  $1 ",
+      "^(.*?)( - G4Music)? - com\\.github\\.neithern\\.g4music$": "   $1 "
+    }
   },
 
   "custom/omarchy": {
