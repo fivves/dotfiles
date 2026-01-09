@@ -2,7 +2,7 @@
   "reload_style_on_change": true,
   "layer": "top",
   "position": "top",
-  "output": ["DP-2"],
+  "output": ["DP-1"],
   "margin-top": 2,
   "margin-bottom": -8,
   "margin-left": 0,
@@ -56,9 +56,9 @@
   },
 
   "mpris": {
-    "format": "{player_icon}  {title} - {artist}",
+    "format": "{player_icon}  {artist} - {title}",
     "max-length": 50,
-    "format-paused": "⏸ {title} - {artist}",
+    "format-paused": "⏸ {artist} - {title}",
     "format-stopped": "",
     "player": "playerctld",
     "player-icons": {
