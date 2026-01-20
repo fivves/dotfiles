@@ -281,10 +281,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "",
+                                "icon": "/home/eddie/dotfiles/dot_config/streamdeck-ui/icons/logout.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "",
+                                "command": "hyprctl dispatch exit",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -554,27 +554,6 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "",
-                                "keys": "",
-                                "write": "",
-                                "command": "",
-                                "brightness_change": 0,
-                                "switch_page": 0,
-                                "switch_state": 0,
-                                "text_vertical_align": "",
-                                "text_horizontal_align": "",
-                                "font": "",
-                                "font_color": "",
-                                "font_size": 0,
-                                "background_color": ""
-                            }
-                        }
-                    },
-                    "27": {
-                        "state": 0,
-                        "states": {
-                            "0": {
-                                "text": "",
                                 "icon": "/home/eddie/.config/streamdeck-ui/icons/rewind.png",
                                 "keys": "",
                                 "write": "",
@@ -591,7 +570,7 @@
                             }
                         }
                     },
-                    "28": {
+                    "27": {
                         "state": 0,
                         "states": {
                             "0": {
@@ -612,7 +591,7 @@
                             }
                         }
                     },
-                    "29": {
+                    "28": {
                         "state": 0,
                         "states": {
                             "0": {
@@ -621,6 +600,27 @@
                                 "keys": "",
                                 "write": "",
                                 "command": "playerctl next",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "",
+                                "text_horizontal_align": "",
+                                "font": "",
+                                "font_color": "",
+                                "font_size": 0,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "29": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
