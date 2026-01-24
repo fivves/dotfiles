@@ -12,4 +12,4 @@ fastfetch
 # Make an alias for invoking commands you use constantly
 # alias p='python'
 
-alias ss='omarchy-launch-screensaver'
+alias ss='omarchy-launch-screensaver & exit'
