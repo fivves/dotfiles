@@ -261,7 +261,7 @@
                             "0": {
                                 "text": "",
                                 "icon": "",
-                                "keys": "SUPER+B",
+                                "keys": "",
                                 "write": "",
                                 "command": "",
                                 "brightness_change": 0,
@@ -281,7 +281,7 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/eddie/dotfiles/dot_config/streamdeck-ui/icons/logout.png",
+                                "icon": "/home/eddie/dotfiles/.config/streamdeck-ui/icons/logout.png",
                                 "keys": "",
                                 "write": "",
                                 "command": "hyprctl dispatch exit",
@@ -619,7 +619,7 @@
                                 "text": "",
                                 "icon": "",
                                 "keys": "",
-                                "write": "",
+                                "write": "\nglhf\nq",
                                 "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
@@ -638,10 +638,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "",
+                                "icon": "/home/eddie/dotfiles/.config/streamdeck-ui/icons/screensaver.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "",
+                                "command": "omarchy-launch-screensaver",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -678,7 +678,7 @@
                 }
             },
             "display_timeout": 0,
-            "brightness": 51,
+            "brightness": 50,
             "brightness_dimmed": 0,
             "rotation": 0,
             "page": 0
