@@ -13,3 +13,4 @@ fastfetch
 # alias p='python'
 
 alias ss='omarchy-launch-screensaver & exit'
+alias fonts='fc-cache -fv'
