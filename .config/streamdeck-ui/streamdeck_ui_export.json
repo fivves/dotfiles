@@ -616,19 +616,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
+                                "text": "GLHF",
                                 "icon": "",
                                 "keys": "",
-                                "write": "\nglhf\nq",
+                                "write": "\nglhf\n",
                                 "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/essential/Helvetica-Compressed.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 41,
                                 "background_color": ""
                             }
                         }
