@@ -10,10 +10,8 @@
   border: none;
   border-radius: 0;
   min-height: 0;
-
   font-family: CaskaydiaMono Nerd Font;
   font-size: 15px;
-
   box-shadow: none;
   outline: none;
 }
@@ -22,51 +20,54 @@
 window#waybar,
 window#waybar > box {
   background: transparent;
-  border: none;
 }
 
 /* =========
    TOOLTIP
-   =========
-   One consistent tooltip definition (no “double background” cleanup later).
-*/
+   ========= */
+
 tooltip {
   background-color: alpha(@background, 0.85);
-  color: @foreground;
-
-  border: none;
   border-radius: 12px;
-
-  box-shadow: none;
-  outline: none;
-
-  padding: 6px 8px;
-  margin: 0;
-}
-
-tooltip * {
-  background-color: transparent;
-  color: @foreground;
-
-  border: none;
-  box-shadow: none;
-  outline: none;
+  padding: 8px 12px;
 }
 
 /* =========
-   FLOATING CHIPS (3 containers)
+   FLOATING CHIPS
    ========= */
 
-.modules-left,
+.modules-left {
+  background-color: transparent;
+  border-radius: 0;
+  outline: none;
+  padding: 0;
+  margin: 6px 0;
+  margin-left: 12px;
+}
+
+#left-main {
+  background-color: alpha(@background, 0.85);
+  border-radius: 12px;
+  padding: 0 12px;
+  outline: 1px solid alpha(black, 0.12);
+  margin-right: 8px;
+}
+
+#mpris {
+  background-color: alpha(@background, 0.85);
+  border-radius: 12px;
+  padding: 0 16px;
+  outline: 1px solid alpha(black, 0.12);
+  margin-right: 8px;
+  min-width: 12px;
+}
+
 .modules-center,
 .modules-right {
   background-color: alpha(@background, 0.85);
   border-radius: 12px;
-
-  padding: 0px 10px;
-  margin: 6px 10px;
-
-  /* subtle “depth” without GTK-specific shadow/backdrop */
+  padding: 0 12px;
+  margin: 6px 8px;
   outline: 1px solid alpha(black, 0.12);
 }
 
@@ -86,10 +87,6 @@ tooltip * {
   box-shadow: none;
 }
 
-#workspaces button.visible {
-  /* intentionally empty: keeps your existing indicator behavior */
-}
-
 #workspaces button:not(.visible) {
   opacity: 0.6;
 }
@@ -105,20 +102,19 @@ tooltip * {
 #bluetooth,
 #pulseaudio,
 #custom-omarchy,
-#custom-screenrecording-indicator,
 #custom-update,
-#mpris,
+#custom-voxtype,
 #clock {
   min-width: 12px;
   padding-right: 8px;
 }
 
 /* =========
-   YOUR MODULE TWEAKS
+   MODULE TWEAKS
    ========= */
 
 #custom-expand-icon {
-  margin-right: 6px;
+  margin-right: 8px;
 }
 
 #custom-update {
@@ -126,43 +122,37 @@ tooltip * {
 }
 
 #clock {
-  margin-left: 8.75px;
+  margin-left: 4px;
 }
 
-#custom-screenrecording-indicator {
+#custom-screenrecording-indicator,
+#custom-idle-indicator,
+#custom-notification-silencing-indicator {
+  min-width: 12px;
+  margin-left: 4px;
+  margin-right: 0;
   font-size: 10px;
-  margin-left: 8.75px;
-}
-
-#custom-screenrecording-indicator.active {
-  color: #a55555;
-}
-
-#mpris {
-  margin-left: 5px;
-}
-
-/* Fix Omarchy icon clipping on the left edge */
-.modules-left {
-  margin-left: 14px;
-  padding-left: 12px;
+  padding-bottom: 4px;
 }
 
 #custom-omarchy {
-  padding-right: 4px;
-  padding-left: 2px;
-  /* font-size: 18px; */
+  padding-left: 0;
+  padding-right: 8px;
 }
 
 /* Small gap between Omarchy and workspaces */
 #custom-omarchy + #workspaces {
-  margin-left: 6px;
+  margin-left: 8px;
 }
 
 /* Weather module spacing */
 .modules-right #custom-weather {
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+#custom-voxtype {
+  margin-left: 8px;
 }
 
 /* Utility */
@@ -177,25 +167,34 @@ menu,
   color: @foreground;
   border: 1px solid alpha(black, 0.18);
   border-radius: 12px;
-  padding: 6px;
+  padding: 8px;
 }
 
 menu menuitem,
 .menu menuitem {
   background-color: transparent;
-  color: @foreground;
-  padding: 6px 10px;
+  padding: 8px 12px;
   border-radius: 8px;
 }
 
 menu menuitem:hover,
 .menu menuitem:hover {
   background-color: alpha(@foreground, 0.10);
-  color: @foreground;
 }
 
 menu separator,
 .menu separator {
   background-color: alpha(@foreground, 0.12);
-  margin: 6px 4px;
+  margin: 4px;
+}
+
+/* =========
+   ACTIVE / ALERT STATES
+   ========= */
+
+#custom-screenrecording-indicator.active,
+#custom-idle-indicator.active,
+#custom-notification-silencing-indicator.active,
+#custom-voxtype.recording {
+  color: #a55555;
 }

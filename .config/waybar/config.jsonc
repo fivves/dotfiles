@@ -1,8 +1,8 @@
 {
   "reload_style_on_change": true,
+  "output": "eDP-1",
   "layer": "top",
   "position": "top",
-  "output": ["DP-1"],
   "margin-top": 2,
   "margin-bottom": -8,
   "margin-left": 0,
@@ -10,7 +10,13 @@
   "spacing": 5,
   "height": 34,
 
-  "modules-left": ["custom/omarchy", "hyprland/workspaces", "mpris"],
+"modules-left": ["group/left-main", "mpris"],
+
+"group/left-main": {
+  "orientation": "inherit",
+  "modules": ["custom/omarchy", "hyprland/workspaces"]
+},
+
   "modules-center": ["hyprland/window"],
   "modules-right": [
     "custom/screenrecording-indicator",
@@ -24,23 +30,24 @@
     "custom/update"
   ],
 
-  "custom/weather": {
-    "exec": "~/.config/waybar/weather.py waybar",
-    "restart-interval": 900,
+"custom/weather": {
+    "exec": "waybar-weather",
+    "restart-interval": 60,
     "return-type": "json",
-  },
+    "hide-empty-text": true,
+},
 
   "hyprland/workspaces": {
     "on-click": "activate",
     "format": "{icon}",
     "format-icons": {
-      "default": "",
+      "default": "󰃢",
       "1": "󰖟",
-      "2": "",
-      "3": "󰎞",
-      "4": "󰆟",
-      "5": "",
-      "6": "6",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "󰫢",
       "7": "7",
       "8": "8",
       "9": ""
@@ -56,14 +63,14 @@
   },
 
   "mpris": {
-    "format": "{player_icon}  {artist} - {title}",
+    "format": "{player_icon}  {title} - {artist}",
     "max-length": 50,
-    "format-paused": "⏸ {artist} - {title}",
+    "format-paused": "⏸ {title} - {artist}",
     "format-stopped": "",
     "player": "playerctld",
     "player-icons": {
       "default": "",
-      "firefox": "",
+      "firefox": "",
       "g4music": "K",
       "Firefox": "",
       "Lollypop": "󰝚",
@@ -86,7 +93,7 @@
     "format": "{title} - {class}",
     "max-length": 50,
     "rewrite": {
-      " - ": "", // if no window is focused, a single dash is displayed, this removes it
+      "^ - $": " 󰟒 Desktop ",
       "^(.*?)( - Chromium| — Chromium)? - chrome.*$": "   $1 ",
       "(.*) - Obsidian - .* - obsidian": "   $1 ",
       "(.*nvim)...(.*)": "   $2 ",
@@ -106,6 +113,8 @@
       "(.*) - com.obsproject.Studio": "  $1 ",
       "^(.*?)( — Zen Browser)? - zen$": "   $1 ",
       "^(.*?)( - Sublime Text.*)? - sublime_text$": " 󰈙  $1 ",
+      "^(.*) - Outlook - outlook-for-linux$": " 󰴢  $1 ",
+      "^(.*) \\| (Microsoft )?Teams - teams-for-linux$": " 󰊻  $1 ",
       "^(.*?)( - G4Music)? - com\\.github\\.neithern\\.g4music$": "   $1 "
     }
   },
@@ -199,6 +208,8 @@
     "scroll-step": 5,
     "format-muted": "",
     "format-icons": {
+      "headphone": "",
+      "headset": "",
       "default": ["", "", ""]
     }
   },
@@ -206,7 +217,7 @@
   "group/tray-expander": {
     "orientation": "inherit",
     "drawer": {
-      "transition-duration": 600,
+      "transition-duration": 300,
       "children-class": "tray-group-item"
     },
     "modules": ["custom/expand-icon", "tray"]
@@ -224,6 +235,31 @@
     "return-type": "json"
   },
 
+  "custom/voxtype": {
+    "exec": "omarchy-voxtype-status",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "idle": "",
+      "recording": "󰍬",
+      "transcribing": "󰔟"
+    },
+    "tooltip": true,
+    "on-click-right": "omarchy-voxtype-config",
+    "on-click": "omarchy-voxtype-model"
+  },
+  "custom/idle-indicator": {
+    "on-click": "omarchy-toggle-idle",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
+    "signal": 9,
+    "return-type": "json"
+  },
+  "custom/notification-silencing-indicator": {
+    "on-click": "omarchy-toggle-notification-silencing",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/notification-silencing.sh",
+    "signal": 10,
+    "return-type": "json"
+  },
   "tray": {
     "icon-size": 12,
     "spacing": 12
