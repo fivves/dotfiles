@@ -27,6 +27,8 @@
     "pulseaudio",
     "custom/weather",
     "clock",
+    "custom/idle-indicator",
+    "custom/notification-silencing-indicator",
     "custom/update"
   ],
 
@@ -93,7 +95,7 @@
     "format": "{title} - {class}",
     "max-length": 50,
     "rewrite": {
-      "^ - $": " 󰟒 Desktop ",
+      "^ - $": " 󰟒  Desktop ",
       "^(.*?)( - Chromium| — Chromium)? - chrome.*$": "   $1 ",
       "(.*) - Obsidian - .* - obsidian": "   $1 ",
       "(.*nvim)...(.*)": "   $2 ",
@@ -133,6 +135,13 @@
     "tooltip-format": "Omarchy update available",
     "signal": 7,
     "interval": 3600
+  },
+
+  "custom/idle-indicator": {
+    "on-click": "omarchy-toggle-idle",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
+    "signal": 9,
+    "return-type": "json"
   },
 
   "cpu": {

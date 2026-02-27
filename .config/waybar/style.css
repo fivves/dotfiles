@@ -62,7 +62,15 @@ tooltip {
   min-width: 12px;
 }
 
-.modules-center,
+.modules-center
+{
+  background-color: alpha(@background, 0.85);
+  border-radius: 12px;
+  padding: 0 8px;
+  margin: 6px 8px;
+  outline: 1px solid alpha(black, 0.12);
+}
+
 .modules-right {
   background-color: alpha(@background, 0.85);
   border-radius: 12px;
@@ -126,18 +134,22 @@ tooltip {
 }
 
 #custom-screenrecording-indicator,
-#custom-idle-indicator,
+
+#custom-idle-indicator {
+  font-size: 16px;
+  color: @foreground;
+  padding-right: 8px;
+}
+
 #custom-notification-silencing-indicator {
-  min-width: 12px;
-  margin-left: 4px;
-  margin-right: 0;
-  font-size: 10px;
-  padding-bottom: 4px;
+  font-size: 16px;
+  color: @foreground;
+  padding-right: 8px;
 }
 
 #custom-omarchy {
   padding-left: 0;
-  padding-right: 8px;
+  padding-right: 12px;
 }
 
 /* Small gap between Omarchy and workspaces */
