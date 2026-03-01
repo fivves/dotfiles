@@ -1,6 +1,6 @@
 {
   "reload_style_on_change": true,
-  "output": "eDP-1",
+  "output": "DP-1",
   "layer": "top",
   "position": "top",
   "margin-top": 2,
@@ -45,11 +45,11 @@
     "format-icons": {
       "default": "󰃢",
       "1": "󰖟",
-      "2": "",
-      "3": "",
-      "4": "",
-      "5": "",
-      "6": "󰫢",
+      "2": "",
+      "3": "󰎞",
+      "4": "󰆟",
+      "5": "",
+      "6": "6",
       "7": "7",
       "8": "8",
       "9": ""
@@ -73,13 +73,9 @@
     "player-icons": {
       "default": "",
       "firefox": "",
-      "g4music": "K",
-      "Firefox": "",
-      "Lollypop": "󰝚",
+      "chromium": "",
       "mpv": "󰍺",
       "vlc": "󰕼",
-      "VLC": "󰕼",
-      "Spotify": "",
       "spotify": ""
     },
     "escape": false,
