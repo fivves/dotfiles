@@ -1,36 +1,38 @@
 {
   "reload_style_on_change": true,
-  "output": "DP-1",
+  "output": "eDP-1",
   "layer": "top",
   "position": "top",
   "margin-top": 2,
   "margin-bottom": -8,
-  "margin-left": 0,
-  "margin-right": 0,
-  "spacing": 5,
-  "height": 34,
 
-"modules-left": ["group/left-main", "mpris"],
-
-"group/left-main": {
+  "modules-left": ["group/left-main", "mpris"],
+  "group/left-main": {
   "orientation": "inherit",
   "modules": ["custom/omarchy", "hyprland/workspaces"]
 },
 
   "modules-center": ["hyprland/window"],
   "modules-right": [
-    "custom/screenrecording-indicator",
-    "group/tray-expander",
-    "bluetooth",
-    "network",
-    "battery",
-    "pulseaudio",
     "custom/weather",
-    "clock",
-    "custom/idle-indicator",
-    "custom/notification-silencing-indicator",
-    "custom/update"
+    "group/right-icons",
+    "clock"
   ],
+
+  "group/right-icons": {
+    "orientation": "inherit",
+    "modules": [
+      "custom/screenrecording-indicator",
+      "group/tray-expander",
+      "bluetooth",
+      "network",
+      "battery",
+      "pulseaudio",
+      "custom/idle-indicator",
+      "custom/notification-silencing-indicator",
+      "custom/update"
+    ]
+  },
 
 "custom/weather": {
     "exec": "waybar-weather",
@@ -45,11 +47,11 @@
     "format-icons": {
       "default": "󰃢",
       "1": "󰖟",
-      "2": "",
-      "3": "󰎞",
-      "4": "󰆟",
-      "5": "",
-      "6": "6",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "󰫢",
       "7": "7",
       "8": "8",
       "9": ""
@@ -73,9 +75,13 @@
     "player-icons": {
       "default": "",
       "firefox": "",
-      "chromium": "",
+      "g4music": "K",
+      "Firefox": "",
+      "Lollypop": "󰝚",
       "mpv": "󰍺",
       "vlc": "󰕼",
+      "VLC": "󰕼",
+      "Spotify": "",
       "spotify": ""
     },
     "escape": false,
@@ -147,8 +153,9 @@
   },
 
   "clock": {
-    "format": "{:%a %b %d %I:%M %p}",
+    "format": "󰃰  {:%a %b %d %I:%M %p}",
     "tooltip": false,
+    "on-click": "omarchy-launch-or-focus-webapp Calendar 'https://calendar.notion.so/'",
     "on-click-right": "omarchy-cmd-tzupdate"
   },
 

@@ -4,22 +4,19 @@
    GLOBALS
    ========= */
 
-* {
+window#waybar {
   background-color: transparent;
   color: @foreground;
-  border: none;
-  border-radius: 0;
-  min-height: 0;
   font-family: CaskaydiaMono Nerd Font;
   font-size: 15px;
-  box-shadow: none;
-  outline: none;
 }
 
-/* Bar: fully transparent so only the chips show */
-window#waybar,
-window#waybar > box {
-  background: transparent;
+button {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  min-height: 0;
+  outline: none;
 }
 
 /* =========
@@ -28,6 +25,7 @@ window#waybar > box {
 
 tooltip {
   background-color: alpha(@background, 0.85);
+  font-family: CaskaydiaMono Nerd Font;
   border-radius: 12px;
   padding: 8px 12px;
 }
@@ -41,49 +39,50 @@ tooltip {
   border-radius: 0;
   outline: none;
   padding: 0;
-  margin: 6px 0;
-  margin-left: 12px;
-}
-
-#left-main {
-  background-color: alpha(@background, 0.85);
-  border-radius: 12px;
-  padding: 0 12px;
-  outline: 1px solid alpha(black, 0.12);
-  margin-right: 8px;
-}
-
-#mpris {
-  background-color: alpha(@background, 0.85);
-  border-radius: 12px;
-  padding: 0 16px;
-  outline: 1px solid alpha(black, 0.12);
-  margin-right: 8px;
-  min-width: 12px;
-}
-
-.modules-center
-{
-  background-color: alpha(@background, 0.85);
-  border-radius: 12px;
-  padding: 0 8px;
-  margin: 6px 8px;
-  outline: 1px solid alpha(black, 0.12);
+  margin: 6px 0 6px 12px;
 }
 
 .modules-right {
+  background-color: transparent;
+  border-radius: 0;
+  outline: none;
+  padding: 0;
+  margin: 6px 12px 6px 0;
+}
+
+/* Container grouping (DRY) */
+#left-main,
+.modules-center,
+#right-icons,
+#custom-weather,
+#clock,
+#mpris {
   background-color: alpha(@background, 0.85);
   border-radius: 12px;
-  padding: 0 12px;
-  margin: 6px 8px;
   outline: 1px solid alpha(black, 0.12);
 }
 
-/* Spacing between items inside each chip */
-.modules-left > *:not(:last-child),
-.modules-center > *:not(:last-child),
-.modules-right > *:not(:last-child) {
+#left-main {
+  padding: 0 4px;
   margin-right: 8px;
+}
+
+.modules-center {
+  padding: 0 8px;
+  margin: 6px 8px;
+}
+
+#right-icons,
+#custom-weather,
+#clock {
+  padding: 0 12px;
+  margin-left: 8px;
+}
+
+#mpris {
+  padding: 0 16px;
+  margin-right: 8px;
+  min-width: 12px;
 }
 
 /* =========
@@ -111,10 +110,9 @@ tooltip {
 #pulseaudio,
 #custom-omarchy,
 #custom-update,
-#custom-voxtype,
-#clock {
-  min-width: 12px;
-  padding-right: 8px;
+#custom-voxtype {
+  margin-left: 8px;
+  margin-right: 8px;
 }
 
 /* =========
@@ -122,45 +120,18 @@ tooltip {
    ========= */
 
 #custom-expand-icon {
-  margin-right: 8px;
+  padding-right: 4px;
 }
 
 #custom-update {
   font-size: 10px;
 }
 
-#clock {
-  margin-left: 4px;
-}
-
 #custom-screenrecording-indicator,
-
-#custom-idle-indicator {
-  font-size: 16px;
-  color: @foreground;
-  padding-right: 8px;
-}
-
+#custom-idle-indicator,
 #custom-notification-silencing-indicator {
   font-size: 16px;
   color: @foreground;
-  padding-right: 8px;
-}
-
-#custom-omarchy {
-  padding-left: 0;
-  padding-right: 12px;
-}
-
-/* Small gap between Omarchy and workspaces */
-#custom-omarchy + #workspaces {
-  margin-left: 8px;
-}
-
-/* Weather module spacing */
-.modules-right #custom-weather {
-  margin-left: 4px;
-  margin-right: 4px;
 }
 
 #custom-voxtype {
@@ -173,8 +144,7 @@ tooltip {
 }
 
 /* --- Fix tray right-click menu transparency (GTK3) --- */
-menu,
-.menu {
+menu {
   background-color: alpha(@background, 0.85);
   color: @foreground;
   border: 1px solid alpha(black, 0.18);
@@ -182,20 +152,17 @@ menu,
   padding: 8px;
 }
 
-menu menuitem,
-.menu menuitem {
+menu menuitem {
   background-color: transparent;
   padding: 8px 12px;
   border-radius: 8px;
 }
 
-menu menuitem:hover,
-.menu menuitem:hover {
+menu menuitem:hover {
   background-color: alpha(@foreground, 0.10);
 }
 
-menu separator,
-.menu separator {
+menu separator {
   background-color: alpha(@foreground, 0.12);
   margin: 4px;
 }
@@ -205,8 +172,16 @@ menu separator,
    ========= */
 
 #custom-screenrecording-indicator.active,
-#custom-idle-indicator.active,
-#custom-notification-silencing-indicator.active,
+#custom-idle-indicator.active {
+  margin-left: 12px;
+  margin-right: 4px;
+}
+
+#custom-notification-silencing-indicator.active {
+  margin-left: 12px;
+  margin-right: 4px;
+}
+
 #custom-voxtype.recording {
   color: #a55555;
 }
