@@ -7,19 +7,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/web.png",
+                                "text": "\udb81\udd9f",
+                                "icon": "",
                                 "keys": "SUPER + 1",
                                 "write": "",
                                 "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -28,19 +28,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/steam.png",
+                                "text": "\uf1b6",
+                                "icon": "",
                                 "keys": "SUPER + 2",
                                 "write": "",
                                 "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -49,19 +49,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/notes.png",
+                                "text": "\udb80\udf9e",
+                                "icon": "",
                                 "keys": "SUPER + 3",
                                 "write": "",
                                 "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -70,19 +70,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/fs.png",
+                                "text": "\uf065",
+                                "icon": "",
                                 "keys": "SUPER + 4",
                                 "write": "",
                                 "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -91,19 +91,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/stream.png",
+                                "text": "\udb80\udf79",
+                                "icon": "",
                                 "keys": "SUPER + 5",
                                 "write": "",
                                 "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -122,9 +122,9 @@
                                 "switch_state": 0,
                                 "text_vertical_align": "",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -133,19 +133,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/6.png",
+                                "text": "\udb83\udcaa",
+                                "icon": "",
                                 "keys": "SUPER + 6",
                                 "write": "",
                                 "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -154,19 +154,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/7.png",
+                                "text": "\udb83\udcac",
+                                "icon": "",
                                 "keys": "SUPER + 7",
                                 "write": "",
                                 "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -175,19 +175,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/mixer.png",
+                                "text": "\udb81\uddc5",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
                                 "command": "java -jar /home/eddie/Apps/PCPanel/pcpanel.jar",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 72,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -196,19 +196,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/off.png",
+                                "text": "\uf204",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
                                 "command": "pkill java",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 72,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -227,9 +227,9 @@
                                 "switch_state": 0,
                                 "text_vertical_align": "",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -248,9 +248,9 @@
                                 "switch_state": 0,
                                 "text_vertical_align": "",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -269,9 +269,9 @@
                                 "switch_state": 0,
                                 "text_vertical_align": "",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -280,19 +280,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/dotfiles/.config/streamdeck-ui/icons/logout.png",
+                                "text": "\udb80\udf43",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
                                 "command": "hyprctl dispatch exit",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -301,7 +301,7 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
+                                "text": "\ue62a",
                                 "icon": "/home/eddie/.config/streamdeck-ui/icons/windows.png",
                                 "keys": "",
                                 "write": "",
@@ -309,11 +309,11 @@
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -322,19 +322,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/suspend.png",
+                                "text": "\udb81\udd94",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
                                 "command": "systemctl suspend",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -343,19 +343,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/discord.png",
+                                "text": "\uf1ff",
+                                "icon": "",
                                 "keys": "SUPER + D",
                                 "write": "",
                                 "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -364,19 +364,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/music.png",
+                                "text": "\uf001",
+                                "icon": "",
                                 "keys": "SUPER+M",
                                 "write": "",
                                 "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -395,9 +395,9 @@
                                 "switch_state": 0,
                                 "text_vertical_align": "",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -416,9 +416,9 @@
                                 "switch_state": 0,
                                 "text_vertical_align": "",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -427,19 +427,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/waveform.png",
+                                "text": "\udb83\udea2",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
                                 "command": "kitty -e bash -lc \"cava\"",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -448,19 +448,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/matrix.png",
+                                "text": "\udb81\ude28",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
                                 "command": "kitty -e bash -lc \"cmatrix\"",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -469,19 +469,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/pipes.png",
+                                "text": "\udb81\udfe6",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
                                 "command": "kitty -e bash -lc \"pipes.sh\"",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -490,19 +490,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/clock.png",
+                                "text": "\uf017",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
                                 "command": "kitty -e bash -lc \"tty-clock -s -c -C7 -t\"",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -511,19 +511,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/not-bright.png",
+                                "text": "\udb80\udcde",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
                                 "command": "",
                                 "brightness_change": -99,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -532,19 +532,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/bright.png",
+                                "text": "\udb80\udce0",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
                                 "command": "",
                                 "brightness_change": 50,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -553,19 +553,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/rewind.png",
+                                "text": "\udb81\udc5f",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
                                 "command": "playerctl previous",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -574,19 +574,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/play.png",
+                                "text": "\udb81\udc0e",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
                                 "command": "playerctl play-pause",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -595,19 +595,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/forward.png",
+                                "text": "\udb80\ude11",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
                                 "command": "playerctl next",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -637,19 +637,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/dotfiles/.config/streamdeck-ui/icons/screensaver.png",
+                                "text": "\udb83\ude09",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
                                 "command": "omarchy-launch-screensaver",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
@@ -658,19 +658,19 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/lock.png",
+                                "text": "\udb80\udf3e",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
                                 "command": "hyprlock",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
-                                "text_vertical_align": "",
+                                "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
                                 "font_color": "",
-                                "font_size": 0,
+                                "font_size": 70,
                                 "background_color": ""
                             }
                         }
