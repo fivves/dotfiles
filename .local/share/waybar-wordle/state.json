@@ -1,15 +1,9 @@
 {
-  "date": "2026-03-06",
-  "word": "GUNKY",
-  "puzzle_id": 4616,
-  "guesses": [
-    "CRANE",
-    "MOIST",
-    "LAUGH",
-    "GUNNY",
-    "GUNKY"
-  ],
-  "status": "won",
-  "stats_recorded": true,
+  "date": "2026-03-07",
+  "word": "VOGUE",
+  "puzzle_id": 1733,
+  "guesses": [],
+  "status": "playing",
+  "stats_recorded": false,
   "fetch_error": null
 }
