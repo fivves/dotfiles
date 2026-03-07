@@ -55,6 +55,7 @@ tooltip {
 .modules-center,
 #right-icons,
 #custom-weather,
+#custom-wordle,
 #clock,
 #mpris {
   background-color: alpha(@background, 0.85);
@@ -74,6 +75,7 @@ tooltip {
 
 #right-icons,
 #custom-weather,
+#custom-wordle,
 #clock {
   padding: 0 12px;
   margin-left: 8px;
