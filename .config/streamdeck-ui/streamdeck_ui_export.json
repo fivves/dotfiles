@@ -175,11 +175,11 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "\udb81\uddc5",
+                                "text": "",
                                 "icon": "",
                                 "keys": "",
                                 "write": "",
-                                "command": "java -jar /home/eddie/Apps/PCPanel/pcpanel.jar",
+                                "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -196,11 +196,11 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "\uf204",
+                                "text": "",
                                 "icon": "",
                                 "keys": "",
                                 "write": "",
-                                "command": "pkill java",
+                                "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -280,11 +280,11 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "\udb80\udf43",
+                                "text": "",
                                 "icon": "",
                                 "keys": "",
                                 "write": "",
-                                "command": "hyprctl dispatch exit",
+                                "command": "",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -301,11 +301,11 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "\ue62a",
-                                "icon": "/home/eddie/.config/streamdeck-ui/icons/windows.png",
+                                "text": "\udb80\udf43",
+                                "icon": "",
                                 "keys": "",
                                 "write": "",
-                                "command": "kitty /home/eddie/.config/hypr/reboot-to-windows.sh",
+                                "command": "omarchy-system-logout",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -322,11 +322,11 @@
                         "state": 0,
                         "states": {
                             "0": {
-                                "text": "\udb81\udd94",
-                                "icon": "",
+                                "text": "\ue62a",
+                                "icon": "/home/eddie/.config/streamdeck-ui/icons/windows.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "systemctl suspend",
+                                "command": "kitty /home/eddie/.config/hypr/reboot-to-windows.sh",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -626,9 +626,9 @@
                                 "switch_state": 0,
                                 "text_vertical_align": "middle",
                                 "text_horizontal_align": "",
-                                "font": "/usr/share/fonts/essential/Helvetica-Compressed.ttf",
+                                "font": "/usr/share/fonts/noto/NotoSans-ExtraCondensedBlack.ttf",
                                 "font_color": "",
-                                "font_size": 41,
+                                "font_size": 38,
                                 "background_color": ""
                             }
                         }
