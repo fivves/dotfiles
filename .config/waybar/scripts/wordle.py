@@ -234,13 +234,13 @@ def render_board(state: dict) -> str:
 
 def status_icon(state: dict) -> str:
     if state["status"] == "won":
-        return "🏁"
+        return "󰸞"
     elif state["status"] == "lost":
-        return "💀"
+        return ""
     elif state.get("fetch_error"):
-        return "⚠️"
+        return ""
     else:
-        return f"  {len(state['guesses'])}/{MAX_GUESSES}"
+        return f"󰋁  {len(state['guesses'])}/{MAX_GUESSES}"
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────

@@ -6,7 +6,7 @@
   "margin-top": 2,
   "margin-bottom": -8,
 
-  "modules-left": ["group/left-main", "custom/wordle", "mpris"],
+  "modules-left": ["group/left-main", "mpris"],
   "group/left-main": {
   "orientation": "inherit",
   "modules": ["custom/omarchy", "hyprland/workspaces"]
@@ -24,6 +24,7 @@
     "modules": [
       "custom/screenrecording-indicator",
       "group/tray-expander",
+      "custom/wordle",
       "bluetooth",
       "network",
       "battery",
