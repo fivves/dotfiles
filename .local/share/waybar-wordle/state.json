@@ -6,11 +6,10 @@
     "CRANE",
     "MOIST",
     "LAUGH",
-    "GUNDY",
     "GUNNY",
-    "GUNGY"
+    "GUNKY"
   ],
-  "status": "lost",
+  "status": "won",
   "stats_recorded": true,
   "fetch_error": null
 }

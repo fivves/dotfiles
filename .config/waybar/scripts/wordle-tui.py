@@ -231,11 +231,11 @@ def draw_board(stdscr, state: dict, guess: str, message: str):
     board_start = 2
 
     # ── Submitted rows ─────────────────────────────────────────────────────
-    for g_idx, guess in enumerate(state["guesses"]):
+    for g_idx, submitted_guess in enumerate(state["guesses"]):
         row = board_start + g_idx * (TILE_H + 1)
-        tiles = wordle.score_guess(guess, state.get("word", ""))
+        tiles = wordle.score_guess(submitted_guess, state.get("word", ""))
         for t_idx, (letter, tile) in enumerate(
-            zip(guess, tiles)
+            zip(submitted_guess, tiles)
         ):
             col = board_col + t_idx * (TILE_W + TILE_GAP)
             draw_tile(stdscr, row, col, letter,
