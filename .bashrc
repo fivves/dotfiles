@@ -14,3 +14,9 @@ fastfetch
 
 alias ss='omarchy-launch-screensaver & exit'
 alias fonts='fc-cache -fv'
+
+gitty() {
+    git add .
+    git commit -m "$*"
+    git push
+}
