@@ -120,6 +120,12 @@ def load_state() -> dict:
             state = json.loads(STATE_FILE.read_text())
             if state.get("date") != today:
                 return new_state(today)
+            
+            # Migrate old state format to new format
+            if state.get("guesses") and isinstance(state["guesses"][0], dict):
+                state["guesses"] = [g["word"] for g in state["guesses"]]
+                save_state(state)
+                
             return state
         except Exception:
             pass
@@ -178,8 +184,7 @@ def do_guess(state: dict, guess: str) -> str:
     if state["word"] is None:
         return "Couldn't fetch today's word. Check your connection."
 
-    tiles = score_guess(guess, state["word"])
-    state["guesses"].append({"word": guess, "tiles": tiles})
+    state["guesses"].append(guess)
 
     if guess == state["word"]:
         state["status"] = "won"
@@ -199,9 +204,9 @@ def render_board(state: dict) -> str:
     lines.append(f"Wordle #{state.get('puzzle_id', '?')}  —  {state['date']}")
     lines.append("")
 
-    for entry in state["guesses"]:
-        tiles = "".join(entry["tiles"])
-        lines.append(f"{tiles}  {entry['word']}")
+    for guess in state["guesses"]:
+        tiles = "".join(score_guess(guess, state["word"]))
+        lines.append(f"{tiles}  {guess}")
 
     for _ in range(MAX_GUESSES - len(state["guesses"])):
         lines.append("⬜⬜⬜⬜⬜")

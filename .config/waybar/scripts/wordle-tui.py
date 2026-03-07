@@ -15,6 +15,10 @@ STATE_FILE    = Path.home() / ".local" / "share" / "waybar-wordle" / "state.json
 STATS_FILE    = Path.home() / ".local" / "share" / "waybar-wordle" / "stats.json"
 WORDLE_SCRIPT = Path(__file__).parent / "wordle.py"
 
+import sys
+sys.path.append(str(Path(__file__).parent))
+import wordle
+
 # ── Color pair IDs ────────────────────────────────────────────────────────────
 P_ERROR   = 1
 P_CORRECT = 2  # orange bg
@@ -72,7 +76,10 @@ def load_state(retries: int = 5, delay: float = 0.1) -> dict | None:
             try:
                 text = STATE_FILE.read_text().strip()
                 if text:
-                    return json.loads(text)
+                    state = json.loads(text)
+                    if state.get("guesses") and isinstance(state["guesses"][0], dict):
+                        state["guesses"] = [g["word"] for g in state["guesses"]]
+                    return state
             except (json.JSONDecodeError, OSError):
                 pass
         time.sleep(delay)
@@ -99,8 +106,10 @@ def load_stats() -> dict:
 def get_letter_states(state: dict) -> dict[str, str]:
     priority = {"correct": 3, "present": 2, "absent": 1}
     result: dict[str, str] = {}
-    for entry in state["guesses"]:
-        for letter, tile in zip(entry["word"], entry["tiles"]):
+    answer = state.get("word", "")
+    for guess in state["guesses"]:
+        tiles = wordle.score_guess(guess, answer)
+        for letter, tile in zip(guess, tiles):
             s = TILE_TO_STATE.get(tile, "absent")
             if priority.get(s, 0) > priority.get(result.get(letter, ""), 0):
                 result[letter] = s
@@ -222,10 +231,11 @@ def draw_board(stdscr, state: dict, guess: str, message: str):
     board_start = 2
 
     # ── Submitted rows ─────────────────────────────────────────────────────
-    for g_idx, entry in enumerate(state["guesses"]):
+    for g_idx, guess in enumerate(state["guesses"]):
         row = board_start + g_idx * (TILE_H + 1)
+        tiles = wordle.score_guess(guess, state.get("word", ""))
         for t_idx, (letter, tile) in enumerate(
-            zip(entry["word"], entry["tiles"])
+            zip(guess, tiles)
         ):
             col = board_col + t_idx * (TILE_W + TILE_GAP)
             draw_tile(stdscr, row, col, letter,
