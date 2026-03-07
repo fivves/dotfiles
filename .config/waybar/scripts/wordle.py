@@ -229,13 +229,13 @@ def render_board(state: dict) -> str:
 
 def status_icon(state: dict) -> str:
     if state["status"] == "won":
-        return "✅ Wordle"
+        return "✅"
     elif state["status"] == "lost":
-        return "💀 Wordle"
+        return "💀"
     elif state.get("fetch_error"):
-        return "⚠ Wordle"
+        return "⚠"
     else:
-        return f"🟧 Wordle {len(state['guesses'])}/{MAX_GUESSES}"
+        return f"  {len(state['guesses'])}/{MAX_GUESSES}"
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────

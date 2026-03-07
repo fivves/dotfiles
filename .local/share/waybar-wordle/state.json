@@ -2,69 +2,8 @@
   "date": "2026-03-06",
   "word": "GUNKY",
   "puzzle_id": 4616,
-  "guesses": [
-    {
-      "word": "CRANE",
-      "tiles": [
-        "\u2b1b",
-        "\u2b1b",
-        "\u2b1b",
-        "\ud83d\udfe6",
-        "\u2b1b"
-      ]
-    },
-    {
-      "word": "MOIST",
-      "tiles": [
-        "\u2b1b",
-        "\u2b1b",
-        "\u2b1b",
-        "\u2b1b",
-        "\u2b1b"
-      ]
-    },
-    {
-      "word": "LAUGH",
-      "tiles": [
-        "\u2b1b",
-        "\u2b1b",
-        "\ud83d\udfe6",
-        "\ud83d\udfe6",
-        "\u2b1b"
-      ]
-    },
-    {
-      "word": "GUNNY",
-      "tiles": [
-        "\ud83d\udfe7",
-        "\ud83d\udfe7",
-        "\ud83d\udfe7",
-        "\u2b1b",
-        "\ud83d\udfe7"
-      ]
-    },
-    {
-      "word": "GUNDY",
-      "tiles": [
-        "\ud83d\udfe7",
-        "\ud83d\udfe7",
-        "\ud83d\udfe7",
-        "\u2b1b",
-        "\ud83d\udfe7"
-      ]
-    },
-    {
-      "word": "GUNGY",
-      "tiles": [
-        "\ud83d\udfe7",
-        "\ud83d\udfe7",
-        "\ud83d\udfe7",
-        "\u2b1b",
-        "\ud83d\udfe7"
-      ]
-    }
-  ],
-  "status": "lost",
-  "stats_recorded": true,
+  "guesses": [],
+  "status": "playing",
+  "stats_recorded": false,
   "fetch_error": null
 }
