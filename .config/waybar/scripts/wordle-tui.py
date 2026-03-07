@@ -55,7 +55,7 @@ KB_ROWS = [
     list("ZXCVBNM"),
 ]
 
-MIN_H = 38
+MIN_H = 40
 MIN_W = 52
 
 WIN_MSGS = [
@@ -191,7 +191,7 @@ def draw_keyboard(stdscr, start_row: int, cx: int, letter_states: dict):
                 attr = curses.color_pair(P_ABSENT)
             else:
                 attr = curses.A_BOLD
-            safe_addstr(stdscr, start_row + r, x, f" {key} ", attr)
+            safe_addstr(stdscr, start_row + r * 2, x, f" {key} ", attr)
             x += 4
 
 
@@ -269,7 +269,7 @@ def draw_board(stdscr, state: dict, guess: str, message: str):
     draw_keyboard(stdscr, kb_row, cx, get_letter_states(state))
 
     # ── Status / hint ──────────────────────────────────────────────────────
-    status_row = kb_row + 5
+    status_row = kb_row + 7
     if state["status"] == "playing":
         hint = "Type  •  ENTER to submit  •  ESC to quit"
         safe_addstr(stdscr, status_row, cx - len(hint) // 2, hint,
