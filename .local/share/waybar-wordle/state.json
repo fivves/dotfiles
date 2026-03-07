@@ -2,8 +2,14 @@
   "date": "2026-03-06",
   "word": "GUNKY",
   "puzzle_id": 4616,
-  "guesses": [],
-  "status": "playing",
-  "stats_recorded": false,
+  "guesses": [
+    "CRANE",
+    "MOIST",
+    "LAUGH",
+    "GUNNY",
+    "GUNKY"
+  ],
+  "status": "won",
+  "stats_recorded": true,
   "fetch_error": null
 }

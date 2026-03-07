@@ -17,10 +17,14 @@ from datetime import date, timedelta
 from pathlib import Path
 
 # ── Config ────────────────────────────────────────────────────────────────────
-STATE_DIR  = Path.home() / ".local" / "share" / "waybar-wordle"
-STATE_FILE = STATE_DIR / "state.json"
-STATS_FILE = STATE_DIR / "stats.json"
-NYT_API    = "https://www.nytimes.com/svc/wordle/v2/{date}.json"
+STATE_DIR      = Path.home() / ".local" / "share" / "waybar-wordle"
+STATE_FILE     = STATE_DIR / "state.json"
+STATS_FILE     = STATE_DIR / "stats.json"
+WORD_LIST_FILE = STATE_DIR / "wordlist.txt"
+NYT_API        = "https://www.nytimes.com/svc/wordle/v2/{date}.json"
+WORD_LIST_URL  = (
+    "https://raw.githubusercontent.com/tabatkins/wordle-list/main/words"
+)
 MAX_GUESSES = 6
 
 CORRECT = "🟧"
@@ -51,6 +55,35 @@ def atomic_write(path: Path, data: dict):
         os.replace(tmp, path)
     except Exception:
         path.write_text(json.dumps(data, indent=2))
+
+
+def load_word_list() -> set[str]:
+    """
+    Load valid Wordle words from cache, downloading on first run.
+    Fails open (returns empty set) so a network hiccup doesn't brick the game.
+    """
+    if WORD_LIST_FILE.exists():
+        try:
+            return set(WORD_LIST_FILE.read_text().upper().split())
+        except Exception:
+            pass
+    try:
+        resp = requests.get(WORD_LIST_URL, timeout=10)
+        resp.raise_for_status()
+        STATE_DIR.mkdir(parents=True, exist_ok=True)
+        WORD_LIST_FILE.write_text(resp.text.lower())
+        return set(resp.text.upper().split())
+    except Exception:
+        return set()
+
+
+def is_valid_word(word: str) -> bool:
+    """
+    Returns True if word is in the Wordle word list.
+    Falls back to True if the list couldn't be loaded.
+    """
+    words = load_word_list()
+    return not words or word.upper() in words
 
 
 # ── Stats ─────────────────────────────────────────────────────────────────────
@@ -120,12 +153,12 @@ def load_state() -> dict:
             state = json.loads(STATE_FILE.read_text())
             if state.get("date") != today:
                 return new_state(today)
-            
+
             # Migrate old state format to new format
             if state.get("guesses") and isinstance(state["guesses"][0], dict):
                 state["guesses"] = [g["word"] for g in state["guesses"]]
                 save_state(state)
-                
+
             return state
         except Exception:
             pass
@@ -181,6 +214,8 @@ def do_guess(state: dict, guess: str) -> str:
         return "Guess must be exactly 5 letters."
     if not guess.isalpha():
         return "Letters only."
+    if not is_valid_word(guess):
+        return "Not in word list!"
     if state["word"] is None:
         return "Couldn't fetch today's word. Check your connection."
 
@@ -236,9 +271,9 @@ def status_icon(state: dict) -> str:
     if state["status"] == "won":
         return "󰸞"
     elif state["status"] == "lost":
-        return ""
+        return ""
     elif state.get("fetch_error"):
-        return ""
+        return ""
     else:
         return f"󰋁  {len(state['guesses'])}/{MAX_GUESSES}"
 

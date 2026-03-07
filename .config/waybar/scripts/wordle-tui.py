@@ -77,8 +77,12 @@ def load_state(retries: int = 5, delay: float = 0.1) -> dict | None:
                 text = STATE_FILE.read_text().strip()
                 if text:
                     state = json.loads(text)
-                    if state.get("guesses") and isinstance(state["guesses"][0], dict):
-                        state["guesses"] = [g["word"] for g in state["guesses"]]
+                    if state.get("guesses") and isinstance(
+                        state["guesses"][0], dict
+                    ):
+                        state["guesses"] = [
+                            g["word"] for g in state["guesses"]
+                        ]
                     return state
             except (json.JSONDecodeError, OSError):
                 pass
@@ -123,11 +127,6 @@ def setup_colors():
     curses.use_default_colors()
 
     if curses.can_change_color():
-        # curses RGB is 0-1000 scale
-        # Orange  ~#E07000 → (878, 435, 0)
-        # Blue    ~#3A78F2 → (227, 471, 949)
-        # Dark gray ~#3A3A3C → (227, 227, 235)
-        # Off-white ~#FFFFFF → (1000, 1000, 1000)
         curses.init_color(C_ORANGE,    878, 435,    0)
         curses.init_color(C_BLUE,      227, 471,  949)
         curses.init_color(C_DARK_GRAY, 227, 227,  235)
@@ -139,7 +138,6 @@ def setup_colors():
         curses.init_pair(P_FILLED,  curses.COLOR_BLACK, C_OFF_WHITE)
         curses.init_pair(P_STAT,    C_OFF_WHITE, C_ORANGE)
     else:
-        # Fallback for terminals that don't support custom colors
         curses.init_pair(P_CORRECT, curses.COLOR_BLACK,  curses.COLOR_YELLOW)
         curses.init_pair(P_PRESENT, curses.COLOR_BLACK,  curses.COLOR_CYAN)
         curses.init_pair(P_ABSENT,  curses.COLOR_WHITE,  curses.COLOR_BLACK)
@@ -394,7 +392,6 @@ def draw_stats_screen(stdscr, state: dict):
     safe_addstr(stdscr, row, cx - len(hint) // 2, hint,
                 curses.color_pair(P_DIM))
 
-    # intentionally no getch() here — end_game_loop owns all input
     stdscr.refresh()
 
 
@@ -407,7 +404,7 @@ def end_game_loop(stdscr, state: dict):
     """
     show_stats = True
     time.sleep(0.6)
-    curses.flushinp()  # Discard buffered keys (e.g. ENTER from final guess)
+    curses.flushinp()
 
     while True:
         if show_stats:
@@ -444,7 +441,6 @@ def main(stdscr):
         stdscr.getch()
         return
 
-    # Game already over — go straight to end game loop
     if state["status"] != "playing":
         end_game_loop(stdscr, state)
         return
@@ -471,6 +467,10 @@ def main(stdscr):
         elif key in (10, curses.KEY_ENTER):
             if len(guess) != 5:
                 message = "Must be exactly 5 letters!"
+                continue
+
+            if not wordle.is_valid_word(guess):
+                message = "Not in word list!"
                 continue
 
             draw_board(stdscr, state, guess, "Checking...")
