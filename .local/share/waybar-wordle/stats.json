@@ -1,16 +1,16 @@
 {
-  "games_played": 1,
-  "games_won": 1,
-  "current_streak": 1,
-  "max_streak": 1,
-  "last_completed_date": "2026-03-06",
-  "last_win_date": "2026-03-06",
+  "games_played": 2,
+  "games_won": 2,
+  "current_streak": 2,
+  "max_streak": 2,
+  "last_completed_date": "2026-03-07",
+  "last_win_date": "2026-03-07",
   "guess_distribution": {
     "1": 0,
     "2": 0,
     "3": 0,
     "4": 0,
     "5": 1,
-    "6": 0
+    "6": 1
   }
 }

@@ -2,8 +2,15 @@
   "date": "2026-03-07",
   "word": "VOGUE",
   "puzzle_id": 1733,
-  "guesses": [],
-  "status": "playing",
-  "stats_recorded": false,
+  "guesses": [
+    "CRANE",
+    "MOIST",
+    "LAUGH",
+    "GOUGE",
+    "VOUGE",
+    "VOGUE"
+  ],
+  "status": "won",
+  "stats_recorded": true,
   "fetch_error": null
 }
