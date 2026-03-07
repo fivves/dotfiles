@@ -3,11 +3,11 @@
 TUI="$HOME/.config/waybar/scripts/wordle-tui.py"
 
 # Find whatever terminal is available
-if command -v ghostty &>/dev/null; then
-    TERM_CMD="ghostty --title=Wordle -e"
+if command -v kitty &>/dev/null; then
+    TERM_CMD="kitty --title=Wordle -e"
 elif command -v foot &>/dev/null; then
     TERM_CMD="foot --title=Wordle"
-elif command -v kitty &>/dev/null; then
+elif command -v ghostty &>/dev/null; then
     TERM_CMD="kitty --title Wordle"
 elif command -v alacritty &>/dev/null; then
     TERM_CMD="alacritty --title Wordle -e"
