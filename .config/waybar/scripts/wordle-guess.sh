@@ -19,4 +19,4 @@ else
 fi
 
 # Launch as a floating window centered via hyprctl
-hyprctl dispatch exec "[float; size 430 600; center] $TERM_CMD python3 $TUI"
+hyprctl dispatch exec "[float; size 430 680; center] $TERM_CMD python3 $TUI"
