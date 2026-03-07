@@ -6,7 +6,7 @@
   "margin-top": 2,
   "margin-bottom": -8,
 
-  "modules-left": ["group/left-main", "mpris"],
+  "modules-left": ["group/left-main", "custom/wordle", "mpris"],
   "group/left-main": {
   "orientation": "inherit",
   "modules": ["custom/omarchy", "hyprland/workspaces"]
@@ -14,7 +14,6 @@
 
   "modules-center": ["hyprland/window"],
   "modules-right": [
-    "custom/wordle",
     "custom/weather",
     "group/right-icons",
     "clock"
@@ -80,9 +79,9 @@
   },
 
   "mpris": {
-    "format": "{player_icon}  {title} - {artist}",
+    "format": "{player_icon}  {artist} - {title}",
     "max-length": 50,
-    "format-paused": "⏸ {title} - {artist}",
+    "format-paused": "⏸ {artist} - {title}",
     "format-stopped": "",
     "player": "playerctld",
     "player-icons": {
