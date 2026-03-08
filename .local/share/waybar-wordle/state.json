@@ -1,14 +1,12 @@
 {
-  "date": "2026-03-07",
-  "word": "VOGUE",
-  "puzzle_id": 1733,
+  "date": "2026-03-08",
+  "word": "LOBBY",
+  "puzzle_id": 720,
   "guesses": [
     "CRANE",
     "MOIST",
     "LAUGH",
-    "GOUGE",
-    "VOUGE",
-    "VOGUE"
+    "LOBBY"
   ],
   "status": "won",
   "stats_recorded": true,
