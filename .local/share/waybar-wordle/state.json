@@ -1,14 +1,9 @@
 {
-  "date": "2026-03-08",
-  "word": "LOBBY",
-  "puzzle_id": 720,
-  "guesses": [
-    "CRANE",
-    "MOIST",
-    "LAUGH",
-    "LOBBY"
-  ],
-  "status": "won",
-  "stats_recorded": true,
+  "date": "2026-03-09",
+  "word": "HASTY",
+  "puzzle_id": 2293,
+  "guesses": [],
+  "status": "playing",
+  "stats_recorded": false,
   "fetch_error": null
 }

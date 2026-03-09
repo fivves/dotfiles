@@ -151,7 +151,7 @@ def load_state() -> dict:
     if STATE_FILE.exists():
         try:
             state = json.loads(STATE_FILE.read_text())
-            if state.get("date") != today:
+            if state.get("date") != today or state.get("fetch_error") or not state.get("word"):
                 return new_state(today)
 
             # Migrate old state format to new format
