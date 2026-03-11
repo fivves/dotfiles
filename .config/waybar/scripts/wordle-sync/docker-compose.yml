@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  wordle-sync:
+    build: .
+    container_name: wordle-sync
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped

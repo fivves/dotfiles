@@ -430,6 +430,31 @@ def main(stdscr):
     setup_colors()
     stdscr.keypad(True)
 
+    while True:
+        res = subprocess.run(["python3", str(WORDLE_SCRIPT), "--sync"])
+        if res.returncode != 0:
+            stdscr.clear()
+            h, w = stdscr.getmaxyx()
+            msg = "  Sync Failed"
+            sub1 = "Could not connect to the sync server."
+            sub2 = "Press [R] to retry, or [ENTER] to play offline."
+            safe_addstr(stdscr, max(0, h // 2 - 2), max(0, w // 2 - len(msg) // 2), msg, curses.A_BOLD | curses.color_pair(P_ERROR))
+            safe_addstr(stdscr, max(0, h // 2), max(0, w // 2 - len(sub1) // 2), sub1)
+            safe_addstr(stdscr, max(0, h // 2 + 1), max(0, w // 2 - len(sub2) // 2), sub2)
+            stdscr.refresh()
+            
+            key = stdscr.getch()
+            if key in (ord('r'), ord('R')):
+                safe_addstr(stdscr, max(0, h // 2 + 3), max(0, w // 2 - 5), "Retrying...", curses.color_pair(P_DIM))
+                stdscr.refresh()
+                continue
+            elif key in (10, curses.KEY_ENTER):
+                break
+            elif key == 27:  # ESC
+                return
+        else:
+            break
+
     state = load_state()
 
     if state is None:
@@ -437,6 +462,19 @@ def main(stdscr):
                     "Could not load game state. Try hovering the widget first.",
                     curses.A_BOLD)
         safe_addstr(stdscr, 1, 0, "Press any key to exit.")
+        stdscr.refresh()
+        stdscr.getch()
+        return
+
+    if state.get("word") is None:
+        stdscr.clear()
+        h, w = stdscr.getmaxyx()
+        msg = "  No Offline Data"
+        sub1 = "Could not fetch today's word."
+        sub2 = "Please connect to the internet and try again."
+        safe_addstr(stdscr, max(0, h // 2 - 2), max(0, w // 2 - len(msg) // 2), msg, curses.A_BOLD | curses.color_pair(P_ERROR))
+        safe_addstr(stdscr, max(0, h // 2), max(0, w // 2 - len(sub1) // 2), sub1)
+        safe_addstr(stdscr, max(0, h // 2 + 1), max(0, w // 2 - len(sub2) // 2), sub2)
         stdscr.refresh()
         stdscr.getch()
         return

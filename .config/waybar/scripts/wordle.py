@@ -232,6 +232,71 @@ def do_guess(state: dict, guess: str) -> str:
     return ""
 
 
+SYNC_URL = "https://wordle-sync.fvvs.me/sync"
+
+def sync_pull(local_state: dict, local_stats: dict) -> tuple[dict, dict, bool]:
+    success = False
+    try:
+        resp = requests.get(SYNC_URL, timeout=5)
+        if resp.status_code == 200:
+            success = True
+            data = resp.json()
+            remote_state = data.get("state") or {}
+            remote_stats = data.get("stats") or {}
+            
+            updated_state = False
+            updated_stats = False
+
+            r_date = remote_state.get("date", "")
+            l_date = local_state.get("date", "")
+            
+            if r_date > l_date:
+                local_state = remote_state
+                updated_state = True
+            elif r_date == l_date and r_date != "":
+                r_guesses = len(remote_state.get("guesses", []))
+                l_guesses = len(local_state.get("guesses", []))
+                if r_guesses > l_guesses:
+                    local_state = remote_state
+                    updated_state = True
+            
+            r_played = remote_stats.get("games_played", 0)
+            l_played = local_stats.get("games_played", 0)
+            if r_played > l_played:
+                local_stats = remote_stats
+                updated_stats = True
+                
+            if updated_state:
+                atomic_write(STATE_FILE, local_state)
+            if updated_stats:
+                atomic_write(STATS_FILE, local_stats)
+                
+            # If our local data is ahead of the server, push it so the server stays up to date
+            r_guesses = len(remote_state.get("guesses", []))
+            l_guesses = len(local_state.get("guesses", []))
+            
+            needs_push = False
+            if l_date > r_date and l_date != "":
+                needs_push = True
+            elif l_date == r_date and l_guesses > r_guesses:
+                needs_push = True
+                
+            if l_played > r_played:
+                needs_push = True
+                
+            if needs_push:
+                sync_push(local_state, local_stats)
+                
+    except Exception:
+        pass
+    return local_state, local_stats, success
+
+def sync_push(state: dict, stats: dict):
+    try:
+        requests.post(SYNC_URL, json={"state": state, "stats": stats}, timeout=5)
+    except Exception:
+        pass
+
 # ── Waybar output ─────────────────────────────────────────────────────────────
 
 def render_board(state: dict) -> str:
@@ -273,7 +338,7 @@ def status_icon(state: dict) -> str:
     elif state["status"] == "lost":
         return ""
     elif state.get("fetch_error"):
-        return ""
+        return ""
     else:
         return f"󰋁  {len(state['guesses'])}/{MAX_GUESSES}"
 
@@ -281,17 +346,41 @@ def status_icon(state: dict) -> str:
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
+    if len(sys.argv) >= 2 and sys.argv[1] == "--sync":
+        state = load_state()
+        stats = load_stats()
+        state, stats, success = sync_pull(state, stats)
+        save_state(state)
+        atomic_write(STATS_FILE, stats)
+        if not success:
+            sys.exit(1)
+        return
+
     state = load_state()
 
     if len(sys.argv) >= 3 and sys.argv[1] == "--guess":
+        # Pull before processing a guess to ensure we are up to date
+        state, _, _ = sync_pull(state, load_stats())
         err = do_guess(state, sys.argv[2])
         save_state(state)
+        # Push after guessing
+        sync_push(state, load_stats())
         print(json.dumps({
             "text": f"❌ {err}" if err else status_icon(state),
             "tooltip": render_board(state),
             "class": "error" if err else state["status"],
         }))
         return
+
+    # Background sync when Waybar refreshes (only pull to keep updated silently)
+    # We use a simple fork to avoid blocking Waybar
+    pid = os.fork()
+    if pid == 0:
+        try:
+            sync_pull(state, load_stats())
+        except Exception:
+            pass
+        os._exit(0)
 
     save_state(state)
     print(json.dumps({
