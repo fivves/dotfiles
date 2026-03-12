@@ -1,11 +1,39 @@
 @import "../omarchy/current/theme/waybar.css";
 
 /* =========
+   COLOR TOKENS (GTK3 @define-color)
+   ========= */
+
+@define-color surface_bg alpha(@background, 0.85);
+@define-color surface_transparent transparent;
+@define-color outline_subtle alpha(black, 0.12);
+@define-color border_subtle alpha(black, 0.18);
+@define-color hover_overlay alpha(@foreground, 0.10);
+@define-color separator_color alpha(@foreground, 0.12);
+@define-color color_alert #a55555;
+
+/*
+   SPACING REFERENCE (GTK3 has no var() — keep this as a cheat sheet)
+   -------------------------------------------------------------------
+   xs:  4px
+   sm:  6px
+   md:  8px
+   lg: 12px
+   -------------------------------------------------------------------
+   radius-md:  8px
+   radius-lg: 12px
+   -------------------------------------------------------------------
+   font-base: 15px
+   font-sm:   10px
+   font-md:   16px
+*/
+
+/* =========
    GLOBALS
    ========= */
 
 window#waybar {
-  background-color: transparent;
+  background-color: @surface_transparent;
   color: @foreground;
   font-family: CaskaydiaMono Nerd Font;
   font-size: 15px;
@@ -24,7 +52,7 @@ button {
    ========= */
 
 tooltip {
-  background-color: alpha(@background, 0.85);
+  background-color: @surface_bg;
   font-family: CaskaydiaMono Nerd Font;
   border-radius: 12px;
   padding: 8px 12px;
@@ -34,32 +62,32 @@ tooltip {
    FLOATING CHIPS
    ========= */
 
-.modules-left {
-  background-color: transparent;
+.modules-left,
+.modules-right {
+  background-color: @surface_transparent;
   border-radius: 0;
   outline: none;
   padding: 0;
+}
+
+.modules-left {
   margin: 6px 0 6px 12px;
 }
 
 .modules-right {
-  background-color: transparent;
-  border-radius: 0;
-  outline: none;
-  padding: 0;
   margin: 6px 12px 6px 0;
 }
 
-/* Container grouping (DRY) */
+/* Chip containers */
 #left-main,
 .modules-center,
 #right-icons,
 #custom-weather,
 #clock,
 #mpris {
-  background-color: alpha(@background, 0.85);
+  background-color: @surface_bg;
   border-radius: 12px;
-  outline: 1px solid alpha(black, 0.12);
+  outline: 1px solid @outline_subtle;
 }
 
 #left-main {
@@ -67,7 +95,7 @@ tooltip {
 }
 
 .modules-center {
-  padding: 0 8px;
+  padding: 0 16px;
   margin: 6px 8px;
 }
 
@@ -81,7 +109,7 @@ tooltip {
 
 #custom-wordle {
   padding-left: 6px;
-  padding-right: 6px;
+  padding-right: 8px;
 }
 
 /* =========
@@ -89,7 +117,7 @@ tooltip {
    ========= */
 
 #workspaces button {
-  background: transparent;
+  background: @surface_transparent;
   box-shadow: none;
 }
 
@@ -98,7 +126,7 @@ tooltip {
 }
 
 /* =========
-   COMMON MODULE SIZING
+   COMMON MODULE SPACING
    ========= */
 
 #tray,
@@ -137,32 +165,34 @@ tooltip {
   margin-left: 8px;
 }
 
-/* Utility */
 .hidden {
   opacity: 0;
 }
 
-/* --- Fix tray right-click menu transparency (GTK3) --- */
+/* =========
+   TRAY CONTEXT MENU (GTK3)
+   ========= */
+
 menu {
-  background-color: alpha(@background, 0.85);
+  background-color: @surface_bg;
   color: @foreground;
-  border: 1px solid alpha(black, 0.18);
+  border: 1px solid @border_subtle;
   border-radius: 12px;
   padding: 8px;
 }
 
 menu menuitem {
-  background-color: transparent;
+  background-color: @surface_transparent;
   padding: 8px 12px;
   border-radius: 8px;
 }
 
 menu menuitem:hover {
-  background-color: alpha(@foreground, 0.10);
+  background-color: @hover_overlay;
 }
 
 menu separator {
-  background-color: alpha(@foreground, 0.12);
+  background-color: @separator_color;
   margin: 4px;
 }
 
@@ -171,16 +201,12 @@ menu separator {
    ========= */
 
 #custom-screenrecording-indicator.active,
-#custom-idle-indicator.active {
-  margin-left: 12px;
-  margin-right: 4px;
-}
-
+#custom-idle-indicator.active,
 #custom-notification-silencing-indicator.active {
   margin-left: 12px;
   margin-right: 4px;
 }
 
 #custom-voxtype.recording {
-  color: #a55555;
+  color: @color_alert;
 }

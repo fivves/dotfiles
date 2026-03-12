@@ -1,6 +1,6 @@
 {
   "reload_style_on_change": true,
-  "output": "DP-1",
+  "output": "eDP-1",
   "layer": "top",
   "position": "top",
   "margin-top": 2,
@@ -60,11 +60,11 @@
     "format-icons": {
       "default": "󰃢",
       "1": "󰖟",
-      "2": "",
-      "3": "󰎞",
-      "4": "󰆟",
-      "5": "",
-      "6": "6",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "󰫢",
       "7": "7",
       "8": "8",
       "9": ""
@@ -110,29 +110,29 @@
     "format": "{title} - {class}",
     "max-length": 50,
     "rewrite": {
-      "^ - $": " 󰟒  Desktop ",
-      "^(.*?)( - Chromium| — Chromium)? - chrome.*$": "   $1 ",
-      "(.*) - Obsidian - .* - obsidian": "   $1 ",
-      "(.*nvim)...(.*)": "   $2 ",
-      "(.*code) - (.*)": " 󰨞  $1 ",
-      "^.*btop( .*|$)": " 󰧨 BTOP $1 ",
-      "^.*unimatrix( .*|$)": " 󰘨 MATRIX $1 ",
-      "(.*) - Spotify": "  $1 ",
-      "(.*) - com.mitchellh.ghostty": " 󰊠 $1 ",
-      "(.*) - Alacritty": "   $1 ",
-      "(.*) - kitty": "   $1 ",
-      "(.*) - BeeperTexts": " 󰻞  $1 ",
-      "(.*Discord)...(.*).. (.*)": "   $2 ",
-      "(.*) - org.gnome.Nautilus": " 󰉓  $1 ",
-      "(.*) - fish": "   [$1] ",
-      "(.*Steam)...(.*)": "   $1",
-      "(.*imv)...(.*).. (.*)": "   $2",
-      "(.*) - com.obsproject.Studio": "  $1 ",
-      "^(.*?)( — Zen Browser)? - zen$": "   $1 ",
-      "^(.*?)( - Sublime Text.*)? - sublime_text$": " 󰈙  $1 ",
-      "^(.*) - Outlook - outlook-for-linux$": " 󰴢  $1 ",
-      "^(.*) \\| (Microsoft )?Teams - teams-for-linux$": " 󰊻  $1 ",
-      "^(.*?)( - G4Music)? - com\\.github\\.neithern\\.g4music$": "   $1 "
+      "^ - $": "󰟒  Desktop",
+      "^(.*?)( - Chromium| — Chromium)? - chrome.*$": "  $1",
+      "(.*) - Obsidian - .* - obsidian": "  $1",
+      "(.*nvim)...(.*)": "  $2",
+      "(.*code) - (.*)": "󰨞  $1",
+      "^.*btop( .*|$)": "󰧨 BTOP $1",
+      "^.*unimatrix( .*|$)": "󰘨 MATRIX $1",
+      "(.*) - Spotify": " $1",
+      "(.*) - com.mitchellh.ghostty": "󰊠 $1",
+      "(.*) - Alacritty": "  $1",
+      "(.*) - kitty": "  $1",
+      "(.*) - BeeperTexts": " 󰻞  $1",
+      "(.*Discord)...(.*).. (.*)": "  $2",
+      "(.*) - org.gnome.Nautilus": "󰉓  $1",
+      "(.*) - fish": "  [$1]",
+      "(.*Steam)...(.*)": "  $1",
+      "(.*imv)...(.*).. (.*)": "  $2",
+      "(.*) - com.obsproject.Studio": " $1",
+      "^(.*?)( — Zen Browser)? - zen$": "  $1",
+      "^(.*?)( - Sublime Text.*)? - sublime_text$": "󰈙  $1",
+      "^(.*) - Outlook - outlook-for-linux$": "󰴢  $1",
+      "^(.*) \\| (Microsoft )?Teams - teams-for-linux$": "󰊻  $1",
+      "^(.*?)( - G4Music)? - com\\.github\\.neithern\\.g4music$": "  $1"
     }
   },
 
@@ -273,18 +273,21 @@
     "on-click-right": "omarchy-voxtype-config",
     "on-click": "omarchy-voxtype-model"
   },
+
   "custom/idle-indicator": {
     "on-click": "omarchy-toggle-idle",
     "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
     "signal": 9,
     "return-type": "json"
   },
+
   "custom/notification-silencing-indicator": {
     "on-click": "omarchy-toggle-notification-silencing",
     "exec": "$OMARCHY_PATH/default/waybar/indicators/notification-silencing.sh",
     "signal": 10,
     "return-type": "json"
   },
+  
   "tray": {
     "icon-size": 12,
     "spacing": 12
