@@ -1,0 +1,16 @@
+{
+  "games_played": 11,
+  "games_won": 11,
+  "current_streak": 11,
+  "max_streak": 11,
+  "last_completed_date": "2026-03-16",
+  "last_win_date": "2026-03-16",
+  "guess_distribution": {
+    "1": 0,
+    "2": 0,
+    "3": 1,
+    "4": 2,
+    "5": 6,
+    "6": 2
+  }
+}

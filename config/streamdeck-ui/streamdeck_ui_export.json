@@ -1,0 +1,688 @@
+{
+    "state": {
+        "A00NA41634AOM4": {
+            "buttons": {
+                "0": {
+                    "0": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\udb81\udd9f",
+                                "icon": "",
+                                "keys": "SUPER + 1",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "1": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\uf1b6",
+                                "icon": "",
+                                "keys": "SUPER + 2",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "2": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\udb80\udf9e",
+                                "icon": "",
+                                "keys": "SUPER + 3",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "3": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\uf065",
+                                "icon": "",
+                                "keys": "SUPER + 4",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "4": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\udb80\udf79",
+                                "icon": "",
+                                "keys": "SUPER + 5",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "5": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "6": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\udb83\udcaa",
+                                "icon": "",
+                                "keys": "SUPER + 6",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "7": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\udb83\udcac",
+                                "icon": "",
+                                "keys": "SUPER + 7",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "8": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\uf017",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "kitty -e bash -lc \"tty-clock -s -c -C7 -t\"",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "#00007f",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "9": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\udb83\udea2",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "kitty -e bash -lc \"cava\"",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "#00007f",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "10": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "11": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "12": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "13": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "14": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "15": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "16": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\udb81\ude28",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "kitty -e bash -lc \"cmatrix\"",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "#00007f",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "17": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\udb81\udfe6",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "kitty -e bash -lc \"pipes.sh\"",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "#00007f",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "18": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "19": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "20": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "21": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "MY B",
+                                "icon": "",
+                                "keys": "",
+                                "write": "\n/t yo, my b\n",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/noto/NotoSans-ExtraCondensedBlack.ttf",
+                                "font_color": "#0084ff",
+                                "font_size": 38,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "22": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\ue62a",
+                                "icon": "/home/eddie/.config/streamdeck-ui/icons/windows.png",
+                                "keys": "",
+                                "write": "",
+                                "command": "kitty /home/eddie/.config/hypr/reboot-to-windows.sh",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "#ff0000",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "23": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\udb80\udf43",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "omarchy-system-logout",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "#ff0000",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "24": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\udb80\udcde",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": -99,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "#f0ff4c",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "25": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\udb80\udce0",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "",
+                                "brightness_change": 50,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "#f0ff4c",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "26": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\udb81\udc5f",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "playerctl previous",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "#009000",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "27": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\udb81\udc0e",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "playerctl play-pause",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "#009000",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "28": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\udb80\ude11",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "playerctl next",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "#009000",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "29": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "GLHF",
+                                "icon": "",
+                                "keys": "",
+                                "write": "\nglhf\n",
+                                "command": "",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/noto/NotoSans-ExtraCondensedBlack.ttf",
+                                "font_color": "#0084ff",
+                                "font_size": 38,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "30": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\udb83\ude09",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "omarchy-launch-screensaver",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "#ff0000",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    },
+                    "31": {
+                        "state": 0,
+                        "states": {
+                            "0": {
+                                "text": "\udb80\udf3e",
+                                "icon": "",
+                                "keys": "",
+                                "write": "",
+                                "command": "hyprlock",
+                                "brightness_change": 0,
+                                "switch_page": 0,
+                                "switch_state": 0,
+                                "text_vertical_align": "middle",
+                                "text_horizontal_align": "",
+                                "font": "/usr/share/fonts/TTF/CaskaydiaMonoNerdFont-Regular.ttf",
+                                "font_color": "#ff0000",
+                                "font_size": 70,
+                                "background_color": ""
+                            }
+                        }
+                    }
+                }
+            },
+            "display_timeout": 0,
+            "brightness": 50,
+            "brightness_dimmed": 0,
+            "rotation": 0,
+            "page": 0
+        }
+    },
+    "streamdeck_ui_version": 2
+}

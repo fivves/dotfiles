@@ -1,0 +1,296 @@
+{
+  "reload_style_on_change": true,
+  "output": "DP-1",
+  "layer": "top",
+  "position": "top",
+  "margin-top": 2,
+  "margin-bottom": -8,
+
+  "modules-left": ["group/left-main", "mpris"],
+  "group/left-main": {
+  "orientation": "inherit",
+  "modules": ["custom/omarchy", "hyprland/workspaces"]
+},
+
+  "modules-center": ["hyprland/window"],
+  "modules-right": [
+    "custom/weather",
+    "group/right-icons",
+    "clock"
+  ],
+
+  "group/right-icons": {
+    "orientation": "inherit",
+    "modules": [
+      "custom/screenrecording-indicator",
+      "group/tray-expander",
+      "custom/wordle",
+      "bluetooth",
+      "network",
+      "battery",
+      "pulseaudio",
+      "custom/idle-indicator",
+      "custom/notification-silencing-indicator",
+      "custom/update"
+    ]
+  },
+
+"custom/weather": {
+    "exec": "waybar-weather",
+    "restart-interval": 60,
+    "return-type": "json",
+    "hide-empty-text": true,
+},
+
+"custom/wordle": {
+    "exec": "python3 ~/.config/waybar/scripts/wordle.py",
+    "return-type": "json",
+    "interval": 3600,
+    "signal": 8,
+    "exec-on-event": false,
+    "on-click": "bash ~/.config/waybar/scripts/wordle-guess.sh",
+    "format": "{}",
+    "tooltip": true,
+    "escape": false
+},
+
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "default": "󰃢",
+      "1": "󰖟",
+      "2": "",
+      "3": "󰎞",
+      "4": "󰆟",
+      "5": "",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": ""
+    },
+
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    }
+  },
+
+  "mpris": {
+    "format": "{player_icon}  {artist} - {title}",
+    "max-length": 50,
+    "format-paused": "⏸ {artist} - {title}",
+    "format-stopped": "",
+    "player": "playerctld",
+    "player-icons": {
+      "default": "",
+      "firefox": "",
+      "g4music": "K",
+      "Firefox": "",
+      "Lollypop": "󰝚",
+      "mpv": "󰍺",
+      "vlc": "󰕼",
+      "VLC": "󰕼",
+      "Spotify": "",
+      "spotify": ""
+    },
+    "escape": false,
+    "truncate": "end",
+    "interval": 1,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl stop",
+    "on-scroll-up": "playerctl previous",
+    "on-scroll-down": "playerctl next"
+  },
+
+"hyprland/window": {
+    "format": "{title} - {class}",
+    "max-length": 50,
+    "rewrite": {
+      "^ - $": "󰟒  Desktop",
+      "^(.*?)( - Chromium| — Chromium)? - chrome.*$": "  $1",
+      "(.*) - Obsidian - .* - obsidian": "  $1",
+      "(.*nvim)...(.*)": "  $2",
+      "(.*code) - (.*)": "󰨞  $1",
+      "^.*btop( .*|$)": "󰧨 BTOP $1",
+      "^.*unimatrix( .*|$)": "󰘨 MATRIX $1",
+      "(.*) - Spotify": " $1",
+      "(.*) - com.mitchellh.ghostty": "󰊠 $1",
+      "(.*) - Alacritty": "  $1",
+      "(.*) - kitty": "  $1",
+      "(.*) - BeeperTexts": " 󰻞  $1",
+      "(.*Discord)...(.*).. (.*)": "  $2",
+      "(.*) - org.gnome.Nautilus": "󰉓  $1",
+      "(.*) - fish": "  [$1]",
+      "(.*Steam)...(.*)": "  $1",
+      "(.*imv)...(.*).. (.*)": "  $2",
+      "(.*) - com.obsproject.Studio": " $1",
+      "^(.*?)( — Zen Browser)? - zen$": "  $1",
+      "^(.*?)( - Sublime Text.*)? - sublime_text$": "󰈙  $1",
+      "^(.*) - Outlook - outlook-for-linux$": "󰴢  $1",
+      "^(.*) \\| (Microsoft )?Teams - teams-for-linux$": "󰊻  $1",
+      "^(.*?)( - G4Music)? - com\\.github\\.fivves\\.gapless$": "  $1"
+    }
+  },
+
+  "custom/omarchy": {
+    "format": "<span font='JetBrainsMono Nerd Font 18'>󰣇</span>",
+    "on-click": "omarchy-menu",
+    "on-click-right": "omarchy-launch-terminal",
+    "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
+  },
+
+  "custom/update": {
+    "format": "",
+    "exec": "omarchy-update-available",
+    "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
+    "tooltip-format": "Omarchy update available",
+    "signal": 7,
+    "interval": 3600
+  },
+
+  "custom/idle-indicator": {
+    "on-click": "omarchy-toggle-idle",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
+    "signal": 9,
+    "return-type": "json"
+  },
+
+  "cpu": {
+    "interval": 5,
+    "format": "󰍛",
+    "on-click": "$TERMINAL -e btop"
+  },
+
+  "clock": {
+    "format": "󰃰  {:%a %b %d %I:%M %p}",
+    "tooltip": false,
+    "on-click": "omarchy-launch-or-focus-webapp Calendar 'https://calendar.notion.so/'",
+    "on-click-right": "omarchy-cmd-tzupdate"
+  },
+
+  "network": {
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format": "{icon}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰀂",
+    "format-disconnected": "󰤮",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 3,
+    "spacing": 1,
+    "on-click": "omarchy-launch-wifi"
+  },
+
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-discharging": "{capacity}% {icon}",
+    "format-charging": "{capacity}% {icon}",
+    "format-plugged": " {capacity}%",
+    "format-icons": {
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "format-full": "󰂅 {capacity}%",
+    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+    "interval": 5,
+    "on-click": "omarchy-menu power",
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format-full": "󰂅",
+    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+    "interval": 5,
+    "on-click": "omarchy-menu power",
+    "states": {
+      "warning": 20,
+      "critical": 10
+    }
+  },
+
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "󰂲",
+    "format-off": "󰂲",
+    "format-connected": "󰂱",
+    "format-no-controller": "",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "omarchy-launch-bluetooth"
+  },
+
+  "pulseaudio": {
+    "format": "{icon}",
+    "on-click": "$TERMINAL --class=Wiremix -e wiremix",
+    "on-click-right": "pamixer -t",
+    "tooltip-format": "Playing at {volume}%",
+    "scroll-step": 5,
+    "format-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "headset": "",
+      "default": ["", "", ""]
+    }
+  },
+
+  "group/tray-expander": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "children-class": "tray-group-item"
+    },
+    "modules": ["custom/expand-icon", "tray"]
+  },
+
+  "custom/expand-icon": {
+    "format": " ",
+    "tooltip": false
+  },
+
+  "custom/screenrecording-indicator": {
+    "on-click": "omarchy-cmd-screenrecord",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
+    "signal": 8,
+    "return-type": "json"
+  },
+
+  "custom/voxtype": {
+    "exec": "omarchy-voxtype-status",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "idle": "",
+      "recording": "󰍬",
+      "transcribing": "󰔟"
+    },
+    "tooltip": true,
+    "on-click-right": "omarchy-voxtype-config",
+    "on-click": "omarchy-voxtype-model"
+  },
+
+  "custom/idle-indicator": {
+    "on-click": "omarchy-toggle-idle",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
+    "signal": 9,
+    "return-type": "json"
+  },
+
+  "custom/notification-silencing-indicator": {
+    "on-click": "omarchy-toggle-notification-silencing",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/notification-silencing.sh",
+    "signal": 10,
+    "return-type": "json"
+  },
+  
+  "tray": {
+    "icon-size": 12,
+    "spacing": 12
+  },
+
+}
