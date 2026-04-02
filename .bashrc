@@ -15,6 +15,7 @@ fastfetch
 alias ss='omarchy-launch-screensaver & exit'
 alias fonts='fc-cache -fv'
 alias notify='notify-send "Test notification" "If you can read this, the gremlins are off duty."'
+alias pcp='java -jar /home/eddie/Apps/PCPanel/pcpanel.jar'
 
 gitty() {
     git add .
