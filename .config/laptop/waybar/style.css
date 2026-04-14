@@ -1,0 +1,212 @@
+@import "../omarchy/current/theme/waybar.css";
+
+/* =========
+   COLOR TOKENS (GTK3 @define-color)
+   ========= */
+
+@define-color surface_bg alpha(@background, 0.85);
+@define-color surface_transparent transparent;
+@define-color outline_subtle alpha(black, 0.12);
+@define-color border_subtle alpha(black, 0.18);
+@define-color hover_overlay alpha(@foreground, 0.10);
+@define-color separator_color alpha(@foreground, 0.12);
+@define-color color_alert #a55555;
+
+/*
+   SPACING REFERENCE (GTK3 has no var() — keep this as a cheat sheet)
+   -------------------------------------------------------------------
+   xs:  4px
+   sm:  6px
+   md:  8px
+   lg: 12px
+   -------------------------------------------------------------------
+   radius-md:  8px
+   radius-lg: 12px
+   -------------------------------------------------------------------
+   font-base: 15px
+   font-sm:   10px
+   font-md:   16px
+*/
+
+/* =========
+   GLOBALS
+   ========= */
+
+window#waybar {
+  background-color: @surface_transparent;
+  color: @foreground;
+  font-family: JetBrainsMono Nerd Font;
+  font-size: 15px;
+}
+
+button {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  min-height: 0;
+  outline: none;
+}
+
+/* =========
+   TOOLTIP
+   ========= */
+
+tooltip {
+  background-color: @surface_bg;
+  font-family: JetBrainsMono Nerd Font;
+  border-radius: 12px;
+  padding: 8px 12px;
+}
+
+/* =========
+   FLOATING CHIPS
+   ========= */
+
+.modules-left,
+.modules-right {
+  background-color: @surface_transparent;
+  border-radius: 0;
+  outline: none;
+  padding: 0;
+}
+
+.modules-left {
+  margin: 6px 0 6px 12px;
+}
+
+.modules-right {
+  margin: 6px 12px 6px 0;
+}
+
+/* Chip containers */
+#left-main,
+.modules-center,
+#right-icons,
+#custom-weather,
+#clock,
+#mpris {
+  background-color: @surface_bg;
+  border-radius: 12px;
+  outline: 1px solid @outline_subtle;
+}
+
+#left-main {
+  padding: 0 4px;
+}
+
+.modules-center {
+  padding: 0 16px;
+  margin: 6px 8px;
+}
+
+#right-icons,
+#custom-weather,
+#mpris,
+#clock {
+  padding: 0 12px;
+  margin-left: 8px;
+}
+
+#custom-wordle {
+  padding-left: 6px;
+  padding-right: 8px;
+}
+
+/* =========
+   WORKSPACES
+   ========= */
+
+#workspaces button {
+  background: @surface_transparent;
+  box-shadow: none;
+}
+
+#workspaces button:not(.visible) {
+  opacity: 0.6;
+}
+
+/* =========
+   COMMON MODULE SPACING
+   ========= */
+
+#tray,
+#cpu,
+#battery,
+#network,
+#bluetooth,
+#pulseaudio,
+#custom-omarchy,
+#custom-update,
+#custom-voxtype {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+/* =========
+   MODULE TWEAKS
+   ========= */
+
+#custom-expand-icon {
+  padding-right: 4px;
+}
+
+#custom-update {
+  font-size: 10px;
+}
+
+#custom-screenrecording-indicator,
+#custom-idle-indicator,
+#custom-notification-silencing-indicator {
+  font-size: 16px;
+  color: @foreground;
+}
+
+#custom-voxtype {
+  margin-left: 8px;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+/* =========
+   TRAY CONTEXT MENU (GTK3)
+   ========= */
+
+menu {
+  background-color: @surface_bg;
+  color: @foreground;
+  border: 1px solid @border_subtle;
+  border-radius: 12px;
+  padding: 8px;
+}
+
+menu menuitem {
+  background-color: @surface_transparent;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+menu menuitem:hover {
+  background-color: @hover_overlay;
+}
+
+menu separator {
+  background-color: @separator_color;
+  margin: 4px;
+}
+
+/* =========
+   ACTIVE / ALERT STATES
+   ========= */
+
+#custom-screenrecording-indicator.active,
+#custom-idle-indicator.active,
+#custom-notification-silencing-indicator.active {
+  margin-left: 12px;
+  margin-right: 4px;
+}
+
+#custom-voxtype.recording {
+  color: @color_alert;
+}
