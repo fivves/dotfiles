@@ -1,6 +1,6 @@
 {
   "reload_style_on_change": true,
-  "output": "eDP-1",
+  "output": "DP-1",
   "layer": "top",
   "position": "top",
   "margin-top": 2,
@@ -39,7 +39,7 @@
     "exec": "waybar-weather",
     "restart-interval": 60,
     "return-type": "json",
-    "hide-empty-text": true,
+    "hide-empty-text": true
 },
 
 "custom/wordle": {
@@ -60,12 +60,12 @@
     "format-icons": {
       "default": "󰃢",
       "1": "󰖟",
-      "2": "󰭹",
-      "3": "",
-      "4": "",
-      "5": "",
-      "6": "",
-      "7": "",
+      "2": "",
+      "3": "󰎞",
+      "4": "󰆟",
+      "5": "",
+      "6": "6",
+      "7": "7",
       "8": "8",
       "9": ""
     },
