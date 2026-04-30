@@ -22,3 +22,21 @@ gitty() {
     git commit -m "$*"
     git push
 }
+
+twitch() {
+  local channel="$1"
+
+  if [[ -z "$channel" ]]; then
+    echo "Usage: twitch <channelname>"
+    return 1
+  fi
+
+  hyprctl dispatch workspace 7
+  streamlink "twitch.tv/$channel" best --player mpv &
+  sleep 2
+  chatterino --channels "t:$channel" &
+  sleep 2
+  hyprctl dispatch splitratio -0.25
+
+  exit
+}
