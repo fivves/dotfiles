@@ -6,7 +6,10 @@
   "margin-top": 2,
   "margin-bottom": -8,
 
-  "modules-left": ["group/left-main", "mpris"],
+  "modules-left": ["group/left-main", 
+    "custom/codexbar",
+    "mpris",
+  ],
   "group/left-main": {
   "orientation": "inherit",
   "modules": ["custom/omarchy", "hyprland/workspaces"]
@@ -143,6 +146,16 @@
     "on-click-right": "omarchy-launch-terminal",
     "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
   },
+
+
+"custom/codexbar": {
+    "exec": "codexbar",
+    "return-type": "json",
+    "interval": 300,
+    "signal": 12,
+    "tooltip": true,
+    "on-click": "xdg-open https://chatgpt.com/codex/settings/usage"
+},
 
   "custom/update": {
     "format": "",
