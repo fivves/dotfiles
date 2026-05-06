@@ -150,6 +150,7 @@
 
 "custom/codexbar": {
     "exec": "codexbar",
+    "format": "󰚩  {}",
     "return-type": "json",
     "interval": 300,
     "signal": 12,
