@@ -16,7 +16,7 @@ alias ss='omarchy-launch-screensaver & exit'
 alias fonts='fc-cache -fv'
 alias notify='notify-send "Test notification" "If you can read this, the gremlins are off duty."'
 alias pcp='java -jar /home/eddie/Apps/PCPanel/pcpanel.jar'
-alias ukill="pkill -9 -f -i 'upc|ubisoft|UplayWebCore'"
+alias linutil='curl -fsSL https://christitus.com/linux | sh'
 
 gitty() {
     git add .
