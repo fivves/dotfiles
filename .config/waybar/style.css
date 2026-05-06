@@ -83,6 +83,7 @@ tooltip {
 .modules-center,
 #right-icons,
 #custom-weather,
+#custom-codexbar,
 #clock,
 #mpris {
   background-color: @surface_bg;
@@ -101,6 +102,7 @@ tooltip {
 
 #right-icons,
 #custom-weather,
+#custom-codexbar,
 #mpris,
 #clock {
   padding: 0 12px;
