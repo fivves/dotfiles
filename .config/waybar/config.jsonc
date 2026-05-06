@@ -84,7 +84,7 @@
     "max-length": 50,
     "format-paused": "⏸ {artist} - {title}",
     "format-stopped": "",
-    "player": "playerctld",
+    "player": "comjeffserNocturne",
     "player-icons": {
       "default": "",
       "firefox": "",
@@ -99,10 +99,10 @@
     "escape": false,
     "truncate": "end",
     "interval": 1,
-    "on-click": "playerctl play-pause",
-    "on-click-right": "playerctl stop",
-    "on-scroll-up": "playerctl previous",
-    "on-scroll-down": "playerctl next"
+    "on-click": "playerctl --player comjeffserNocturne play-pause",
+    "on-click-right": "playerctl --player comjeffserNocturne stop",
+    "on-scroll-up": "playerctl --player comjeffserNocturne previous",
+    "on-scroll-down": "playerctl --player comjeffserNocturne next"
   },
 
 "hyprland/window": {
@@ -199,6 +199,7 @@
     "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
     "interval": 5,
     "on-click": "omarchy-menu power",
+    "on-click-right": "notify-send -u low \"$(omarchy-battery-status)\"",
     "states": {
       "warning": 20,
       "critical": 10
@@ -208,6 +209,7 @@
     "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
     "interval": 5,
     "on-click": "omarchy-menu power",
+    "on-click-right": "notify-send -u low \"$(omarchy-battery-status)\"",
     "states": {
       "warning": 20,
       "critical": 10
@@ -253,7 +255,7 @@
   },
 
   "custom/screenrecording-indicator": {
-    "on-click": "omarchy-cmd-screenrecord",
+    "on-click": "omarchy-capture-screenrecording",
     "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
     "signal": 8,
     "return-type": "json"
