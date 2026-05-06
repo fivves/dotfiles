@@ -6,21 +6,22 @@
   "margin-top": 2,
   "margin-bottom": -8,
 
-  "modules-left": ["group/left-main", 
+  "modules-left": [
+    "group/left-main",
     "custom/codexbar",
-    "mpris",
+    "mpris"
   ],
-  "group/left-main": {
-  "orientation": "inherit",
-  "modules": ["custom/omarchy", "hyprland/workspaces"]
-},
-
   "modules-center": ["hyprland/window"],
   "modules-right": [
     "custom/weather",
     "group/right-icons",
     "clock"
   ],
+
+  "group/left-main": {
+    "orientation": "inherit",
+    "modules": ["custom/omarchy", "hyprland/workspaces"]
+  },
 
   "group/right-icons": {
     "orientation": "inherit",
@@ -38,14 +39,40 @@
     ]
   },
 
-"custom/weather": {
+  "group/tray-expander": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "children-class": "tray-group-item"
+    },
+    "modules": ["custom/expand-icon", "tray"]
+  },
+
+  "custom/omarchy": {
+    "format": "<span font='JetBrainsMono Nerd Font 18'>󰣇</span>",
+    "on-click": "omarchy-menu",
+    "on-click-right": "omarchy-launch-terminal",
+    "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
+  },
+
+  "custom/codexbar": {
+    "exec": "codexbar",
+    "format": "󰚩  {}",
+    "return-type": "json",
+    "interval": 300,
+    "signal": 12,
+    "tooltip": true,
+    "on-click": "xdg-open https://chatgpt.com/codex/settings/usage"
+  },
+
+  "custom/weather": {
     "exec": "waybar-weather",
     "restart-interval": 60,
     "return-type": "json",
     "hide-empty-text": true
-},
+  },
 
-"custom/wordle": {
+  "custom/wordle": {
     "exec": "python3 ~/.config/waybar/scripts/wordle.py",
     "return-type": "json",
     "interval": 3600,
@@ -55,7 +82,56 @@
     "format": "{}",
     "tooltip": true,
     "escape": false
-},
+  },
+
+  "custom/update": {
+    "format": "",
+    "exec": "omarchy-update-available",
+    "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
+    "tooltip-format": "Omarchy update available",
+    "signal": 7,
+    "interval": 3600
+  },
+
+  "custom/idle-indicator": {
+    "on-click": "omarchy-toggle-idle",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
+    "signal": 9,
+    "return-type": "json"
+  },
+
+  "custom/notification-silencing-indicator": {
+    "on-click": "omarchy-toggle-notification-silencing",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/notification-silencing.sh",
+    "signal": 10,
+    "return-type": "json"
+  },
+
+  "custom/expand-icon": {
+    "format": " ",
+    "tooltip": false
+  },
+
+  "custom/screenrecording-indicator": {
+    "on-click": "omarchy-capture-screenrecording",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
+    "signal": 8,
+    "return-type": "json"
+  },
+
+  "custom/voxtype": {
+    "exec": "omarchy-voxtype-status",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "idle": "",
+      "recording": "󰍬",
+      "transcribing": "󰔟"
+    },
+    "tooltip": true,
+    "on-click-right": "omarchy-voxtype-config",
+    "on-click": "omarchy-voxtype-model"
+  },
 
   "hyprland/workspaces": {
     "on-click": "activate",
@@ -72,7 +148,6 @@
       "8": "8",
       "9": ""
     },
-
     "persistent-workspaces": {
       "1": [],
       "2": [],
@@ -82,33 +157,7 @@
     }
   },
 
-  "mpris": {
-    "format": "{player_icon}  {artist} - {title}",
-    "max-length": 50,
-    "format-paused": "⏸ {artist} - {title}",
-    "format-stopped": "",
-    "player": "comjeffserNocturne",
-    "player-icons": {
-      "default": "",
-      "firefox": "",
-      "Firefox": "",
-      "Lollypop": "󰝚",
-      "mpv": "󰍺",
-      "vlc": "󰕼",
-      "VLC": "󰕼",
-      "Spotify": "",
-      "spotify": ""
-    },
-    "escape": false,
-    "truncate": "end",
-    "interval": 1,
-    "on-click": "playerctl --player comjeffserNocturne play-pause",
-    "on-click-right": "playerctl --player comjeffserNocturne stop",
-    "on-scroll-up": "playerctl --player comjeffserNocturne previous",
-    "on-scroll-down": "playerctl --player comjeffserNocturne next"
-  },
-
-"hyprland/window": {
+  "hyprland/window": {
     "format": "{title} - {class}",
     "max-length": 50,
     "rewrite": {
@@ -140,44 +189,30 @@
     }
   },
 
-  "custom/omarchy": {
-    "format": "<span font='JetBrainsMono Nerd Font 18'>󰣇</span>",
-    "on-click": "omarchy-menu",
-    "on-click-right": "omarchy-launch-terminal",
-    "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
-  },
-
-
-"custom/codexbar": {
-    "exec": "codexbar",
-    "format": "󰚩  {}",
-    "return-type": "json",
-    "interval": 300,
-    "signal": 12,
-    "tooltip": true,
-    "on-click": "xdg-open https://chatgpt.com/codex/settings/usage"
-},
-
-  "custom/update": {
-    "format": "",
-    "exec": "omarchy-update-available",
-    "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
-    "tooltip-format": "Omarchy update available",
-    "signal": 7,
-    "interval": 3600
-  },
-
-  "custom/idle-indicator": {
-    "on-click": "omarchy-toggle-idle",
-    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
-    "signal": 9,
-    "return-type": "json"
-  },
-
-  "cpu": {
-    "interval": 5,
-    "format": "󰍛",
-    "on-click": "$TERMINAL -e btop"
+  "mpris": {
+    "format": "{player_icon}  {artist} - {title}",
+    "max-length": 50,
+    "format-paused": "⏸ {artist} - {title}",
+    "format-stopped": "",
+    "player": "comjeffserNocturne",
+    "player-icons": {
+      "default": "",
+      "firefox": "",
+      "Firefox": "",
+      "Lollypop": "󰝚",
+      "mpv": "󰍺",
+      "vlc": "󰕼",
+      "VLC": "󰕼",
+      "Spotify": "",
+      "spotify": ""
+    },
+    "escape": false,
+    "truncate": "end",
+    "interval": 1,
+    "on-click": "playerctl --player comjeffserNocturne play-pause",
+    "on-click-right": "playerctl --player comjeffserNocturne stop",
+    "on-scroll-up": "playerctl --player comjeffserNocturne previous",
+    "on-scroll-down": "playerctl --player comjeffserNocturne next"
   },
 
   "clock": {
@@ -206,21 +241,11 @@
     "format-discharging": "{capacity}% {icon}",
     "format-charging": "{capacity}% {icon}",
     "format-plugged": " {capacity}%",
+    "format-full": "󰂅",
     "format-icons": {
       "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
       "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
-    "format-full": "󰂅 {capacity}%",
-    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
-    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
-    "interval": 5,
-    "on-click": "omarchy-menu power",
-    "on-click-right": "notify-send -u low \"$(omarchy-battery-status)\"",
-    "states": {
-      "warning": 20,
-      "critical": 10
-    },
-    "format-full": "󰂅",
     "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
     "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
     "interval": 5,
@@ -256,58 +281,14 @@
     }
   },
 
-  "group/tray-expander": {
-    "orientation": "inherit",
-    "drawer": {
-      "transition-duration": 300,
-      "children-class": "tray-group-item"
-    },
-    "modules": ["custom/expand-icon", "tray"]
+  "cpu": {
+    "interval": 5,
+    "format": "󰍛",
+    "on-click": "$TERMINAL -e btop"
   },
 
-  "custom/expand-icon": {
-    "format": " ",
-    "tooltip": false
-  },
-
-  "custom/screenrecording-indicator": {
-    "on-click": "omarchy-capture-screenrecording",
-    "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
-    "signal": 8,
-    "return-type": "json"
-  },
-
-  "custom/voxtype": {
-    "exec": "omarchy-voxtype-status",
-    "return-type": "json",
-    "format": "{icon}",
-    "format-icons": {
-      "idle": "",
-      "recording": "󰍬",
-      "transcribing": "󰔟"
-    },
-    "tooltip": true,
-    "on-click-right": "omarchy-voxtype-config",
-    "on-click": "omarchy-voxtype-model"
-  },
-
-  "custom/idle-indicator": {
-    "on-click": "omarchy-toggle-idle",
-    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
-    "signal": 9,
-    "return-type": "json"
-  },
-
-  "custom/notification-silencing-indicator": {
-    "on-click": "omarchy-toggle-notification-silencing",
-    "exec": "$OMARCHY_PATH/default/waybar/indicators/notification-silencing.sh",
-    "signal": 10,
-    "return-type": "json"
-  },
-  
   "tray": {
     "icon-size": 12,
     "spacing": 12
-  },
-
+  }
 }
