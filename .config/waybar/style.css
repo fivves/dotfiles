@@ -120,6 +120,7 @@ tooltip {
 
 #workspaces button {
   background: @surface_transparent;
+  color: @foreground;
   box-shadow: none;
 }
 
