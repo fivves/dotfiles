@@ -65,12 +65,13 @@
     "on-click": "xdg-open https://chatgpt.com/codex/settings/usage"
   },
 
-  "custom/weather": {
-    "exec": "waybar-weather",
-    "restart-interval": 60,
-    "return-type": "json",
-    "hide-empty-text": true
-  },
+"custom/weather": {
+    "format": "{}°",
+    "tooltip": true,
+    "interval": 3600,
+    "exec": "wttrbar --fahrenheit --nerd",
+    "return-type": "json"
+},
 
   "custom/wordle": {
     "exec": "python3 ~/.config/waybar/scripts/wordle.py",
