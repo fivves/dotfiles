@@ -13,9 +13,9 @@
   ],
   "modules-center": ["hyprland/window"],
   "modules-right": [
-    "custom/weather",
     "group/right-icons",
-    "clock"
+    "custom/weather",
+    "clock",
   ],
 
   "group/left-main": {
