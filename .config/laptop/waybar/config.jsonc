@@ -3,6 +3,7 @@
   "output": "eDP-1",
   "layer": "top",
   "position": "top",
+  "spacing": 0,
   "margin-top": 2,
   "margin-bottom": -8,
 
@@ -11,10 +12,13 @@
     "custom/codexbar",
     "mpris"
   ],
+
   "modules-center": ["hyprland/window"],
+  
   "modules-right": [
-    "custom/weather",
     "group/right-icons",
+    "custom/wordle",
+    "custom/weather",
     "clock"
   ],
 
@@ -28,7 +32,6 @@
     "modules": [
       "custom/screenrecording-indicator",
       "group/tray-expander",
-      "custom/wordle",
       "bluetooth",
       "network",
       "battery",
@@ -57,7 +60,7 @@
 
   "custom/codexbar": {
     "exec": "codexbar",
-    "format": "󰚩  {}",
+    "format": "󰚩 {}",
     "return-type": "json",
     "interval": 300,
     "signal": 12,
@@ -65,12 +68,13 @@
     "on-click": "xdg-open https://chatgpt.com/codex/settings/usage"
   },
 
-  "custom/weather": {
-    "exec": "waybar-weather",
-    "restart-interval": 60,
-    "return-type": "json",
-    "hide-empty-text": true
-  },
+"custom/weather": {
+    "format": "{}°",
+    "tooltip": true,
+    "interval": 3600,
+    "exec": "wttrbar --fahrenheit --nerd",
+    "return-type": "json"
+},
 
   "custom/wordle": {
     "exec": "python3 ~/.config/waybar/scripts/wordle.py",
@@ -108,7 +112,7 @@
   },
 
   "custom/expand-icon": {
-    "format": " ",
+    "format": "",
     "tooltip": false
   },
 
@@ -148,6 +152,7 @@
       "8": "8",
       "9": ""
     },
+    
     "persistent-workspaces": {
       "1": [],
       "2": [],
