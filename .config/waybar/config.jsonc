@@ -18,6 +18,7 @@
   
   "modules-right": [
     "group/right-icons",
+    "custom/cava",
     "custom/wordle",
     "custom/weather",
     "clock"
@@ -87,6 +88,14 @@
     "format": "{}",
     "tooltip": true,
     "escape": false
+  },
+
+  "custom/cava": {
+    "exec": "bash ~/.config/waybar/scripts/cava.sh",
+    "return-type": "json",
+    "format": "{}",
+    "exec-on-event": false,
+    "tooltip": false
   },
 
   "custom/update": {

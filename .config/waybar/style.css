@@ -94,6 +94,7 @@ tooltip label {
 #left-main,
 .modules-center,
 #right-icons,
+#custom-cava,
 #custom-weather,
 #custom-omarchy,
 #custom-wordle,
@@ -115,6 +116,7 @@ tooltip label {
 }
 
 #custom-weather,
+#custom-cava,
 #custom-wordle,
 #custom-codexbar,
 #mpris,
