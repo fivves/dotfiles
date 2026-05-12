@@ -109,6 +109,11 @@ tooltip label {
   padding: 0 6px;
 }
 
+#custom-omarchy {
+  padding: 0 12px;
+  margin-right: 8px;
+}
+
 .modules-center {
   padding: 0 12px;
   margin: 6px 8px;
@@ -169,26 +174,18 @@ tooltip label {
 #network,
 #bluetooth,
 #pulseaudio,
-#custom-omarchy,
 #custom-screenrecording-indicator,
 #custom-idle-indicator,
 #custom-notification-silencing-indicator,
 #custom-update,
-#custom-omarchy,
 #tray-expander,
 #custom-voxtype {
-  margin: 0 6px;
-  padding: 0;
+  margin: 6px;
 }
 
 /* =========
    MODULE TWEAKS
    ========= */
-
-#custom-omarchy {
-  min-width: 40px;
-  padding: 6;
-}
 
 #tray-expander {
   background-color: @surface_transparent;
