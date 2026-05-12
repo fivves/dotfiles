@@ -94,6 +94,7 @@ tooltip label {
 #left-main,
 .modules-center,
 #right-icons,
+#custom-cava,
 #custom-weather,
 #custom-omarchy,
 #custom-wordle,
@@ -109,17 +110,13 @@ tooltip label {
   padding: 0 6px;
 }
 
-#custom-omarchy {
-  padding: 0 12px;
-  margin-right: 8px;
-}
-
 .modules-center {
   padding: 0 12px;
   margin: 6px 8px;
 }
 
 #custom-weather,
+#custom-cava,
 #custom-wordle,
 #custom-codexbar,
 #mpris,
@@ -174,18 +171,26 @@ tooltip label {
 #network,
 #bluetooth,
 #pulseaudio,
+#custom-omarchy,
 #custom-screenrecording-indicator,
 #custom-idle-indicator,
 #custom-notification-silencing-indicator,
 #custom-update,
+#custom-omarchy,
 #tray-expander,
 #custom-voxtype {
-  margin: 6px;
+  margin: 0 6px;
+  padding: 0;
 }
 
 /* =========
    MODULE TWEAKS
    ========= */
+
+#custom-omarchy {
+  min-width: 40px;
+  padding: 6;
+}
 
 #tray-expander {
   background-color: @surface_transparent;

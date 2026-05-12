@@ -17,9 +17,10 @@
   "modules-center": ["hyprland/window"],
   
   "modules-right": [
-    "group/right-icons",
+    "custom/cava",
     "custom/wordle",
     "custom/weather",
+    "group/right-icons",
     "clock"
   ],
 
@@ -89,6 +90,14 @@
     "escape": false
   },
 
+  "custom/cava": {
+    "exec": "bash ~/.config/waybar/scripts/cava.sh",
+    "return-type": "json",
+    "format": "{}",
+    "exec-on-event": false,
+    "tooltip": false
+  },
+
   "custom/update": {
     "format": "",
     "exec": "omarchy-update-available",
@@ -144,12 +153,12 @@
     "format-icons": {
       "default": "󰃢",
       "1": "󰖟",
-      "2": "",
-      "3": "",
-      "4": "",
-      "5": "",
-      "6": "",
-      "7": "",
+      "2": "",
+      "3": "󰎞",
+      "4": "󰆟",
+      "5": "",
+      "6": "6",
+      "7": "7",
       "8": "8",
       "9": ""
     },
