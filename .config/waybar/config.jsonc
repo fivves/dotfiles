@@ -3,24 +3,29 @@
   "output": "DP-1",
   "layer": "top",
   "position": "top",
+  "spacing": 0,
   "margin-top": 2,
   "margin-bottom": -8,
 
   "modules-left": [
+    "custom/omarchy",
     "group/left-main",
     "custom/codexbar",
     "mpris"
   ],
+
   "modules-center": ["hyprland/window"],
+  
   "modules-right": [
     "group/right-icons",
+    "custom/wordle",
     "custom/weather",
-    "clock",
+    "clock"
   ],
 
   "group/left-main": {
     "orientation": "inherit",
-    "modules": ["custom/omarchy", "hyprland/workspaces"]
+    "modules": ["hyprland/workspaces"]
   },
 
   "group/right-icons": {
@@ -28,7 +33,6 @@
     "modules": [
       "custom/screenrecording-indicator",
       "group/tray-expander",
-      "custom/wordle",
       "bluetooth",
       "network",
       "battery",
@@ -49,7 +53,7 @@
   },
 
   "custom/omarchy": {
-    "format": "<span font='JetBrainsMono Nerd Font 18'>󰣇</span>",
+    "format": "<span font='Flighter PERSONAL USE ONLY'> lucitt </span>",
     "on-click": "omarchy-menu",
     "on-click-right": "omarchy-launch-terminal",
     "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
@@ -57,7 +61,7 @@
 
   "custom/codexbar": {
     "exec": "codexbar",
-    "format": "󰚩  {}",
+    "format": "󰚩 {}",
     "return-type": "json",
     "interval": 300,
     "signal": 12,
@@ -66,7 +70,7 @@
   },
 
 "custom/weather": {
-    "format": "{}°",
+    "format": "{}",
     "tooltip": true,
     "interval": 3600,
     "exec": "wttrbar --fahrenheit --nerd",
@@ -109,7 +113,7 @@
   },
 
   "custom/expand-icon": {
-    "format": " ",
+    "format": "",
     "tooltip": false
   },
 
@@ -164,30 +168,30 @@
     "max-length": 50,
     "rewrite": {
       "^ - $": "󰟒  Desktop",
-      "^(.*?)( - Chromium| — Chromium)? - chrome.*$": "  $1",
-      "(.*) - Obsidian - .* - obsidian": "  $1",
-      "(.*nvim)...(.*)": "  $2",
-      "(.*code) - (.*)": "󰨞  $1",
-      "^.*btop( .*|$)": "󰧨 BTOP $1",
-      "^.*unimatrix( .*|$)": "󰘨 MATRIX $1",
+      "^(.*?)( - Chromium| — Chromium)? - chrome.*$": " $1",
+      "(.*) - Obsidian - .* - obsidian": " $1",
+      "(.*nvim)...(.*)": " $2",
+      "(.*code) - (.*)": "󰨞 $1",
+      "^.*btop( .*|$)": "󰧨 BTOP$1",
+      "^.*unimatrix( .*|$)": "󰘨 MATRIX$1",
       "(.*) - Spotify": " $1",
       "(.*) - com.mitchellh.ghostty": "󰊠 $1",
       "(.*) - Alacritty": "  $1",
-      "(.*) - kitty": "  $1",
-      "(.*) - BeeperTexts": " 󰻞  $1",
-      "(.*Discord)...(.*).. (.*)": "  $2",
-      "(.*) - org.gnome.Nautilus": "󰉓  $1",
+      "(.*) - kitty": " $1",
+      "(.*) - BeeperTexts": " 󰻞 $1",
+      "(.*Discord)...(.*).. (.*)": " $2",
+      "(.*) - org.gnome.Nautilus": "󰉓 $1",
       "(.*) - fish": "  [$1]",
-      "(.*Steam)...(.*)": "  $1",
-      "(.*imv)...(.*).. (.*)": "  $2",
+      "(.*Steam)...(.*)": " $1",
+      "(.*imv)...(.*).. (.*)": " $2",
       "(.*) - com.obsproject.Studio": " $1",
-      "^(.*?)( — Zen Browser)? - zen$": "  $1",
-      "^(.*?)( - Sublime Text.*)? - sublime_text$": "󰈙  $1",
-      "^(.*) - Outlook - outlook-for-linux$": "󰴢  $1",
-      "^(.*) \\| (Microsoft )?Teams - teams-for-linux$": "󰊻  $1",
-      "^(.*?)( - G4Music)? - com\\.github\\.fivves\\.gapless$": "  $1",
-      "^(.*) - com\\.jeffser\\.Nocturne$": "  $1",
-      "^(.*) - WhatsApp Desktop$": "  $1"
+      "^(.*?)( — Zen Browser)? - zen$": " $1",
+      "^(.*?)( - Sublime Text.*)? - sublime_text$": "󰈙 $1",
+      "^(.*) - Outlook - outlook-for-linux$": "󰴢 $1",
+      "^(.*) \\| (Microsoft )?Teams - teams-for-linux$": "󰊻 $1",
+      "^(.*?)( - G4Music)? - com\\.github\\.fivves\\.gapless$": " $1",
+      "^(.*) - com\\.jeffser\\.Nocturne$": " $1",
+      "^(.*) - WhatsApp Desktop$": " $1"
     }
   },
 
@@ -218,7 +222,7 @@
   },
 
   "clock": {
-    "format": "󰃰  {:%a %b %d %I:%M %p}",
+    "format": "󰃰 {:%a %b %d %I:%M %p}",
     "tooltip": false,
     "on-click": "omarchy-launch-or-focus-webapp Calendar 'https://calendar.notion.so/'",
     "on-click-right": "omarchy-cmd-tzupdate"

@@ -35,14 +35,20 @@
 window#waybar {
   background-color: @surface_transparent;
   color: @foreground;
-  font-family: JetBrainsMono Nerd Font;
+  font-family: JetBrainsMono Nerd Font Propo;
   font-size: 15px;
+}
+
+* {
+  letter-spacing: 0;
+  min-height: 0;
 }
 
 button {
   border: none;
   border-radius: 0;
   box-shadow: none;
+  padding: 0;
   min-height: 0;
   outline: none;
 }
@@ -53,9 +59,15 @@ button {
 
 tooltip {
   background-color: @surface_bg;
+  color: @foreground;
   font-family: JetBrainsMono Nerd Font;
+  border: 1px solid @separator_color;
   border-radius: 12px;
   padding: 8px 12px;
+}
+
+tooltip label {
+  color: @foreground;
 }
 
 /* =========
@@ -83,6 +95,8 @@ tooltip {
 .modules-center,
 #right-icons,
 #custom-weather,
+#custom-omarchy,
+#custom-wordle,
 #custom-codexbar,
 #clock,
 #mpris {
@@ -92,16 +106,16 @@ tooltip {
 }
 
 #left-main {
-  padding: 0 4px;
+  padding: 0 6px;
 }
 
 .modules-center {
-  padding: 0 16px;
+  padding: 0 12px;
   margin: 6px 8px;
 }
 
-#right-icons,
 #custom-weather,
+#custom-wordle,
 #custom-codexbar,
 #mpris,
 #clock {
@@ -109,19 +123,37 @@ tooltip {
   margin-left: 8px;
 }
 
-#custom-wordle {
-  padding-left: 6px;
-  padding-right: 8px;
+#right-icons {
+  padding: 0 6px;
+  margin-left: 8px;
 }
 
 /* =========
    WORKSPACES
    ========= */
 
+#workspaces {
+  margin-left: 3px;
+  padding: 0;
+}
+
 #workspaces button {
+  all: initial;
   background: @surface_transparent;
   color: @foreground;
   box-shadow: none;
+  font-family: JetBrainsMono Nerd Font Propo;
+  font-size: 15px;
+  margin: 0;
+  min-width: 14px;
+  padding: 0 6px;
+}
+
+#workspaces button:hover,
+#workspaces button.visible,
+#workspaces button.active,
+#workspaces button.focused {
+  color: @foreground;
 }
 
 #workspaces button:not(.visible) {
@@ -132,25 +164,44 @@ tooltip {
    COMMON MODULE SPACING
    ========= */
 
-#tray,
 #cpu,
 #battery,
 #network,
 #bluetooth,
 #pulseaudio,
 #custom-omarchy,
+#custom-screenrecording-indicator,
+#custom-idle-indicator,
+#custom-notification-silencing-indicator,
 #custom-update,
+#custom-omarchy,
+#tray-expander,
 #custom-voxtype {
-  margin-left: 8px;
-  margin-right: 8px;
+  margin: 0 6px;
+  padding: 0;
 }
 
 /* =========
    MODULE TWEAKS
    ========= */
 
+#custom-omarchy {
+  min-width: 40px;
+  padding: 6;
+}
+
+#tray-expander {
+  background-color: @surface_transparent;
+}
+
 #custom-expand-icon {
-  padding-right: 4px;
+  margin: 0;
+  padding: 0;
+}
+
+#tray {
+  margin: 0 0 0 12px;
+  padding: 0;
 }
 
 #custom-update {
@@ -162,10 +213,7 @@ tooltip {
 #custom-notification-silencing-indicator {
   font-size: 16px;
   color: @foreground;
-}
-
-#custom-voxtype {
-  margin-left: 8px;
+  min-width: 12px;
 }
 
 .hidden {
@@ -206,8 +254,7 @@ menu separator {
 #custom-screenrecording-indicator.active,
 #custom-idle-indicator.active,
 #custom-notification-silencing-indicator.active {
-  margin-left: 12px;
-  margin-right: 4px;
+  color: @color_alert;
 }
 
 #custom-voxtype.recording {
