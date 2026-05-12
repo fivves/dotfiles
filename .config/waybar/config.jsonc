@@ -17,10 +17,10 @@
   "modules-center": ["hyprland/window"],
   
   "modules-right": [
-    "group/right-icons",
     "custom/cava",
     "custom/wordle",
     "custom/weather",
+    "group/right-icons",
     "clock"
   ],
 
