@@ -59,9 +59,15 @@ button {
 
 tooltip {
   background-color: @surface_bg;
+  color: @foreground;
   font-family: JetBrainsMono Nerd Font;
+  border: 1px solid @separator_color;
   border-radius: 12px;
   padding: 8px 12px;
+}
+
+tooltip label {
+  color: @foreground;
 }
 
 /* =========
@@ -89,6 +95,7 @@ tooltip {
 .modules-center,
 #right-icons,
 #custom-weather,
+#custom-omarchy,
 #custom-wordle,
 #custom-codexbar,
 #clock,
@@ -126,16 +133,27 @@ tooltip {
    ========= */
 
 #workspaces {
-  margin-left: 0;
+  margin-left: 3px;
   padding: 0;
 }
 
 #workspaces button {
+  all: initial;
   background: @surface_transparent;
+  color: @foreground;
   box-shadow: none;
+  font-family: JetBrainsMono Nerd Font Propo;
+  font-size: 15px;
   margin: 0;
   min-width: 14px;
   padding: 0 6px;
+}
+
+#workspaces button:hover,
+#workspaces button.visible,
+#workspaces button.active,
+#workspaces button.focused {
+  color: @foreground;
 }
 
 #workspaces button:not(.visible) {
@@ -156,6 +174,7 @@ tooltip {
 #custom-idle-indicator,
 #custom-notification-silencing-indicator,
 #custom-update,
+#custom-omarchy,
 #tray-expander,
 #custom-voxtype {
   margin: 0 6px;
@@ -165,6 +184,11 @@ tooltip {
 /* =========
    MODULE TWEAKS
    ========= */
+
+#custom-omarchy {
+  min-width: 40px;
+  padding: 6;
+}
 
 #tray-expander {
   background-color: @surface_transparent;
