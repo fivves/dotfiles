@@ -19,6 +19,7 @@
   "modules-right": [
     "custom/cava",
     "custom/wordle",
+    "custom/twitch",
     "custom/weather",
     "group/right-icons",
     "clock"
@@ -88,6 +89,16 @@
     "format": "{}",
     "tooltip": true,
     "escape": false
+  },
+
+  "custom/twitch": {
+    "exec": "python3 ~/.config/waybar/scripts/twitch.py",
+    "return-type": "json",
+    "interval": 300,
+    "format": "{}",
+    "tooltip": true,
+    "escape": true,
+    "on-click": "bash ~/.config/waybar/scripts/twitch-menu.sh"
   },
 
   "custom/cava": {
