@@ -1,0 +1,117 @@
+#!/usr/bin/env bash
+set -uo pipefail
+
+INSTALLER_PATH="$HOME/.local/bin/install-omarchy-vesktop-theme-sync"
+HOOK_DIR="$HOME/.config/omarchy/hooks/theme-set.d"
+HOOK_PATH="$HOOK_DIR/sync-vesktop"
+OMARCHY_THEME_DIR="$HOME/.config/omarchy/current/theme"
+OMARCHY_VENCORD_THEME="$OMARCHY_THEME_DIR/vencord.theme.css"
+VESKTOP_CONFIG_DIR="$HOME/.config/vesktop"
+VESKTOP_SETTINGS_DIR="$VESKTOP_CONFIG_DIR/settings"
+VESKTOP_THEMES_DIR="$VESKTOP_CONFIG_DIR/themes"
+VESKTOP_SETTINGS_PATH="$VESKTOP_SETTINGS_DIR/settings.json"
+VESKTOP_THEME_NAME="omarchy-vencord.theme.css"
+VESKTOP_THEME_PATH="$VESKTOP_THEMES_DIR/$VESKTOP_THEME_NAME"
+
+log() {
+  printf 'omarchy-vesktop-theme-sync: %s\n' "$*" >&2
+}
+
+usage() {
+  cat <<'USAGE'
+Usage:
+  install-omarchy-vesktop-theme-sync          Install the Omarchy hook and sync Vesktop now
+  install-omarchy-vesktop-theme-sync --sync   Sync Vesktop's local Vencord theme now
+
+The hook runs after `omarchy theme set ...`, copies the current Omarchy
+vencord.theme.css into ~/.config/vesktop/themes/, and enables that local theme
+in Vencord's enabledThemes setting.
+USAGE
+}
+
+enable_vencord_theme() {
+  mkdir -p "$VESKTOP_SETTINGS_DIR"
+
+  python3 - "$VESKTOP_SETTINGS_PATH" "$VESKTOP_THEME_NAME" <<'PYTHON'
+import json
+import sys
+from pathlib import Path
+
+settings_path = Path(sys.argv[1])
+theme_name = sys.argv[2]
+
+if settings_path.exists():
+    raw = settings_path.read_text().strip()
+    settings = json.loads(raw) if raw else {}
+else:
+    settings = {}
+
+enabled = settings.get("enabledThemes")
+if not isinstance(enabled, list):
+    enabled = []
+
+enabled = [theme for theme in enabled if theme != theme_name]
+enabled.append(theme_name)
+settings["enabledThemes"] = enabled
+
+settings_path.write_text(json.dumps(settings, indent=4) + "\n")
+PYTHON
+}
+
+sync_vesktop() {
+  if [[ ! -f "$OMARCHY_VENCORD_THEME" ]]; then
+    log "No Omarchy Vencord theme found at $OMARCHY_VENCORD_THEME"
+    return 0
+  fi
+
+  if ! command -v python3 >/dev/null; then
+    log "python3 is required to update Vesktop settings"
+    return 1
+  fi
+
+  mkdir -p "$VESKTOP_THEMES_DIR"
+  cp "$OMARCHY_VENCORD_THEME" "$VESKTOP_THEME_PATH"
+  enable_vencord_theme
+
+  log "Synced $OMARCHY_VENCORD_THEME to $VESKTOP_THEME_PATH and enabled it in Vencord."
+  log "Restart Vesktop or reload themes if it is already open."
+}
+
+install_hook() {
+  local source_path target_path
+
+  mkdir -p "$HOME/.local/bin" "$HOOK_DIR"
+
+  source_path=$(realpath -m "${BASH_SOURCE[0]}")
+  target_path=$(realpath -m "$INSTALLER_PATH")
+  if [[ "$source_path" != "$target_path" ]]; then
+    cp "$source_path" "$INSTALLER_PATH"
+  fi
+  chmod +x "$INSTALLER_PATH"
+
+  cat >"$HOOK_PATH" <<'HOOK'
+#!/usr/bin/env bash
+exec "$HOME/.local/bin/install-omarchy-vesktop-theme-sync" --sync "$@"
+HOOK
+  chmod +x "$HOOK_PATH"
+
+  log "Installed hook at $HOOK_PATH"
+  "$INSTALLER_PATH" --sync
+}
+
+case "${1:-}" in
+  ""|--install)
+    install_hook
+    ;;
+  --sync)
+    shift
+    sync_vesktop "$@"
+    ;;
+  -h|--help)
+    usage
+    ;;
+  *)
+    usage >&2
+    exit 2
+    ;;
+esac

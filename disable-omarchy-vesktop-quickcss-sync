@@ -1,0 +1,145 @@
+#!/usr/bin/env bash
+set -uo pipefail
+
+QUICK_CSS_PATH="$HOME/.config/vesktop/settings/quickCss.css"
+SETTINGS_PATH="$HOME/.config/vesktop/settings/settings.json"
+INSTALLER_PATH="$HOME/.local/bin/install-omarchy-vesktop-theme-sync"
+HOOK_PATH="$HOME/.config/omarchy/hooks/theme-set.d/sync-vesktop"
+BEGIN_MARKER="/* BEGIN generated omarchy-vesktop-theme-sync */"
+END_MARKER="/* END generated omarchy-vesktop-theme-sync */"
+
+log() {
+  printf 'disable-omarchy-vesktop-quickcss-sync: %s\n' "$*" >&2
+}
+
+usage() {
+  cat <<'USAGE'
+Usage:
+  disable-omarchy-vesktop-quickcss-sync
+
+Removes the generated Quick CSS block written by the first Omarchy Vesktop sync
+script. Any CSS outside that managed block is preserved. If that leaves Quick
+CSS empty, this also disables useQuickCss in Vesktop settings.
+USAGE
+}
+
+disable_quickcss_if_empty() {
+  [[ -f "$QUICK_CSS_PATH" ]] || return 0
+  [[ -f "$SETTINGS_PATH" ]] || return 0
+
+  if grep -q '[^[:space:]]' "$QUICK_CSS_PATH"; then
+    return 0
+  fi
+
+  if ! command -v python3 >/dev/null; then
+    log "Quick CSS is empty; python3 not found, so useQuickCss was not updated."
+    return 0
+  fi
+
+  python3 - "$SETTINGS_PATH" <<'PYTHON'
+import json
+import sys
+from pathlib import Path
+
+settings_path = Path(sys.argv[1])
+raw = settings_path.read_text().strip()
+settings = json.loads(raw) if raw else {}
+settings["useQuickCss"] = False
+settings_path.write_text(json.dumps(settings, indent=4) + "\n")
+PYTHON
+
+  log "Disabled Vesktop useQuickCss because Quick CSS is now empty."
+}
+
+remove_legacy_installed_file() {
+  local path="$1"
+
+  [[ -f "$path" ]] || return 0
+
+  if grep -Fq "$BEGIN_MARKER" "$path" || grep -Fq "Sync Vesktop Quick CSS now" "$path"; then
+    rm -f "$path"
+    log "Removed legacy Quick CSS sync file at $path"
+    return 10
+  fi
+}
+
+remove_legacy_hook_and_installer() {
+  local removed_installer=0
+
+  remove_legacy_installed_file "$INSTALLER_PATH"
+  [[ "$?" == 10 ]] && removed_installer=1
+
+  if (( removed_installer )) && [[ -f "$HOOK_PATH" ]] && grep -Fq 'install-omarchy-vesktop-theme-sync' "$HOOK_PATH"; then
+    rm -f "$HOOK_PATH"
+    log "Removed legacy Quick CSS sync hook at $HOOK_PATH"
+  fi
+}
+
+remove_generated_quickcss() {
+  local tmp
+
+  if [[ ! -f "$QUICK_CSS_PATH" ]]; then
+    log "No Vesktop Quick CSS file found at $QUICK_CSS_PATH"
+    return 0
+  fi
+
+  if ! grep -Fq "$BEGIN_MARKER" "$QUICK_CSS_PATH"; then
+    log "No generated Omarchy Vesktop Quick CSS block found."
+    return 0
+  fi
+
+  tmp=$(mktemp "${QUICK_CSS_PATH}.tmp.XXXXXX")
+  awk -v begin="$BEGIN_MARKER" -v end="$END_MARKER" '
+    $0 == begin {
+      skipping = 1
+      removed = 1
+      next
+    }
+    $0 == end {
+      skipping = 0
+      next
+    }
+    !skipping {
+      print
+    }
+    END {
+      if (skipping) {
+        exit 3
+      }
+      if (!removed) {
+        exit 4
+      }
+    }
+  ' "$QUICK_CSS_PATH" >"$tmp"
+
+  case "$?" in
+    0)
+      mv "$tmp" "$QUICK_CSS_PATH"
+      log "Removed generated Omarchy Vesktop Quick CSS block."
+      disable_quickcss_if_empty
+      ;;
+    3)
+      rm -f "$tmp"
+      log "Found a begin marker without an end marker; left Quick CSS unchanged."
+      return 1
+      ;;
+    *)
+      rm -f "$tmp"
+      log "No generated Omarchy Vesktop Quick CSS block found."
+      ;;
+  esac
+}
+
+case "${1:-}" in
+  "")
+    remove_generated_quickcss
+    remove_legacy_hook_and_installer
+    ;;
+  -h|--help)
+    usage
+    ;;
+  *)
+    usage >&2
+    exit 2
+    ;;
+esac
