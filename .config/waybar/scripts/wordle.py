@@ -336,7 +336,7 @@ def status_icon(state: dict) -> str:
     if state["status"] == "won":
         return "󰸞"
     elif state["status"] == "lost":
-        return ""
+        return "󰚌"
     elif state.get("fetch_error"):
         return ""
     else:

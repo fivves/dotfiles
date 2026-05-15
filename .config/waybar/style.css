@@ -262,7 +262,7 @@ menu separator {
 }
 
 #custom-twitch.live {
-  color: #bf94ff;
+  color: @foreground;
 }
 
 #custom-twitch.error {
