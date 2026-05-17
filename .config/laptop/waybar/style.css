@@ -98,6 +98,7 @@ tooltip label {
 #custom-weather,
 #custom-omarchy,
 #custom-wordle,
+#custom-twitch,
 #custom-codexbar,
 #clock,
 #mpris {
@@ -118,6 +119,7 @@ tooltip label {
 #custom-weather,
 #custom-cava,
 #custom-wordle,
+#custom-twitch,
 #custom-codexbar,
 #mpris,
 #clock {
@@ -260,5 +262,13 @@ menu separator {
 }
 
 #custom-voxtype.recording {
+  color: @color_alert;
+}
+
+#custom-twitch.live {
+  color: @foreground;
+}
+
+#custom-twitch.error {
   color: @color_alert;
 }
