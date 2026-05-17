@@ -18,6 +18,7 @@ alias notify='notify-send "Test notification" "If you can read this, the gremlin
 alias pcp='java -jar /home/eddie/Apps/PCPanel/pcpanel.jar'
 alias linutil='curl -fsSL https://christitus.com/linux | sh'
 alias ukill='pkill -9 -f -i "upc|ubisoft|uplay"'
+alias nbz='python /usr/lib/sabnzbd/SABnzbd.py'
 
 gitty() {
     git add .
