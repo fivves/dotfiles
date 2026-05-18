@@ -4,8 +4,6 @@
   "layer": "top",
   "position": "top",
   "spacing": 0,
-  "margin-top": 2,
-  "margin-bottom": -8,
 
   "modules-left": [
     "custom/omarchy",
