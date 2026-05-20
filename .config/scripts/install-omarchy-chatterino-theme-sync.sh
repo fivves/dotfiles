@@ -13,6 +13,7 @@ CHATTERINO_SETTINGS_PATH="$CHATTERINO_SETTINGS_DIR/settings.json"
 CHATTERINO_THEMES_DIR="$CHATTERINO_DIR/Themes"
 CHATTERINO_THEME_NAME="Omarchy"
 CHATTERINO_THEME_PATH="$CHATTERINO_THEMES_DIR/$CHATTERINO_THEME_NAME.json"
+CHATTERINO_THEME_SETTING="$CHATTERINO_THEME_NAME.json"
 
 log() {
   printf 'omarchy-chatterino-theme-sync: %s\n' "$*" >&2
@@ -26,7 +27,7 @@ Usage:
 
 The hook runs after `omarchy theme set ...`, generates
 ~/.local/share/chatterino/Themes/Omarchy.json from the active Omarchy
-colors.toml, and selects `Custom: Omarchy` in Chatterino's settings.
+colors.toml, and selects Omarchy.json in Chatterino's settings.
 
 Set CHATTERINO_DIR before running if your Chatterino data directory is not
 ~/.local/share/chatterino.
@@ -46,7 +47,7 @@ sync_chatterino() {
 
   mkdir -p "$CHATTERINO_SETTINGS_DIR" "$CHATTERINO_THEMES_DIR"
 
-  python3 - "$COLORS_FILE" "$THEME_DIR" "$THEME_NAME_FILE" "$CHATTERINO_THEME_PATH" "$CHATTERINO_SETTINGS_PATH" <<'PYTHON'
+  python3 - "$COLORS_FILE" "$THEME_DIR" "$THEME_NAME_FILE" "$CHATTERINO_THEME_PATH" "$CHATTERINO_SETTINGS_PATH" "$CHATTERINO_THEME_SETTING" <<'PYTHON'
 import json
 import re
 import shutil
@@ -58,6 +59,7 @@ theme_dir = Path(sys.argv[2])
 theme_name_path = Path(sys.argv[3])
 theme_path = Path(sys.argv[4])
 settings_path = Path(sys.argv[5])
+theme_setting = sys.argv[6]
 
 HEX_RE = re.compile(r"^#[0-9a-fA-F]{6}$")
 
@@ -231,13 +233,13 @@ else:
 
 appearance = settings.setdefault("appearance", {})
 theme_settings = appearance.setdefault("theme", {})
-theme_settings["name"] = "Custom: Omarchy"
-theme_settings["lightSystem"] = "Custom: Omarchy"
-theme_settings["darkSystem"] = "Custom: Omarchy"
+theme_settings["name"] = theme_setting
+theme_settings["lightSystem"] = theme_setting
+theme_settings["darkSystem"] = theme_setting
 
 settings_path.write_text(json.dumps(settings, indent=4) + "\n")
 print(f"wrote {theme_path} from Omarchy theme {omarchy_theme_name}")
-print(f"selected Custom: Omarchy in {settings_path}")
+print(f"selected {theme_setting} in {settings_path}")
 PYTHON
 
   log "Synced Chatterino to the current Omarchy theme."
