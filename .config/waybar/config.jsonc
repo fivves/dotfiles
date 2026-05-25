@@ -208,7 +208,7 @@
       "^(.*) - Outlook - outlook-for-linux$": "󰴢 $1",
       "^(.*) \\| (Microsoft )?Teams - teams-for-linux$": "󰊻 $1",
       "^(.*?)( - G4Music)? - com\\.github\\.fivves\\.gapless$": " $1",
-      "^(.*) - com\\.jeffser\\.Nocturne$": " $1",
+      "^(.*) - io\\.m51\\.Gelly$": " $1",
       "^(.*) - WhatsApp Desktop$": " $1"
     }
   },
