@@ -32,6 +32,7 @@ INSTALLERS=(
 
 declare -a SELECTED
 declare -a RESULTS
+cursor=0
 
 for ((i = 0; i < ${#INSTALLERS[@]}; i++)); do
   SELECTED[$i]=0
@@ -129,14 +130,19 @@ draw_ui() {
   print_logo
   printf '\n'
   printf '%sOmarchy Theme Sync Installer%s\n' "$bold" "$reset"
-  printf '%sSelect one, several, or all installers, then run them in sequence.%s\n\n' "$dim" "$reset"
+  printf '%sUse arrow keys to move, Space to select, Enter to install.%s\n\n' "$dim" "$reset"
 
   for ((i = 0; i < ${#INSTALLERS[@]}; i++)); do
-    local label description marker path full_path state
+    local label description marker path full_path state pointer
     label="$(field "${INSTALLERS[$i]}" label)"
     description="$(field "${INSTALLERS[$i]}" description)"
     path="$(field "${INSTALLERS[$i]}" path)"
     full_path="$(installer_path "$path")"
+
+    pointer=" "
+    if (( i == cursor )); then
+      pointer="${accent}>${reset}"
+    fi
 
     marker="[ ]"
     state="$dim"
@@ -146,25 +152,24 @@ draw_ui() {
     fi
 
     if [[ ! -x "$full_path" ]]; then
-      printf '  %s%2d.%s %s %-18s %s%s%s\n' "$bad" "$((i + 1))" "$reset" "$marker" "$label" "$dim" "(missing or not executable)" "$reset"
+      printf '%b %s%2d.%s %s %-18s %s%s%s\n' "$pointer" "$bad" "$((i + 1))" "$reset" "$marker" "$label" "$dim" "(missing or not executable)" "$reset"
     elif (( width >= 112 )); then
-      printf '  %s%2d.%s %s %s%-18s%s %s\n' "$accent" "$((i + 1))" "$reset" "$marker" "$state" "$label" "$reset" "$description"
+      printf '%b %s%2d.%s %s %s%-18s%s %s\n' "$pointer" "$accent" "$((i + 1))" "$reset" "$marker" "$state" "$label" "$reset" "$description"
     else
       # Narrow-terminal layout: keep the selectable row short, then print a
       # bounded description below it. Add new installers freely in INSTALLERS;
       # this presentation layer will keep long descriptions from wrapping.
       local description_width=$((width - 8))
       (( description_width < 24 )) && description_width=24
-      printf '  %s%2d.%s %s %s%s%s\n' "$accent" "$((i + 1))" "$reset" "$marker" "$state" "$label" "$reset"
+      printf '%b %s%2d.%s %s %s%s%s\n' "$pointer" "$accent" "$((i + 1))" "$reset" "$marker" "$state" "$label" "$reset"
       printf '      %s%.*s%s\n' "$dim" "$description_width" "$description" "$reset"
     fi
   done
 
   printf '\n'
   printf '%sSelected:%s %s/%s\n' "$bold" "$reset" "$count" "${#INSTALLERS[@]}"
-  printf '%sCommands:%s number toggles, %sa%s all, %sn%s none, %si%s install, %sq%s quit\n' \
-    "$bold" "$reset" "$accent" "$reset" "$accent" "$reset" "$accent" "$reset" "$accent" "$reset"
-  printf '> '
+  printf '%sKeys:%s %sUp/Down%s move, %sSpace%s select, %sEnter%s install, %sa%s all, %sn%s none, %sq%s quit\n' \
+    "$bold" "$reset" "$accent" "$reset" "$accent" "$reset" "$accent" "$reset" "$accent" "$reset" "$accent" "$reset" "$accent" "$reset"
 }
 
 toggle_index() {
@@ -192,6 +197,17 @@ select_none() {
   for ((i = 0; i < ${#SELECTED[@]}; i++)); do
     SELECTED[$i]=0
   done
+}
+
+move_cursor() {
+  local direction="$1"
+  cursor=$((cursor + direction))
+
+  if (( cursor < 0 )); then
+    cursor=$((${#INSTALLERS[@]} - 1))
+  elif (( cursor >= ${#INSTALLERS[@]} )); then
+    cursor=0
+  fi
 }
 
 select_ids() {
@@ -282,39 +298,47 @@ USAGE
 }
 
 interactive() {
-  local input token
+  local key install_status
 
   while true; do
     draw_ui
-    IFS= read -r input || return 1
 
-    for token in $input; do
-      case "$token" in
-        q|quit|exit)
-          clear_screen
-          return 0
-          ;;
-        a|all)
-          select_all
-          ;;
-        n|none|clear)
-          select_none
-          ;;
-        i|install|run)
-          local install_status
-          run_selected
-          install_status=$?
-          printf '\nPress Enter to close.'
-          IFS= read -r _
-          return "$install_status"
-          ;;
-        ''|*[!0-9]*)
-          ;;
-        *)
-          toggle_index "$token"
-          ;;
-      esac
-    done
+    IFS= read -rsn1 key || return 1
+    case "$key" in
+      $'\x1b')
+        IFS= read -rsn2 -t 0.05 key || key=""
+        case "$key" in
+          "[A") move_cursor -1 ;;
+          "[B") move_cursor 1 ;;
+        esac
+        ;;
+      " ")
+        toggle_index "$((cursor + 1))"
+        ;;
+      "")
+        run_selected
+        install_status=$?
+        printf '\nPress Enter to close.'
+        IFS= read -r _
+        return "$install_status"
+        ;;
+      q|Q)
+        clear_screen
+        return 0
+        ;;
+      a|A)
+        select_all
+        ;;
+      n|N)
+        select_none
+        ;;
+      j|J)
+        move_cursor 1
+        ;;
+      k|K)
+        move_cursor -1
+        ;;
+    esac
   done
 }
 
