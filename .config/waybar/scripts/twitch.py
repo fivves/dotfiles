@@ -21,7 +21,7 @@ USER_WIDTH = 18
 GAME_WIDTH = 26
 TWITCH_WORKSPACE = "7"
 TWITCH_MONITOR = "HDMI-A-1"
-TWITCH_MPV_CLASS = "mpv-twitch"
+MPV_CLASS = "mpv"
 
 
 def output(tooltip, css_class=None):
@@ -247,7 +247,7 @@ def launch_stream(channel):
     hyprctl("dispatch", "focusmonitor", TWITCH_MONITOR)
     hyprctl("dispatch", "workspace", TWITCH_WORKSPACE)
 
-    existing_mpv = addresses_for_class(TWITCH_MPV_CLASS)
+    existing_mpv = addresses_for_class(MPV_CLASS)
     subprocess.Popen(
         [
             "streamlink",
@@ -257,15 +257,13 @@ def launch_stream(channel):
             "mpv",
             "--title",
             title,
-            "--player-args",
-            f"--wayland-app-id={TWITCH_MPV_CLASS} {{playertitleargs}} {{playerinput}}",
         ],
         stdin=subprocess.DEVNULL,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
         start_new_session=True,
     )
-    mpv_addr = wait_for_new_window(lambda: addresses_for_class(TWITCH_MPV_CLASS), existing_mpv)
+    mpv_addr = wait_for_new_window(lambda: addresses_for_class(MPV_CLASS), existing_mpv)
     if not mpv_addr:
         raise RuntimeError("Timed out waiting for mpv")
 
