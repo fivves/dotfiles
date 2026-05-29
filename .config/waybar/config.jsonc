@@ -214,7 +214,7 @@
   },
 
   "mpris": {
-    "format": "{player_icon}  {artist} - {title}",
+    "format": "{player_icon} {artist} - {title}",
     "max-length": 50,
     "format-paused": "⏸ {artist} - {title}",
     "format-stopped": "",

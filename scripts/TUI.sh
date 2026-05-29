@@ -90,6 +90,14 @@ clear_screen() {
   printf '\033[2J\033[H'
 }
 
+hide_cursor() {
+  printf '\033[?25l'
+}
+
+show_cursor() {
+  printf '\033[?25h'
+}
+
 field() {
   local entry="$1"
   local index="$2"
@@ -121,12 +129,11 @@ selected_count() {
   printf '%s\n' "$count"
 }
 
-draw_ui() {
+render_ui() {
   local count width
   count="$(selected_count)"
   width="$(terminal_width)"
 
-  clear_screen
   print_logo
   printf '\n'
   printf '%sOmarchy Theme Sync Installer%s\n' "$bold" "$reset"
@@ -170,6 +177,12 @@ draw_ui() {
   printf '%sSelected:%s %s/%s\n' "$bold" "$reset" "$count" "${#INSTALLERS[@]}"
   printf '%sKeys:%s %sUp/Down%s move, %sSpace%s select, %sEnter%s install, %sa%s all, %sn%s none, %sq%s quit\n' \
     "$bold" "$reset" "$accent" "$reset" "$accent" "$reset" "$accent" "$reset" "$accent" "$reset" "$accent" "$reset" "$accent" "$reset"
+}
+
+draw_ui() {
+  local ui
+  ui="$(render_ui)"
+  printf '\033[H%b\033[0J' "$ui"
 }
 
 toggle_index() {
@@ -299,11 +312,20 @@ USAGE
 
 interactive() {
   local key install_status
+  trap 'show_cursor; clear_screen; exit 130' INT
+  trap 'show_cursor; clear_screen; exit 143' TERM
+
+  hide_cursor
+  clear_screen
 
   while true; do
     draw_ui
 
-    IFS= read -rsn1 key || return 1
+    if ! IFS= read -rsn1 key; then
+      show_cursor
+      clear_screen
+      return 1
+    fi
     case "$key" in
       $'\x1b')
         IFS= read -rsn2 -t 0.05 key || key=""
@@ -316,6 +338,7 @@ interactive() {
         toggle_index "$((cursor + 1))"
         ;;
       "")
+        show_cursor
         run_selected
         install_status=$?
         printf '\nPress Enter to close.'
@@ -323,6 +346,7 @@ interactive() {
         return "$install_status"
         ;;
       q|Q)
+        show_cursor
         clear_screen
         return 0
         ;;
