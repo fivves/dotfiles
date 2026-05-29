@@ -79,6 +79,10 @@ child:selected .item-box * {
   color: @selected-text;
 }
 
+child:selected {
+  background: alpha(@text, 0.07);
+}
+
 .item-box {
   padding-left: 14px;
 }
@@ -115,3 +119,4 @@ child:selected .item-box * {
 
 .preview {
 }
+
