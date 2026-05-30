@@ -13,6 +13,7 @@ import sys
 import os
 import tempfile
 import requests
+import time
 from datetime import date, timedelta
 from pathlib import Path
 
@@ -21,11 +22,13 @@ STATE_DIR      = Path.home() / ".local" / "share" / "waybar-wordle"
 STATE_FILE     = STATE_DIR / "state.json"
 STATS_FILE     = STATE_DIR / "stats.json"
 WORD_LIST_FILE = STATE_DIR / "wordlist.txt"
+SYNC_STAMP_FILE = STATE_DIR / "last-sync"
 NYT_API        = "https://www.nytimes.com/svc/wordle/v2/{date}.json"
 WORD_LIST_URL  = (
     "https://raw.githubusercontent.com/tabatkins/wordle-list/main/words"
 )
 MAX_GUESSES = 6
+SYNC_INTERVAL_SECONDS = 300
 
 CORRECT = "🟧"
 PRESENT = "🟦"
@@ -297,12 +300,35 @@ def sync_push(state: dict, stats: dict):
     except Exception:
         pass
 
+
+def sync_due() -> bool:
+    try:
+        last_sync = float(SYNC_STAMP_FILE.read_text())
+    except Exception:
+        return True
+    return time.time() - last_sync >= SYNC_INTERVAL_SECONDS
+
+
+def mark_synced():
+    try:
+        STATE_DIR.mkdir(parents=True, exist_ok=True)
+        SYNC_STAMP_FILE.write_text(str(time.time()))
+    except Exception:
+        pass
+
 # ── Waybar output ─────────────────────────────────────────────────────────────
 
 def render_board(state: dict) -> str:
     lines = []
-    lines.append(f"Wordle #{state.get('puzzle_id', '?')}  —  {state['date']}")
+    lines.append(f"Wordle #{state.get('puzzle_id') or '?'}  —  {state['date']}")
     lines.append("")
+
+    if state.get("fetch_error") or not state.get("word"):
+        lines.append("Today's puzzle is not loaded yet.")
+        lines.append("Waiting for network, then this will refresh automatically.")
+        lines.append("")
+        lines.append(f"Last error: {state.get('fetch_error', 'unknown')}")
+        return "\n".join(lines)
 
     for guess in state["guesses"]:
         tiles = "".join(score_guess(guess, state["word"]))
@@ -372,21 +398,23 @@ def main():
         }))
         return
 
-    # Background sync when Waybar refreshes (only pull to keep updated silently)
-    # We use a simple fork to avoid blocking Waybar
-    pid = os.fork()
-    if pid == 0:
-        try:
-            sync_pull(state, load_stats())
-        except Exception:
-            pass
-        os._exit(0)
+    if not state.get("fetch_error") and sync_due():
+        # Background sync when Waybar refreshes, throttled separately from retry.
+        pid = os.fork()
+        if pid == 0:
+            try:
+                _, _, success = sync_pull(state, load_stats())
+                if success:
+                    mark_synced()
+            except Exception:
+                pass
+            os._exit(0)
 
     save_state(state)
     print(json.dumps({
         "text": status_icon(state),
         "tooltip": render_board(state),
-        "class": state["status"],
+        "class": "offline" if state.get("fetch_error") else state["status"],
     }))
 
 

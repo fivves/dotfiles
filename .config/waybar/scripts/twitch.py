@@ -257,6 +257,8 @@ def launch_stream(channel):
             "mpv",
             "--title",
             title,
+            "--player-args",
+            "{playertitleargs} {playerinput}",
         ],
         stdin=subprocess.DEVNULL,
         stdout=subprocess.DEVNULL,

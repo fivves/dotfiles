@@ -148,9 +148,8 @@ tooltip label {
   color: @foreground;
   box-shadow: none;
   font-family: JetBrainsMono Nerd Font Propo;
-  font-size: 15px;
+  font-size: inherit;
   margin: 0;
-  min-width: 14px;
   padding: 0 6px;
 }
 
@@ -209,14 +208,10 @@ tooltip label {
   padding: 0;
 }
 
-#custom-update {
-  font-size: 10px;
-}
 
 #custom-screenrecording-indicator,
 #custom-idle-indicator,
 #custom-notification-silencing-indicator {
-  font-size: 16px;
   color: @foreground;
   min-width: 12px;
 }

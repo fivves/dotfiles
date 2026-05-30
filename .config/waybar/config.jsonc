@@ -1,9 +1,10 @@
 {
   "reload_style_on_change": true,
+  "output": "eDP-1",
   "layer": "top",
   "position": "top",
   "spacing": 0,
-  "output": "DP-1",
+
   "modules-left": [
     "custom/omarchy",
     "group/left-main",
@@ -79,7 +80,7 @@
   "custom/wordle": {
     "exec": "python3 ~/.config/waybar/scripts/wordle.py",
     "return-type": "json",
-    "interval": 3600,
+    "interval": 30,
     "signal": 8,
     "exec-on-event": false,
     "on-click": "bash ~/.config/waybar/scripts/wordle-guess.sh",
@@ -161,12 +162,12 @@
     "format-icons": {
       "default": "󰃢",
       "1": "󰖟",
-      "2": "",
-      "3": "󰎞",
-      "4": "󰆟",
-      "5": "",
-      "6": "6",
-      "7": "7",
+      "2": "󰭹",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
       "8": "8",
       "9": ""
     },
@@ -207,13 +208,13 @@
       "^(.*) - Outlook - outlook-for-linux$": "󰴢 $1",
       "^(.*) \\| (Microsoft )?Teams - teams-for-linux$": "󰊻 $1",
       "^(.*?)( - G4Music)? - com\\.github\\.fivves\\.gapless$": " $1",
-      "^(.*) - io\\.m51\\.Gelly$": " $1",
+      "^(.*) - com\\.jeffser\\.Nocturne$": " $1",
       "^(.*) - WhatsApp Desktop$": " $1"
     }
   },
 
   "mpris": {
-    "format": "{player_icon} {artist} - {title}",
+    "format": "{player_icon}  {artist} - {title}",
     "max-length": 50,
     "format-paused": "⏸ {artist} - {title}",
     "format-stopped": "",
