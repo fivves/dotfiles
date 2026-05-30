@@ -3,7 +3,7 @@
   "layer": "top",
   "position": "top",
   "spacing": 0,
-
+  "output": "DP-1",
   "modules-left": [
     "custom/omarchy",
     "group/left-main",
