@@ -185,7 +185,7 @@
     "format": "{title} - {class}",
     "max-length": 50,
     "rewrite": {
-      "^ - $": "󰟒  Desktop",
+      "^ - $": "󰟒 Desktop",
       "^(.*?)( - Chromium| — Chromium)? - chrome.*$": " $1",
       "(.*) - Obsidian - .* - obsidian": " $1",
       "(.*nvim)...(.*)": " $2",
@@ -218,7 +218,7 @@
     "max-length": 50,
     "format-paused": "⏸ {artist} - {title}",
     "format-stopped": "",
-    "player": "io",
+    "player": "org",
     "player-icons": {
       "default": "",
       "firefox": "",
@@ -234,10 +234,10 @@
     "escape": false,
     "truncate": "end",
     "interval": 1,
-    "on-click": "playerctl --player io.m51.Gelly play-pause",
-    "on-click-right": "playerctl --player io.m51.Gelly stop",
-    "on-scroll-up": "playerctl --player io.m51.Gelly previous",
-    "on-scroll-down": "playerctl --player io.m51.Gelly next"
+    "on-click": "playerctl --player org.mpris.MediaPlayer2.gtunes play-pause",
+    "on-click-right": "playerctl --player org.mpris.MediaPlayer2.gtunes stop",
+    "on-scroll-up": "playerctl --player org.mpris.MediaPlayer2.gtunes previous",
+    "on-scroll-down": "playerctl --player org.mpris.MediaPlayer2.gtunes next"
   },
 
   "clock": {
