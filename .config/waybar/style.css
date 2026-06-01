@@ -212,11 +212,8 @@ tooltip label {
 #custom-screenrecording-indicator,
 #custom-idle-indicator,
 #custom-notification-silencing-indicator {
-<<<<<<< HEAD
-=======
-  font-size: inherit;
->>>>>>> badc5da (changed music player to gtunes)
-  color: @foreground;
+font-size: inherit;
+color: @foreground;
 }
 
 .hidden {
