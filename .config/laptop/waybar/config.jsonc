@@ -7,14 +7,15 @@
   "modules-left": [
     "custom/omarchy",
     "group/left-main",
-    "custom/codexbar",
+    "custom/cava",
     "mpris"
   ],
 
   "modules-center": ["hyprland/window"],
   
   "modules-right": [
-    "custom/cava",
+
+    "custom/codexbar",
     "custom/wordle",
     "custom/twitch",
     "custom/weather",
