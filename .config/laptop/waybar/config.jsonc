@@ -185,7 +185,7 @@
     "format": "{title} - {class}",
     "max-length": 50,
     "rewrite": {
-      "^ - $": "󰟒  Desktop",
+      "^ - $": "󰟒 Desktop",
       "^(.*?)( - Chromium| — Chromium)? - chrome.*$": " $1",
       "(.*) - Obsidian - .* - obsidian": " $1",
       "(.*nvim)...(.*)": " $2",
@@ -234,7 +234,7 @@
     "truncate": "end",
     "interval": 1,
     "on-click": "playerctl --player org.mpris.MediaPlayer2.gtunes play-pause",
-    "on-click-right": "playerctl --player org.mpris.MediaPlayer2.gtunes stop",
+    "on-click-right": "gtunes",
     "on-scroll-up": "playerctl --player org.mpris.MediaPlayer2.gtunes previous",
     "on-scroll-down": "playerctl --player org.mpris.MediaPlayer2.gtunes next"
   },
