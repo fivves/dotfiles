@@ -193,6 +193,7 @@
       "^.*btop( .*|$)": "󰧨 BTOP$1",
       "^.*unimatrix( .*|$)": "󰘨 MATRIX$1",
       "(.*) - Spotify": " $1",
+      "(.*) - mpv - mpv": "󰕧 $1",
       "(.*) - com.mitchellh.ghostty": "󰊠 $1",
       "(.*) - Alacritty": "  $1",
       "(.*) - kitty": " $1",
