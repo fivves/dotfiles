@@ -251,6 +251,7 @@ def launch_stream(channel):
     subprocess.Popen(
         [
             "streamlink",
+            "--twitch-low-latency",
             f"twitch.tv/{channel}",
             "best",
             "--player",
