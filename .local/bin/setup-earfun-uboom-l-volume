@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Reproduce the EarFun UBOOM L Bluetooth volume fix:
+# keep the speaker connected normally, but force PipeWire/WirePlumber to use
+# computer-side software volume instead of the speaker's broken hardware volume.
+
+speaker_card="bluez_card.F4_4E_FC_91_70_06"
+config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/wireplumber/wireplumber.conf.d"
+config_file="$config_dir/99-earfun-uboom-l-software-volume.conf"
+
+mkdir -p "$config_dir"
+
+tmp_file="$(mktemp)"
+cleanup() {
+  rm -f "$tmp_file"
+}
+trap cleanup EXIT
+
+cat >"$tmp_file" <<EOF_CONF
+## EarFun UBOOM L: disable Bluetooth hardware volume.
+##
+## This speaker reports hardware volume support, but on this system intermediate
+## computer volume levels behave like an on/off switch. Keeping hw-volume empty
+## for this exact BlueZ card makes PipeWire apply software volume locally.
+
+monitor.bluez.rules = [
+  {
+    matches = [
+      {
+        device.name = "$speaker_card"
+      }
+    ]
+    actions = {
+      update-props = {
+        bluez5.hw-volume = [ ]
+      }
+    }
+  }
+]
+EOF_CONF
+
+if [[ -e "$config_file" ]] && ! cmp -s "$tmp_file" "$config_file"; then
+  backup_file="$config_file.bak.$(date +%s)"
+  cp "$config_file" "$backup_file"
+  echo "Backed up existing config to: $backup_file"
+fi
+
+install -m 0644 "$tmp_file" "$config_file"
+echo "Installed WirePlumber config: $config_file"
+
+if command -v systemctl >/dev/null 2>&1; then
+  if systemctl --user is-active --quiet wireplumber 2>/dev/null; then
+    systemctl --user restart wireplumber pipewire pipewire-pulse
+    echo "Restarted WirePlumber/PipeWire user services."
+  else
+    echo "WirePlumber is not active yet. The config will apply after login or audio startup."
+  fi
+else
+  echo "systemctl not found. Log out/in or restart WirePlumber/PipeWire manually."
+fi
+
+echo
+echo "Done. Reconnect the EarFun UBOOM L if it was already connected and volume still feels unchanged."
