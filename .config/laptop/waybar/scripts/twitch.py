@@ -19,7 +19,7 @@ CONFIG_FILE = Path.home() / ".config" / "waybar" / "twitch.json"
 API_BASE = "https://api.twitch.tv/helix"
 USER_WIDTH = 18
 GAME_WIDTH = 26
-TWITCH_WORKSPACE = "7"
+TWITCH_WORKSPACE = "9"
 TWITCH_MONITOR = "HDMI-A-1"
 MPV_CLASS = "mpv"
 
