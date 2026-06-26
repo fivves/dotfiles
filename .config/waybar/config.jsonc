@@ -15,7 +15,7 @@
   "modules-center": ["hyprland/window"],
   
   "modules-right": [
-    "custom/codexbar",
+    "custom/claudebar",
     "custom/wordle",
     "custom/twitch",
     "custom/weather",
@@ -68,6 +68,17 @@
     "tooltip": true,
     "on-click": "xdg-open https://chatgpt.com/codex/settings/usage"
   },
+
+
+"custom/claudebar": {
+    "exec": "claudebar",
+    "format": "󰚩 {}",
+    "return-type": "json",
+    "interval": 300,
+    "signal": 13,
+    "tooltip": true,
+    "on-click": "xdg-open https://claude.ai/settings/usage"
+},
 
 "custom/weather": {
     "format": "{}",

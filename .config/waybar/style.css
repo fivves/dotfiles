@@ -101,6 +101,7 @@ tooltip label {
 #custom-omarchy,
 #custom-wordle,
 #custom-codexbar,
+#custom-claudebar,
 #clock,
 #mpris {
   background-color: @surface_bg;
@@ -122,6 +123,7 @@ tooltip label {
 #custom-twitch,
 #custom-wordle,
 #custom-codexbar,
+#custom-claudebar,
 #mpris,
 #clock {
   padding: 0 12px;
