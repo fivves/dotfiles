@@ -2,7 +2,6 @@
 set -euo pipefail
 
 # Targets from your hyprctl clients -j
-PCPANEL_CLASS='com.getpcpanel.MainFX'
 SD_CLASS='python3'  # Stream Deck UI is python3 class (title can vary)
 
 log() { printf '[close-autostarts] %s\n' "$*" >&2; }
@@ -72,7 +71,6 @@ prev_addr="$(hyprctl -j activewindow | jq -r '.address // empty')"
 # Wait a bit so both windows have mapped; adjust if needed
 sleep 0.3
 
-close_by_class "$PCPANEL_CLASS" "PCPanel"
 close_by_class "$SD_CLASS" "Stream Deck"
 
 # Restore previous focus if still present
