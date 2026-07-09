@@ -1,0 +1,9 @@
+{
+  "hosts": {
+    "hermes": {
+      "peerName": "eddie",
+      "aiPeer": "moss",
+      "dialecticCadence": 5
+    }
+  }
+}

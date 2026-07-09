@@ -1,0 +1,9 @@
+# Never commit secrets
+.env
+auth.json
+*.key
+*secret*
+
+# OS junk
+.DS_Store
+Thumbs.db
