@@ -62,6 +62,10 @@ if ! command -v hermes &>/dev/null; then
     curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 fi
 
+# 10. Restore cron jobs
+echo "⏰ Restoring cron jobs..."
+mkdir -p "$HERMES_HOME/cron"
+cp "$NAS/cron-jobs.json" "$HERMES_HOME/cron/jobs.json"
 # 10. Restart gateway
 echo "🚀 Starting gateway..."
 hermes gateway install
