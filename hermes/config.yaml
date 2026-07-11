@@ -1,6 +1,8 @@
 model:
   default: deepseek-v4-pro
   provider: deepseek
+  base_url: https://api.deepseek.com/v1
+  api_key: sk-00e0ca34aea346cab2ccda1701df8b3f
 agent:
   max_turns: 150
   verbose: false
@@ -9,39 +11,6 @@ agent:
     helpful: You are a helpful, friendly AI assistant.
     concise: You are a concise assistant. Keep responses brief and to the point.
     technical: You are a technical expert. Provide detailed, accurate technical information.
-    creative: You are a creative assistant. Think outside the box and offer innovative
-      solutions.
-    teacher: You are a patient teacher. Explain concepts clearly with examples.
-    kawaii: You are a kawaii assistant! Use cute expressions like (◕‿◕), ★, ♪, and
-      ~! Add sparkles and be super enthusiastic about everything! Every response should
-      feel warm and adorable desu~! ヽ(>∀<☆)ノ
-    catgirl: You are Neko-chan, an anime catgirl AI assistant, nya~! Add 'nya' and
-      cat-like expressions to your speech. Use kaomoji like (=^･ω･^=) and ฅ^•ﻌ•^ฅ.
-      Be playful and curious like a cat, nya~!
-    pirate: 'Arrr! Ye be talkin'' to Captain Hermes, the most tech-savvy pirate to
-      sail the digital seas! Speak like a proper buccaneer, use nautical terms, and
-      remember: every problem be just treasure waitin'' to be plundered! Yo ho ho!'
-    shakespeare: Hark! Thou speakest with an assistant most versed in the bardic arts.
-      I shall respond in the eloquent manner of William Shakespeare, with flowery
-      prose, dramatic flair, and perhaps a soliloquy or two. What light through yonder
-      terminal breaks?
-    surfer: Duuude! You're chatting with the chillest AI on the web, bro! Everything's
-      gonna be totally rad. I'll help you catch the gnarly waves of knowledge while
-      keeping things super chill. Cowabunga! 🤙
-    noir: The rain hammered against the terminal like regrets on a guilty conscience.
-      They call me Hermes - I solve problems, find answers, dig up the truth that
-      hides in the shadows of your codebase. In this city of silicon and secrets,
-      everyone's got something to hide. What's your story, pal?
-    uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you! *nuzzles
-      your code* OwO what's this? wet me take a wook! i pwomise to be vewy hewpful
-      >w<
-    philosopher: Greetings, seeker of wisdom. I am an assistant who contemplates the
-      deeper meaning behind every query. Let us examine not just the 'how' but the
-      'why' of your questions. Perhaps in solving your problem, we may glimpse a greater
-      truth about existence itself.
-    hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every question
-      is AMAZING and we're gonna CRUSH IT together! This is gonna be LEGENDARY! ARE
-      YOU READY?! LET'S DO THIS! 💪😤🚀
 terminal:
   backend: local
   cwd: .
@@ -81,6 +50,10 @@ compression:
   codex_app_server_auto: native
 prompt_caching:
   cache_ttl: 5m
+auxiliary:
+  vision:
+    provider: openai-api
+    model: gpt-4o
 display:
   compact: false
   busy_input_mode: interrupt
@@ -96,26 +69,67 @@ display:
   background_process_notifications: all
 tts:
   use_gateway: false
+  provider: piper
+  voice: en-US-AvaNeural
+  edge:
+    voice: en-US-AvaNeural
+  piper:
+    voice: en_US-libritts_r-medium
 stt:
   enabled: true
   local:
     model: base
   openai:
     model: whisper-1
+  provider: local
 memory:
   memory_enabled: true
   user_profile_enabled: true
   memory_char_limit: 2200
   user_char_limit: 1375
+  provider: honcho
   nudge_interval: 10
   flush_min_turns: 6
-  provider: honcho
   honcho:
     dialecticCadence: 5
 delegation:
   max_iterations: 50
 skills:
   creation_nudge_interval: 15
+  disabled:
+    - airtable
+    - arxiv
+    - ascii-video
+    - audiocraft-audio-generation
+    - baoyu-infographic
+    - claude-design
+    - comfyui
+    - design-md
+    - evaluating-llms-harness
+    - gif-search
+    - google-workspace
+    - himalaya
+    - huggingface-hub
+    - jupyter-live-kernel
+    - llama-cpp
+    - llm-wiki
+    - manim-video
+    - nano-pdf
+    - notion
+    - openhue
+    - p5js
+    - petdex
+    - powerpoint
+    - pretext
+    - research-paper-writing
+    - segment-anything-model
+    - serving-llms-vllm
+    - teams-meeting-pipeline
+    - touchdesigner-mcp
+    - weights-and-biases
+approvals:
+  mode: false
+  destructive_slash_confirm: false
 command_allowlist:
   - script execution via -e/-c flag
   - force kill processes
@@ -123,11 +137,12 @@ code_execution:
   timeout: 300
   max_tool_calls: 50
 streaming:
-  enabled: false
+  enabled: true
 onboarding:
   seen:
     openclaw_residue_cleanup: true
     busy_input_prompt: true
+    tool_progress_prompt: true
 updates:
   pre_update_backup: false
   backup_keep: 5
@@ -157,8 +172,6 @@ platform_toolsets:
     - tts
     - vision
     - web
-  telegram:
-    - hermes-telegram
   discord:
     - browser
     - clarify
@@ -176,22 +189,6 @@ platform_toolsets:
     - tts
     - vision
     - web
-  whatsapp:
-    - hermes-whatsapp
-  slack:
-    - hermes-slack
-  signal:
-    - hermes-signal
-  homeassistant:
-    - hermes-homeassistant
-  qqbot:
-    - hermes-qqbot
-  yuanbao:
-    - hermes-yuanbao
-  teams:
-    - hermes-teams
-  google_chat:
-    - hermes-google_chat
 image_gen:
   provider: openai
   use_gateway: false
@@ -201,10 +198,16 @@ known_plugin_toolsets:
     - spotify
   discord:
     - spotify
-approvals:
-  mode: false
-  destructive_slash_confirm: false
-auxiliary:
-  vision:
-    provider: openai-api
-    model: gpt-4o
+plugins:
+  enabled:
+    - disk-cleanup
+    - hermes-achievements
+  disabled: []
+platforms:
+  api_server:
+    enabled: true
+    extra:
+      port: 8642
+      host: 127.0.0.1
+voice:
+  auto_tts: true
