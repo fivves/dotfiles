@@ -2,7 +2,7 @@ model:
   default: deepseek-v4-pro
   provider: deepseek
   base_url: https://api.deepseek.com/v1
-  api_key: sk-00e0ca34aea346cab2ccda1701df8b3f
+  api_key: <in NAS backup>
 agent:
   max_turns: 150
   verbose: false
