@@ -15,7 +15,7 @@
   "modules-center": ["hyprland/window"],
   
   "modules-right": [
-    "custom/claudebar",
+    "custom/opencodegobar",
     "custom/wordle",
     "custom/twitch",
     "custom/weather",
@@ -70,15 +70,15 @@
   },
 
 
-"custom/claudebar": {
-    "exec": "claudebar",
+"custom/opencodegobar": {
+    "exec": "/home/eddie/.local/bin/opencodegobar",
     "format": "󰚩 {}",
     "return-type": "json",
     "interval": 300,
-    "signal": 13,
     "tooltip": true,
-    "on-click": "xdg-open https://claude.ai/settings/usage"
+    "on-click": "xdg-open https://opencode.ai/workspace/wrk_01KXBTZT0ZG9K1D35H7WQDSG7P/usage"
 },
+
 
 "custom/weather": {
     "format": "{}",
