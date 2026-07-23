@@ -69,15 +69,14 @@
     "on-click": "xdg-open https://chatgpt.com/codex/settings/usage"
   },
 
-
-"custom/opencodegobar": {
-    "exec": "/home/eddie/.local/bin/opencodegobar",
+  "custom/opencodegobar": {
+    "exec": "bash /home/eddie/.local/bin/opencodegobar",
     "format": "󰚩 {}",
     "return-type": "json",
     "interval": 300,
     "tooltip": true,
-    "on-click": "xdg-open https://opencode.ai/workspace/wrk_01KXBTZT0ZG9K1D35H7WQDSG7P/usage"
-},
+    "on-click": "xdg-open https://opencode.ai/workspace/wrk_01KXBTZT0ZG9K1D35H7WQDSG7P/go"
+  },
 
 
 "custom/weather": {
