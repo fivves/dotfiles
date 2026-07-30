@@ -6,7 +6,7 @@ hook_dir="$HOME/.config/omarchy/hooks/theme-set.d"
 template_path="$template_dir/starship.toml.tpl"
 hook_path="$hook_dir/sync-starship"
 starship_path="$HOME/.config/starship.toml"
-current_theme_dir="$HOME/.config/omarchy/current/theme"
+current_theme_dir="$HOME/.local/state/omarchy/current/theme"
 current_starship="$current_theme_dir/starship.toml"
 colors_file="$current_theme_dir/colors.toml"
 
@@ -176,11 +176,55 @@ cat > "$hook_path" <<'STARSHIP_HOOK'
 #!/usr/bin/env bash
 set -euo pipefail
 
-theme_starship="$HOME/.config/omarchy/current/theme/starship.toml"
+starship_path="$HOME/.config/starship.toml"
+template_path="$HOME/.config/omarchy/themed/starship.toml.tpl"
+colors_file="$HOME/.local/state/omarchy/current/theme/colors.toml"
+current_starship="$HOME/.local/state/omarchy/current/theme/starship.toml"
 
-if [[ -f "$theme_starship" ]]; then
-  cp "$theme_starship" "$HOME/.config/starship.toml"
+# If the theme dir has a pre-rendered starship.toml, use it directly
+if [[ -f "$current_starship" ]] && ! grep -q '{{ ' "$current_starship" 2>/dev/null; then
+  cp "$current_starship" "$starship_path"
+  exit 0
 fi
+
+# Otherwise render from template
+if [[ ! -f "$template_path" || ! -f "$colors_file" ]]; then
+  exit 0
+fi
+
+hex_to_rgb() {
+  hex=$(printf '%s' "$1" | sed 's/^#//')
+  r=$(printf '%d' "0x$(printf '%s' "$hex" | cut -c1-2)")
+  g=$(printf '%d' "0x$(printf '%s' "$hex" | cut -c3-4)")
+  b=$(printf '%d' "0x$(printf '%s' "$hex" | cut -c5-6)")
+  printf '%s,%s,%s' "$r" "$g" "$b"
+}
+
+escape_sed_replacement() {
+  printf '%s' "$1" | sed 's/[&|]/\\&/g'
+}
+
+sed_script=$(mktemp)
+while IFS='=' read -r key value; do
+  key=$(printf '%s' "$key" | tr -d '"'"' ' ')
+  case "$key" in
+    ''|\\#*) continue ;;
+  esac
+  value=$(printf '%s' "$value" | sed "s/^[^\"']*[\"']//; s/[\"'].*$//")
+  escaped_value=$(escape_sed_replacement "$value")
+  stripped_value=$(escape_sed_replacement "$(printf '%s' "$value" | sed 's/^#//')")
+  printf 's|{{ %s }}|%s|g\n' "$key" "$escaped_value" >> "$sed_script"
+  printf 's|{{ %s_strip }}|%s|g\n' "$key" "$stripped_value" >> "$sed_script"
+  case "$value" in
+    \#??????)
+      rgb_value=$(hex_to_rgb "$value")
+      printf 's|{{ %s_rgb }}|%s|g\n' "$key" "$rgb_value" >> "$sed_script"
+      ;;
+  esac
+done < "$colors_file"
+
+sed -f "$sed_script" "$template_path" > "$starship_path"
+rm -f "$sed_script"
 STARSHIP_HOOK
 
 chmod +x "$hook_path"

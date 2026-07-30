@@ -4,8 +4,12 @@ set -uo pipefail
 INSTALLER_PATH="$HOME/.local/bin/install-omarchy-vesktop-theme-sync"
 HOOK_DIR="$HOME/.config/omarchy/hooks/theme-set.d"
 HOOK_PATH="$HOOK_DIR/sync-vesktop"
-OMARCHY_THEME_DIR="$HOME/.config/omarchy/current/theme"
-OMARCHY_VENCORD_THEME="$OMARCHY_THEME_DIR/vencord.theme.css"
+
+# Read from Omarchy's current/active theme state, not a hardcoded theme dir
+OMARCHY_CURRENT="$HOME/.local/state/omarchy/current/theme"
+COLORS_FILE="$OMARCHY_CURRENT/colors.toml"
+THEME_NAME_FILE="$HOME/.local/state/omarchy/current/theme.name"
+
 VESKTOP_CONFIG_DIR="$HOME/.config/vesktop"
 VESKTOP_SETTINGS_DIR="$VESKTOP_CONFIG_DIR/settings"
 VESKTOP_THEMES_DIR="$VESKTOP_CONFIG_DIR/themes"
@@ -23,9 +27,9 @@ Usage:
   install-omarchy-vesktop-theme-sync          Install the Omarchy hook and sync Vesktop now
   install-omarchy-vesktop-theme-sync --sync   Sync Vesktop's local Vencord theme now
 
-The hook runs after `omarchy theme set ...`, copies the current Omarchy
-vencord.theme.css into ~/.config/vesktop/themes/, and enables that local theme
-in Vencord's enabledThemes setting.
+The hook runs after `omarchy theme set ...`, generates
+omarchy-vencord.theme.css from the active Omarchy colors.toml, copies it into
+~/.config/vesktop/themes/, and enables it in Vencord's enabledThemes setting.
 USAGE
 }
 
@@ -59,22 +63,272 @@ PYTHON
 }
 
 sync_vesktop() {
-  if [[ ! -f "$OMARCHY_VENCORD_THEME" ]]; then
-    log "No Omarchy Vencord theme found at $OMARCHY_VENCORD_THEME"
+  if [[ ! -f "$COLORS_FILE" ]]; then
+    log "No Omarchy colors found at $COLORS_FILE. Set a theme with 'omarchy theme set' first."
     return 0
   fi
 
   if ! command -v python3 >/dev/null; then
-    log "python3 is required to update Vesktop settings"
+    log "python3 is required to generate the Vencord CSS theme"
     return 1
   fi
 
   mkdir -p "$VESKTOP_THEMES_DIR"
-  cp "$OMARCHY_VENCORD_THEME" "$VESKTOP_THEME_PATH"
+
+  # Generate vencord.theme.css from colors.toml
+  python3 - "$COLORS_FILE" "$THEME_NAME_FILE" "$VESKTOP_THEME_PATH" <<'PYTHON'
+import sys
+import tomllib
+from pathlib import Path
+
+colors_path = Path(sys.argv[1])
+theme_name_path = Path(sys.argv[2])
+output_path = Path(sys.argv[3])
+
+with open(colors_path, "rb") as f:
+    colors = tomllib.load(f)
+
+name = "Omarchy"
+if theme_name_path.exists():
+    raw = theme_name_path.read_text().strip()
+    if raw:
+        name = raw.replace("-", " ").replace("_", " ").title()
+
+def hex_to_rgb(h):
+    h = h.lstrip("#")
+    return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
+
+def rgba(h, a=1.0):
+    r, g, b = hex_to_rgb(h)
+    return f"rgba({r}, {g}, {b}, {a})"
+
+bg0 = colors.get("darker_background", colors.get("black", "#000000"))
+bg1 = colors.get("dark_background", colors.get("background", "#000000"))
+bg2 = colors.get("background", "#1b1b1b")
+bg3 = colors.get("lighter_background", colors.get("selection", "#333333"))
+fg0 = colors.get("bright_foreground", colors.get("white", "#ffffff"))
+fg1 = colors.get("foreground", "#ebebeb")
+fg2 = colors.get("dark_foreground", "#aaaaaa")
+fg3 = colors.get("muted", "#666666")
+accent = colors.get("accent", "#3b82f6")
+red = colors.get("red", "#ff5555")
+green = colors.get("green", "#50fa7b")
+yellow = colors.get("yellow", "#f1fa8c")
+blue = colors.get("blue", "#8be9fd")
+
+css = f"""\
+/**
+ * @name Omarchy
+ * @author Moss
+ * @description Vencord theme generated from Omarchy: {name}
+ */
+.visual-refresh.theme-dark,
+.visual-refresh .theme-dark {{
+    /* base backgrounds */
+    --background-base-lowest: {bg0} !important;
+    --background-base-lower: {bg1} !important;
+    --background-base-low: {bg1} !important;
+    --background-surface-highest: {bg3} !important;
+    --background-surface-higher: {bg3} !important;
+    --background-surface-high: {bg2} !important;
+    --background-primary: {bg2} !important;
+    --background-secondary: {bg1} !important;
+    --background-secondary-alt: {bg3} !important;
+    --background-tertiary: {bg0} !important;
+    --background-accent: {bg3} !important;
+    --background-floating: {rgba(bg3, 0.95)} !important;
+    --background-code: {rgba(bg0, 0.5)} !important;
+    --bg-surface-raised: {bg1} !important;
+    --background-gradient-highest: {bg1} !important;
+
+    /* modifier backgrounds */
+    --background-modifier-hover: {rgba(bg3, 0.30)} !important;
+    --background-modifier-active: {rgba(bg3, 0.50)} !important;
+    --background-modifier-selected: {bg3} !important;
+    --background-modifier-accent: {bg3} !important;
+    --background-mod-muted: {rgba(bg3, 0.08)} !important;
+    --background-mod-normal: {rgba(bg3, 0.15)} !important;
+    --background-mod-subtle: {rgba(bg3, 0.25)} !important;
+    --background-mod-strong: {rgba(bg3, 0.45)} !important;
+
+    /* message backgrounds */
+    --background-message-hover: {rgba(bg3, 0.12)} !important;
+    --background-mentioned: {rgba(accent, 0.08)} !important;
+    --background-mentioned-hover: {rgba(accent, 0.05)} !important;
+    --background-message-highlight: {rgba(accent, 0.06)} !important;
+    --background-message-highlight-hover: {rgba(accent, 0.04)} !important;
+    --message-background-hover: {rgba(bg3, 0.06)} !important;
+    --message-mentioned-background-hover: {rgba(accent, 0.08)} !important;
+    --message-mentioned-background-default: {rgba(accent, 0.10)} !important;
+    --message-highlight-background-default: {rgba(accent, 0.06)} !important;
+    --message-highlight-background-hover: {rgba(accent, 0.04)} !important;
+    --message-reacted-background-default: {rgba(accent, 0.15)} !important;
+    --message-reacted-text-default: {accent} !important;
+
+    /* chat / panels */
+    --chat-background: {bg2} !important;
+    --chat-background-default: {bg2} !important;
+    --chat-border: {bg0} !important;
+    --chat-text-muted: {fg3} !important;
+    --home-background: {bg2} !important;
+    --modal-background: {bg1} !important;
+    --modal-footer-background: {bg1} !important;
+    --app-frame-background: {bg0} !important;
+    --__header-bar-background: {bg1} !important;
+
+    /* inputs */
+    --input-background: {bg0} !important;
+    --input-background-default: {bg0} !important;
+    --input-text-default: {fg1} !important;
+    --input-placeholder-text-default: {fg3} !important;
+    --input-border-default: {bg3} !important;
+    --channeltextarea-background: {bg1} !important;
+    --channel-text-area-placeholder: {rgba(fg1, 0.4)} !important;
+
+    /* cards & surfaces */
+    --card-background-default: {bg3} !important;
+
+    /* user / channel */
+    --custom-channel-members-bg: {bg1} !important;
+    --custom-status-bubble-background: {bg0} !important;
+    --custom-status-bubble-background-color: {bg1} !important;
+    --user-profile-overlay-background: {bg1} !important;
+    --user-profile-overlay-background-hover: {bg3} !important;
+
+    /* scrollbars */
+    --scrollbar-thin-thumb: {rgba(fg3, 0.4)} !important;
+    --scrollbar-thin-track: transparent !important;
+    --scrollbar-auto-thumb: {rgba(fg3, 0.4)} !important;
+    --scrollbar-auto-track: {bg2} !important;
+    --scrollbar-auto-scrollbar-color-thumb: {rgba(fg3, 0.4)} !important;
+    --scrollbar-auto-scrollbar-color-track: {bg2} !important;
+
+    /* text */
+    --text-default: {fg1} !important;
+    --text-normal: {fg1} !important;
+    --text-muted: {fg3} !important;
+    --text-strong: {fg0} !important;
+    --text-subtle: {fg2} !important;
+    --text-link: {blue} !important;
+    --text-brand: {accent} !important;
+    --text-positive: {green} !important;
+    --text-warning: {yellow} !important;
+    --text-danger: {red} !important;
+    --text-feedback-positive: {green} !important;
+    --text-feedback-warning: {yellow} !important;
+    --text-feedback-critical: {red} !important;
+    --text-feedback-info: {blue} !important;
+    --text-status-online: {green} !important;
+    --text-status-idle: {yellow} !important;
+    --text-status-dnd: {red} !important;
+    --text-status-offline: {fg2} !important;
+
+    /* headers */
+    --header-primary: {fg0} !important;
+    --header-secondary: {fg2} !important;
+
+    /* interactive */
+    --interactive-normal: {fg2} !important;
+    --interactive-hover: {fg0} !important;
+    --interactive-active: {fg0} !important;
+    --interactive-muted: {fg3} !important;
+    --interactive-icon-default: {fg2} !important;
+    --interactive-icon-hover: {fg0} !important;
+    --interactive-icon-active: {fg0} !important;
+    --interactive-text-default: {fg1} !important;
+    --interactive-text-hover: {fg0} !important;
+    --interactive-text-active: {fg0} !important;
+    --interactive-background-hover: {rgba(bg3, 0.15)} !important;
+    --interactive-background-selected: {rgba(bg3, 0.25)} !important;
+    --interactive-background-active: {rgba(bg3, 0.35)} !important;
+
+    /* brand / accent */
+    --brand-experiment: {accent} !important;
+    --brand-500: {accent} !important;
+    --brand-530: {rgba(accent, 0.85)} !important;
+    --brand-560: {rgba(accent, 0.70)} !important;
+    --brand-600: {rgba(accent, 0.60)} !important;
+    --control-brand-foreground: {accent} !important;
+    --control-brand-foreground-new: {accent} !important;
+    --mention-foreground: {accent} !important;
+    --mention-background: {rgba(accent, 0.15)} !important;
+
+    /* borders */
+    --border-muted: {bg3} !important;
+    --border-strong: {bg1} !important;
+    --border-normal: {bg0} !important;
+    --border-subtle: {bg3} !important;
+
+    /* channels */
+    --channels-default: {fg2} !important;
+    --channel-icon: {fg2} !important;
+
+    /* icons */
+    --icon-default: {fg1} !important;
+    --icon-strong: {fg0} !important;
+    --icon-subtle: {fg2} !important;
+    --icon-muted: {fg3} !important;
+    --icon-status-online: {green} !important;
+    --icon-status-idle: {yellow} !important;
+    --icon-status-dnd: {red} !important;
+    --icon-status-offline: {fg2} !important;
+    --icon-voice-muted: {red} !important;
+
+    /* status */
+    --status-positive: {green} !important;
+    --status-positive-background: {green} !important;
+    --status-positive-text: {bg0} !important;
+    --status-warning: {yellow} !important;
+    --status-warning-background: {yellow} !important;
+    --status-warning-text: {bg0} !important;
+    --status-danger: {red} !important;
+    --status-danger-background: {red} !important;
+    --status-danger-text: {bg0} !important;
+
+    /* feedback */
+    --background-feedback-positive: {rgba(green, 0.15)} !important;
+    --background-feedback-warning: {rgba(yellow, 0.15)} !important;
+    --background-feedback-critical: {rgba(red, 0.15)} !important;
+    --background-feedback-info: {rgba(blue, 0.15)} !important;
+    --background-feedback-notification: {red} !important;
+    --icon-feedback-positive: {green} !important;
+    --icon-feedback-warning: {yellow} !important;
+    --icon-feedback-critical: {red} !important;
+    --icon-feedback-info: {blue} !important;
+    --icon-feedback-notification: {red} !important;
+    --badge-notification-background: {red} !important;
+
+    /* controls */
+    --control-primary-background-default: {accent} !important;
+    --control-primary-background-hover: {rgba(accent, 0.85)} !important;
+    --control-primary-background-active: {rgba(accent, 0.70)} !important;
+    --control-secondary-background-default: {bg3} !important;
+    --control-secondary-background-hover: {rgba(bg3, 0.85)} !important;
+    --control-secondary-background-active: {rgba(bg3, 0.70)} !important;
+    --control-secondary-text-default: {fg1} !important;
+    --control-secondary-border-default: {bg3} !important;
+
+    /* misc */
+    --logo-primary: {fg0} !important;
+    --textbox-markdown-syntax: {fg3} !important;
+    --checkbox-icon-active: {bg0} !important;
+    --checkbox-border-default: {fg3} !important;
+    --radio-thumb-background-active: {bg0} !important;
+    --white: {fg0} !important;
+    --white-500: {fg0} !important;
+    --__adaptive-focus-ring-color: {accent} !important;
+    --spoiler-revealed-background: {bg3} !important;
+    --spoiler-hidden-background: {rgba(fg3, 0.3)} !important;
+}}
+"""
+
+output_path.write_text(css)
+print(f"wrote {output_path}")
+PYTHON
+
   enable_vencord_theme
 
-  log "Synced $OMARCHY_VENCORD_THEME to $VESKTOP_THEME_PATH and enabled it in Vencord."
-  log "Restart Vesktop or reload themes if it is already open."
+  log "Synced Vesktop to the current Omarchy theme."
 }
 
 install_hook() {

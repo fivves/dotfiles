@@ -23,6 +23,7 @@ bad=$'\033[38;5;203m'
 INSTALLERS=(
   "steam|Adwaita for Steam|install-omarchy-adwaita-for-steam-theme-sync.sh|Sync Steam's Adwaita-for-Steam colors from the active Omarchy theme"
   "chatterino|Chatterino|install-omarchy-chatterino-theme-sync.sh|Generate and select a Chatterino theme from the active Omarchy palette"
+  "gtk|GTK|install-omarchy-gtk-theme-sync.sh|Generate GTK3/GTK4 CSS from the active Omarchy palette and set gsettings"
   "heroic|Heroic|install-omarchy-heroic-theme-sync.sh|Generate and select a Heroic theme from the active Omarchy palette"
   "starship|Starship|install-omarchy-starship-theme.sh|Install the Omarchy-colored Starship prompt template and theme hook"
   "sublime|Sublime Text|install-omarchy-sublime-theme-sync.sh|Generate and select a Sublime Text color scheme from the active Omarchy palette"
@@ -55,10 +56,6 @@ branding_path() {
   [[ -d "$branding_dir" ]] || branding_dir="$FALLBACK_BRANDING_DIR"
   width="$(terminal_width)"
 
-  # The installer treats screensaver.txt as the branded wordmark. If a future
-  # agent replaces or adds branding files, keep this order: wide wordmark first,
-  # compact fallback second. The width check prevents wide ASCII art from
-  # wrapping and breaking the TUI layout on smaller terminals.
   if [[ -f "$branding_dir/screensaver.txt" ]] && (( $(file_width "$branding_dir/screensaver.txt") <= width )); then
     printf '%s\n' "$branding_dir/screensaver.txt"
   elif [[ -f "$branding_dir/about.txt" ]]; then
@@ -163,9 +160,6 @@ render_ui() {
     elif (( width >= 112 )); then
       printf '%b %s%2d.%s %s %s%-18s%s %s\n' "$pointer" "$accent" "$((i + 1))" "$reset" "$marker" "$state" "$label" "$reset" "$description"
     else
-      # Narrow-terminal layout: keep the selectable row short, then print a
-      # bounded description below it. Add new installers freely in INSTALLERS;
-      # this presentation layer will keep long descriptions from wrapping.
       local description_width=$((width - 8))
       (( description_width < 24 )) && description_width=24
       printf '%b %s%2d.%s %s %s%s%s\n' "$pointer" "$accent" "$((i + 1))" "$reset" "$marker" "$state" "$label" "$reset"

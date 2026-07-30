@@ -6,8 +6,8 @@ OMARCHY_HOOK_DIR="$HOME/.config/omarchy/hooks/theme-set.d"
 SYNC_SCRIPT="$SUBLIME_USER_DIR/omarchy_sublime_theme_sync.py"
 HOOK_SCRIPT="$OMARCHY_HOOK_DIR/sync-sublime-text"
 
-if [[ ! -d "$HOME/.config/omarchy/current/theme" ]]; then
-  echo "Omarchy current theme not found at ~/.config/omarchy/current/theme" >&2
+if [[ ! -d "$HOME/.local/state/omarchy/current/theme" ]]; then
+  echo "Omarchy current theme not found at ~/.local/state/omarchy/current/theme" >&2
   exit 1
 fi
 
@@ -26,8 +26,8 @@ from pathlib import Path
 
 
 HOME = Path.home()
-THEME_DIR = HOME / ".config/omarchy/current/theme"
-THEME_NAME_PATH = HOME / ".config/omarchy/current/theme.name"
+THEME_DIR = HOME / ".local/state/omarchy/current/theme"
+THEME_NAME_PATH = HOME / ".local/state/omarchy/current/theme.name"
 SUBLIME_USER_DIR = HOME / ".config/sublime-text/Packages/User"
 COLOR_SCHEME_PATH = SUBLIME_USER_DIR / "Omarchy.sublime-color-scheme"
 PREFERENCES_PATH = SUBLIME_USER_DIR / "Preferences.sublime-settings"

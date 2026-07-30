@@ -4,7 +4,7 @@ set -uo pipefail
 INSTALLER_PATH="$HOME/.local/bin/install-omarchy-zen-theme-sync"
 HOOK_DIR="$HOME/.config/omarchy/hooks/theme-set.d"
 HOOK_PATH="$HOOK_DIR/sync-zen-browser"
-THEME_DIR="$HOME/.config/omarchy/current/theme"
+THEME_DIR="$HOME/.local/state/omarchy/current/theme"
 COLORS_FILE="$THEME_DIR/colors.toml"
 
 log() {
@@ -72,8 +72,8 @@ css_scheme() {
 }
 
 theme_name() {
-  if [[ -f "$HOME/.config/omarchy/current/theme.name" ]]; then
-    tr -d '\r\n' <"$HOME/.config/omarchy/current/theme.name"
+  if [[ -f "$HOME/.local/state/omarchy/current/theme.name" ]]; then
+    tr -d '\r\n' <"$HOME/.local/state/omarchy/current/theme.name"
   else
     printf 'unknown'
   fi
