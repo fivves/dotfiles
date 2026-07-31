@@ -358,8 +358,10 @@ Item {
     var normalized = Util.normalizeLayout(Util.isPlainObject(layout) ? layout : fallbackBarConfig.layout)
     return {
       left:   pinTrayToInner(normalized.left,   "left"),
+      media:  pinTrayToInner(normalized.media,  "media"),
+      clock:  pinTrayToInner(normalized.clock,  "clock"),
       center: pinTrayToInner(normalized.center, "center"),
-      right:  pinTrayToInner(normalized.right,  "right")
+      right:  pinTrayToInner(normalized.right,  "right"),
     }
   }
 
@@ -1056,10 +1058,38 @@ Item {
           }
         }
 
-        // Center pill — fills remaining space between left and right pills
+        // Media pill — content-sized, between left and center
+        Rectangle {
+          id: mediaPill
+          anchors.left: leftPill.right
+          anchors.leftMargin: root.layoutEntries("media").length > 0 ? Style.gapsOut * 2 : 0
+          anchors.verticalCenter: parent.verticalCenter
+          height: root.barSize
+          width: mediaRow.implicitWidth + Style.space(12)
+          visible: root.layoutEntries("media").length > 0
+          color: root.background
+          radius: Math.min(Style.cornerRadius, height / 2)
+          opacity: root.transparent ? 0.65 : 0.92
+
+          Row {
+            id: mediaRow
+            anchors.centerIn: parent
+            spacing: 0
+            Repeater {
+              model: root.layoutEntries("media")
+              ModuleSlot {
+                required property var modelData
+                entry: modelData
+                region: "media"
+              }
+            }
+          }
+        }
+
+        // Center pill — fills remaining space between left/media and right pills
         Rectangle {
           id: centerWrapper
-          anchors.left: leftPill.right
+          anchors.left: mediaPill.visible ? mediaPill.right : leftPill.right
           anchors.leftMargin: Style.gapsOut * 2
           anchors.right: rightPill.left
           anchors.rightMargin: Style.gapsOut * 2
@@ -1099,10 +1129,11 @@ Item {
           }
         }
 
-        // Right pill — content-sized, anchored right
+        // Right pill — content-sized, between icons and clock
         Rectangle {
           id: rightPill
-          anchors.right: parent.right
+          anchors.right: clockPill.left
+          anchors.rightMargin: Style.gapsOut * 2
           anchors.verticalCenter: parent.verticalCenter
           height: root.barSize
           width: root.rightPillContentWidth + Style.space(12)
@@ -1119,6 +1150,44 @@ Item {
             anchors.right: parent.right
             anchors.rightMargin: Style.space(6)
             anchors.verticalCenter: parent.verticalCenter
+          }
+        }
+
+        Rectangle {
+          Row {
+            anchors.centerIn: parent
+            Repeater {
+              ModuleSlot {
+                required property var modelData
+                entry: modelData
+              }
+            }
+          }
+        }
+        // Clock pill — content-sized, anchored far right
+        Rectangle {
+          id: clockPill
+          anchors.right: parent.right
+          anchors.verticalCenter: parent.verticalCenter
+          height: root.barSize
+          width: clockRow.implicitWidth + Style.space(12)
+          visible: root.layoutEntries("clock").length > 0
+          color: root.background
+          radius: Math.min(Style.cornerRadius, height / 2)
+          opacity: root.transparent ? 0.65 : 0.92
+
+          Row {
+            id: clockRow
+            anchors.centerIn: parent
+            spacing: 0
+            Repeater {
+              model: root.layoutEntries("clock")
+              ModuleSlot {
+                required property var modelData
+                entry: modelData
+                region: "clock"
+              }
+            }
           }
         }
       }

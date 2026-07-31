@@ -93,6 +93,33 @@ Item {
   property var clickTargets: []
   property var moduleSlots: []
 
+  // Visible content width of right modules (adjusts for tray's hidden drawer space)
+  readonly property real rightPillContentWidth: {
+    var entries = root.layoutEntries("right")
+    var total = 0
+    for (var i = 0; i < entries.length; i++) {
+      var id = root.entryId(entries[i])
+      var slot = null
+      for (var j = 0; j < moduleSlots.length; j++) {
+        if (moduleSlots[j].region === "right" && moduleSlots[j].moduleName === id) {
+          slot = moduleSlots[j]
+          break
+        }
+      }
+      if (!slot || !slot.activeItem) {
+        total += Style.bar.iconSlot
+        continue
+      }
+      if (id === "omarchy.tray") {
+        var tray = slot.activeItem
+        total += tray.expanded ? tray.implicitWidth : Math.max(0, tray.implicitWidth - tray.drawerExtent)
+      } else {
+        total += slot.width
+      }
+    }
+    return total > 0 ? total : 0
+  }
+
   function registerClickTarget(target) {
     if (!target || clickTargets.indexOf(target) !== -1) return
     var next = clickTargets.slice()
@@ -331,6 +358,8 @@ Item {
     var normalized = Util.normalizeLayout(Util.isPlainObject(layout) ? layout : fallbackBarConfig.layout)
     return {
       left:   pinTrayToInner(normalized.left,   "left"),
+      media:  pinTrayToInner(normalized.media,  "media"),
+      clock:  pinTrayToInner(normalized.clock,  "clock"),
       center: pinTrayToInner(normalized.center, "center"),
       right:  pinTrayToInner(normalized.right,  "right")
     }
@@ -873,7 +902,7 @@ Item {
   }
 
   Variants {
-    model: Quickshell.screens
+    model: Quickshell.screens.filter(s => s.name === "DP-1")
 
     delegate: Component {
       BarPanel {
@@ -885,7 +914,7 @@ Item {
   }
 
   Variants {
-    model: Quickshell.screens
+    model: Quickshell.screens.filter(s => s.name === "DP-1")
 
     delegate: Component {
       DragGhostPanel {
@@ -898,7 +927,7 @@ Item {
   }
 
   Variants {
-    model: Quickshell.screens
+    model: Quickshell.screens.filter(s => s.name === "DP-1")
 
     delegate: Component {
       BarMoveGhostPanel {
@@ -915,6 +944,7 @@ Item {
 
     visible: !root.barHidden
 
+    // Floating bar with margins, always transparent — pills provide backgrounds
     anchors {
       top: root.position === "top" || root.vertical
       bottom: root.position === "bottom" || root.vertical
@@ -922,9 +952,15 @@ Item {
       right: root.position === "right" || !root.vertical
     }
 
+    margins {
+      left: !root.vertical ? Style.gapsOut * 2 : 0
+      right: !root.vertical ? Style.gapsOut * 2 : 0
+      bottom: !root.vertical ? -8 : 0
+    }
+
     implicitWidth: root.vertical ? root.barSize : 0
-    implicitHeight: root.vertical ? 0 : root.barSize
-    color: root.transparent ? "transparent" : root.background
+    implicitHeight: root.vertical ? 0 : root.barSize + Style.space(12)
+    color: "transparent"
     surfaceFormat.opaque: false
     WlrLayershell.namespace: "omarchy-bar"
     WlrLayershell.layer: WlrLayer.Top
@@ -1003,18 +1039,145 @@ Item {
       Item {
         anchors.fill: parent
 
-        CenterModules { anchors.fill: parent }
-
-        LeftModules {
+        // Left pill — content-sized, anchored left
+        Rectangle {
+          id: leftPill
           anchors.left: parent.left
-          anchors.leftMargin: Style.space(8)
           anchors.verticalCenter: parent.verticalCenter
+          height: root.barSize
+          width: leftModulesRow.width + Style.space(12)
+          color: root.background
+          radius: Math.min(Style.cornerRadius, height / 2)
+          opacity: root.transparent ? 0.65 : 0.92
+
+          LeftModules {
+            id: leftModulesRow
+            anchors.left: parent.left
+            anchors.leftMargin: Style.space(6)
+            anchors.verticalCenter: parent.verticalCenter
+          }
         }
 
-        RightModules {
-          anchors.right: parent.right
-          anchors.rightMargin: Style.space(8)
+        // Media pill — content-sized, between left and center
+        Rectangle {
+          id: mediaPill
+          anchors.left: leftPill.right
+          anchors.leftMargin: root.layoutEntries("media").length > 0 ? Style.gapsOut * 2 : 0
           anchors.verticalCenter: parent.verticalCenter
+          height: root.barSize
+          width: mediaRow.implicitWidth + Style.space(12)
+          visible: root.layoutEntries("media").length > 0
+          color: root.background
+          radius: Math.min(Style.cornerRadius, height / 2)
+          opacity: root.transparent ? 0.65 : 0.92
+
+          Row {
+            id: mediaRow
+            anchors.centerIn: parent
+            spacing: 0
+            Repeater {
+              model: root.layoutEntries("media")
+              ModuleSlot {
+                required property var modelData
+                entry: modelData
+                region: "media"
+              }
+            }
+          }
+        }
+
+        // Center pill — fills remaining space between left/media and right pills
+        Rectangle {
+          id: centerWrapper
+          anchors.left: mediaPill.visible ? mediaPill.right : leftPill.right
+          anchors.leftMargin: Style.gapsOut * 2
+          anchors.right: rightPill.left
+          anchors.rightMargin: Style.gapsOut * 2
+          anchors.verticalCenter: parent.verticalCenter
+
+          // Center pill is content-sized but centered in the wrapper
+          Rectangle {
+            id: centerPill
+            anchors.centerIn: parent
+            width: centerContent.implicitWidth + Style.space(12)
+            height: root.barSize
+            color: root.background
+            radius: Math.min(Style.cornerRadius, height / 2)
+            opacity: root.transparent ? 0.65 : 0.92
+
+            // Center content sized to its modules
+            Item {
+              id: centerContent
+              anchors.centerIn: parent
+              implicitWidth: centerRow.implicitWidth
+              implicitHeight: centerRow.implicitHeight
+
+              Row {
+                id: centerRow
+                spacing: 0
+                Repeater {
+                  model: root.layoutEntries("center")
+
+                  ModuleSlot {
+                    required property var modelData
+                    entry: modelData
+                    region: "center"
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        // Right pill — content-sized, between icons and clock
+        Rectangle {
+          id: rightPill
+          anchors.right: clockPill.left
+          anchors.rightMargin: Style.gapsOut * 2
+          anchors.verticalCenter: parent.verticalCenter
+          height: root.barSize
+          width: root.rightPillContentWidth + Style.space(12)
+
+          Behavior on width {
+            NumberAnimation { duration: 600; easing.type: Easing.OutCubic }
+          }
+          color: root.background
+          radius: Math.min(Style.cornerRadius, height / 2)
+          opacity: root.transparent ? 0.65 : 0.92
+
+          RightModules {
+            id: rightModulesRow
+            anchors.right: parent.right
+            anchors.rightMargin: Style.space(6)
+            anchors.verticalCenter: parent.verticalCenter
+          }
+        }
+
+        // Clock pill — content-sized, anchored far right
+        Rectangle {
+          id: clockPill
+          anchors.right: parent.right
+          anchors.verticalCenter: parent.verticalCenter
+          height: root.barSize
+          width: clockRow.implicitWidth + Style.space(12)
+          visible: root.layoutEntries("clock").length > 0
+          color: root.background
+          radius: Math.min(Style.cornerRadius, height / 2)
+          opacity: root.transparent ? 0.65 : 0.92
+
+          Row {
+            id: clockRow
+            anchors.centerIn: parent
+            spacing: 0
+            Repeater {
+              model: root.layoutEntries("clock")
+              ModuleSlot {
+                required property var modelData
+                entry: modelData
+                region: "clock"
+              }
+            }
+          }
         }
       }
     }
@@ -1025,18 +1188,58 @@ Item {
       Item {
         anchors.fill: parent
 
-        CenterModules { anchors.fill: parent }
-
-        LeftModules {
+        // Top pill (left modules in vertical layout)
+        Rectangle {
+          id: topPill
           anchors.top: parent.top
-          anchors.topMargin: Style.space(8)
           anchors.horizontalCenter: parent.horizontalCenter
+          width: root.barSize
+          height: vTopContent.height + Style.space(12)
+          color: root.background
+          radius: Math.min(Style.cornerRadius, width / 2)
+          opacity: root.transparent ? 0.65 : 0.92
+
+          LeftModules {
+            id: vTopContent
+            anchors.top: parent.top
+            anchors.topMargin: Style.space(6)
+            anchors.horizontalCenter: parent.horizontalCenter
+          }
         }
 
-        RightModules {
-          anchors.bottom: parent.bottom
+        // Center pill — fills remaining vertical space
+        Rectangle {
+          id: vCenterPill
+          anchors.top: topPill.bottom
+          anchors.topMargin: Style.space(8)
+          anchors.bottom: bottomPill.top
           anchors.bottomMargin: Style.space(8)
           anchors.horizontalCenter: parent.horizontalCenter
+          width: root.barSize
+          color: root.background
+          radius: Math.min(Style.cornerRadius, width / 2)
+          opacity: root.transparent ? 0.65 : 0.92
+
+          CenterModules { anchors.fill: parent }
+        }
+
+        // Bottom pill (right modules in vertical layout)
+        Rectangle {
+          id: bottomPill
+          anchors.bottom: parent.bottom
+          anchors.horizontalCenter: parent.horizontalCenter
+          width: root.barSize
+          height: vBottomContent.height + Style.space(12)
+          color: root.background
+          radius: Math.min(Style.cornerRadius, width / 2)
+          opacity: root.transparent ? 0.65 : 0.92
+
+          RightModules {
+            id: vBottomContent
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: Style.space(6)
+            anchors.horizontalCenter: parent.horizontalCenter
+          }
         }
       }
     }
